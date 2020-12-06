@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    .out {
+      width: 350px;
+      height: 220px;
+      border: 1px solid green;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-content: space-evenly;
+    }
+
+    .out>div {
+      height: 100px;
+      width: 100px;
+      border: salmon 1px solid;
+      display: flex;
+    }
+
+    /* .out>div>div {
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background-color: darkcyan;
+    } */
+
+    .d1 {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .d1>div {
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background-color: darkcyan;
+    }
+
+    .d2 {
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+
+    /* .d2>div{
+      height: 100px;
+      width: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    } */
+    .d2>div>div {
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background-color: darkcyan;
+    }
+
+    .d3 {
+      justify-content: space-around;
+      align-items: center;
+      height: 80px !important;
+      width: 80px !important;
+      padding: 10px;
+    }
+
+    .d3>div {
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background-color: darkcyan;
+    }
+
+    .d3>div:nth-last-of-type(1) {
+      align-self: flex-end;
+
+    }
+
+    .d3>div:nth-last-of-type(2) {
+      align-self: center;
+
+    }
+
+    .d3>div:nth-last-of-type(3) {
+      align-self: flex-start;
+
+    }
+
+    .d4 {
+      /* justify-content: space-around;
+      align-items: center; */
+    }
+
+    .d4>.in1 {
+      height: 100px;
+      width: 100px;
+      border-radius: 0%;
+      background-color: transparent;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      align-items: center;
+      /* border: 1px solid salmon; */
+    }
+
+    .d4>.in1>div {
+      height: 20px;
+      width: 20px;
+      background-color: violet;
+      border-radius: 50%;
+    }
+
+    .d5 {
+      flex-wrap: wrap;
+      align-items: center;
+      position: relative;
+      height: 80px !important;
+      width: 80px !important;
+      padding: 10px;
+      /* 注意,下面子元素最好是被撑开的,不要设置宽高 */
+    }
+
+    .d5>.in1 {
+      height: 50px;
+      width: 200px;
+      border-radius: 0%;
+      background-color: transparent;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border: 1px solid skyblue;
+    }
+    .d5>div:nth-of-type(2){
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      background-color: darkorange;
+      border-radius: 50%;
+
+    }
+    .d5>.in1>div {
+      height: 20px;
+      width: 20px;
+      background-color: darkorange;
+      border-radius: 50%;
+    }
+
+    .d6>.in1 {
+      height: 100px;
+      width: 100px;
+      border-radius: 0%;
+      background-color: transparent;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      align-items: center;
+      /* border: 1px solid salmon; */
+    }
+
+    .d6>.in1>div {
+      height: 20px;
+      width: 20px;
+      background-color: darkorange;
+      border-radius: 50%;
+    }
+    .d6{
+      order: -1;
+    }
+  </style>
+  <div class="out">
+    <div class="d1">
+      <div class="in"></div>
+    </div>
+    <div class="d2">
+      <div class="in1">
+        <div class="div"></div>
+      </div>
+      <div class="in2">
+        <div class="div"></div>
+      </div>
+    </div>
+    <div class="d3">
+      <div class="in1"></div>
+      <div class="in1"></div>
+      <div class="in1"></div>
+    </div>
+    <div class="d4">
+      <div class="in1">
+        <div class=""></div>
+        <div class=""></div>
+      </div>
+      <div class="in1">
+        <div class=""></div>
+        <div class=""></div>
+      </div>
+    </div>
+    <div class="d5">
+      <div class="in1">
+        <div class=""></div>
+        <div class=""></div>
+      </div>
+      <div class="in1"></div>
+      <div class="in1">
+        <div class=""></div>
+        <div class=""></div>
+      </div>
+    </div>
+    <div class="d6">
+      <div class="in1">
+        <div class=""></div>
+        <div class=""></div>
+        <div class=""></div>
+      </div>
+      <div class="in1">
+        <div class=""></div>
+        <div class=""></div>
+        <div class=""></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

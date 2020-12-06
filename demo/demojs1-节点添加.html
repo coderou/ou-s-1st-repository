@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="div1">
+    <p>你喜欢那个城市?</p>
+    <button id="btn01">按钮</button>
+    <ul id="city">
+      <li id="beijin">北京</li>
+      <li id="shanghai">上海</li>
+      <li id="donjin">东京</li>
+      <li id="shouer">首尔</li>
+    </ul>
+  </div>
+  <div class="div2"></div>
+  <script>
+    function myClick(idStr, fun) {
+      var btn = document.getElementById(idStr);
+      btn.onclick = fun;
+    }
+    var city = document.getElementById("city");
+    //添加一个广州节点
+    /*
+    myClick("btn01", function () {
+      var li = document.createElement("li");
+      var gzText = document.createTextNode("广州");
+      li.appendChild(gzText);
+      city.appendChild(li);
+    })
+    */
+
+    //插入广州节点到北京前面
+    /*
+    myClick("btn01", function () {
+      var li = document.createElement("li");
+      var gzText = document.createTextNode("广州");
+      li.appendChild(gzText);
+      var bj = document.getElementById("beijin");
+
+      city.insertBefore(li,bj);//前新后旧
+    })
+    */
+
+    //使用广州节点替换北京节点
+    /*
+    myClick("btn01",function(){
+      var li = document.createElement("li");
+      var gzText = document.createTextNode("广州");
+      li.appendChild(gzText);
+      var bj = document.getElementById("beijin");
+      city.replaceChild(li,bj);//前新后旧
+
+    })
+    */
+
+    //删除北京节点
+    /*
+    myClick("btn01",function(){
+      var bj = document.getElementById("beijin");
+      //city.removeChild(bj);
+      bj.parentNode.removeChild(bj);//这样不用单独获取爸爸
+    })
+    */
+
+    //读取city的HTML代码
+    /*
+    myClick("btn01", function () {
+      alert(city.innerHTML);
+    })*/
+
+    //设置背景的HTML代码
+    /*
+    myClick("btn01", function () {
+      var bj = document.getElementById("beijin");
+      bj.innerHTML = "修改后的数据";
+    })*/
+
+    //用innerHTML添加city的广州
+    /*
+    myClick("btn01", function () {
+      city.innerHTML += "<li>广州</li>";//一般会2总结合使用
+      //使用innerHTML也可以实现增删改.注意,这里会全部新建li(动静大)
+    })*/
+
+    //结合版(推荐使用)
+    myClick("btn01", function () {
+      var li = document.createElement("li");
+      li.innerHTML = "广州";
+      //li.innerHTML = "";
+      city.appendChild(li);
+    })
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

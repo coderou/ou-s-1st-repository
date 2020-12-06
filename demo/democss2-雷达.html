@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .mask2 {
+      background-color: #333;
+      width: 100vw;
+      height: 100vh;
+      background-image: linear-gradient(to bottom, rgba(0, 255, 0, .1) 0%, transparent 5%);
+      background-repeat: repeat;
+      background-size: 40px 40px;
+    }
+
+    .mask {
+      /* background-color: #333; */
+      width: 100vw;
+      height: 100vh;
+      background-image: linear-gradient(to right, green 0%, transparent 5%);
+      background-repeat: repeat;
+      background-size: 40px 40px;
+      border: 1px solid transparent;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .out1 {
+      width: 500px;
+      height: 500px;
+      margin: 100px auto;
+      border: 2px solid yellow;
+      box-sizing: border-box;
+      border-radius: 50%;
+      background-image: radial-gradient(100px, rgba(0, 255, 0, .1) 0px, transparent 200px);
+      overflow: hidden;
+      position: relative;
+      /* animation: zhuan 2s infinite linear; */
+    }
+
+    @keyframes zhuan {
+      0% {
+        transform: rotateZ(0deg);
+      }
+
+      100% {
+        transform: rotateZ(-360deg);
+      }
+
+      /* 100%{
+        transform: rotateZ(0deg);
+      } */
+    }
+
+    .out2 {
+      height: 250px;
+      width: 500px;
+      /* background-color: lightgrey; */
+      background-image: linear-gradient(45deg, green 0%, transparent 50%);
+      background-repeat: no-repeat;
+      background-position: -100px 0px;
+      box-sizing: border-box;
+      /* overflow:hidden; */
+      border-radius: 500px 500px 0 0;
+    }
+
+    .in1 {
+      height: 400px;
+      width: 400px;
+      border: 2px solid green;
+      box-sizing: border-box;
+      border-radius: 50%;
+      margin-left: 50px;
+      overflow: hidden;
+      margin-top: 50px;
+    }
+
+    .in2 {
+      height: 300px;
+      width: 300px;
+      box-sizing: border-box;
+      border: 2px solid green;
+      border-radius: 50%;
+      margin-left: 50px;
+      overflow: hidden;
+      margin-top: 50px;
+    }
+
+    .in3 {
+      height: 200px;
+      width: 200px;
+      border: 2px solid green;
+      box-sizing: border-box;
+      border-radius: 50%;
+      margin-left: 50px;
+      overflow: hidden;
+      margin-top: 50px;
+    }
+
+    .in4 {
+      height: 100px;
+      width: 100px;
+      border: 2px solid green;
+      box-sizing: border-box;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-left: 50px;
+      margin-top: 50px;
+      position: relative;
+    }
+
+    .line1 {
+      width: 500px;
+      height: 2px;
+      background-color: red;
+      position: absolute;
+      left: -210px;
+      top: 50px;
+    }
+
+    .line2 {
+      height: 500px;
+      width: 2px;
+      background-color: red;
+      position: absolute;
+      left: 50px;
+      top: -210px;
+    }
+  </style>
+  <div class="mask2">
+
+    <div class="mask">
+      <div class="out1">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="out2">
+          <div class="in1">
+            <div class="in2">
+              <div class="in3">
+                <div class="in4">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

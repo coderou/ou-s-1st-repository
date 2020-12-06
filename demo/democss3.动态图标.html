@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            background-color: rgb(73, 74, 95);
+        }
+
+        /*布局整个4个框框*/
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+
+            width: 960px;
+            height: 240px;
+            /* border:1px solid green; */
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            font-size: 0;
+        }
+
+        ul li {
+
+            display: inline-block;
+            width: 230px;
+            height: 240px;
+            /* border:1px solid red; */
+            box-sizing: border-box;
+            background-color: rgb(44, 62, 80);
+
+            margin-left: 5px;
+            margin-right: 5px;
+
+            position: relative;
+        }
+
+        ul li div {
+            width: 80px;
+            height: 50px;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            /* border: 1px solid red; */
+        }
+
+        ul li div>span:first-of-type {
+            margin-top: 0;
+        }
+
+        ul li div>span {
+            display: block;
+            width: 100%;
+            height: 10px;
+            margin-top: 9px;
+            background-color: #FFF;
+
+            border-radius: 2px;
+        }
+
+        /*第一个框框*/
+        ul li:first-of-type:hover div>span:nth-of-type(2) {
+            width: 0;
+        }
+
+        ul li:first-of-type:hover div>span:first-of-type {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            transform: rotateZ(45deg);
+
+            transition-property: top, left, transform;
+            transition-duration: .5s;
+            transition-timing-function: linear;
+        }
+
+        ul li:first-of-type:hover div>span:last-of-type {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            transform: rotateZ(-45deg);
+
+            transition-property: top, left, transform;
+            transition-duration: .5s;
+            transition-timing-function: linear;
+        }
+
+        /*第二个框框*/
+        ul li:nth-of-type(2):hover div>span:first-of-type,
+        ul li:nth-of-type(2):hover div>span:last-of-type {
+            background-color: transparent;
+            transition: background .6s linear;
+        }
+
+        /*第三个框框*/
+        ul li:nth-of-type(3):hover div>span:first-of-type {
+            width: 40px;
+            position: relative;
+            top: 19px;
+            left: 2px;
+
+            transform: rotateZ(-30deg);
+            transform-origin: 0px 5px;
+
+            transition-property: width, top, left, transform;
+            transition-duration: .5s;
+            transition-timing-function: linear;
+
+        }
+
+        ul li:nth-of-type(3):hover div>span:last-of-type {
+            width: 40px;
+            position: relative;
+            left: 2px;
+            bottom: 19px;
+
+            transform: rotateZ(30deg);
+            transform-origin: 0px 5px;
+
+            transition-property: width, top, left, transform;
+            transition-duration: .5s;
+            transition-timing-function: linear;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <div>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </li>
+        <li>
+            <div>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </li>
+        <li>
+            <div>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </li>
+        <li>
+            <div>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </li>
+    </ul>
+</body>
+
+</html>

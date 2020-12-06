@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #div1 {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+  }
+</style>
+
+<body>
+  <button id="btn01">点我</button>
+  <button id="btn02">点我2</button>
+  <div id="div1"></div>
+  <script>
+    window.onload = function () {
+      var box1 = document.getElementById('div1')
+      var btn01 = document.getElementById('btn01')
+      var btn02 = document.getElementById('btn02')
+      //改变box1的样式
+      btn01.onclick = function () {
+        box1.style.width = "500px"
+        box1.style.height = "500px"
+        box1.style.backgroundColor = "green"
+        //通过这种方式修改的属性都是内联样式
+        //但是无法改变!important的样式
+      }
+      // 读取box1的样式
+      btn02.onclick = function () {
+        alert(box1.style.width);
+        alert(box1.style.backgroundColor);
+        //通过style读取和设置都是内联样式,它是无法读取样式表的样式
+      }
+
+
+
+
+
+
+
+
+
+    }
+
+
+  </script>
+</body>
+
+</html>

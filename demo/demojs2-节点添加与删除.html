@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport">
+  <title>Document</title>
+</head>
+
+<body>
+  <p>点击超链接以后,超链接会跳转页面,这个是超链接的默认行为</p>
+  <p>但是我们不希望出现默认行为,可以ton过响应函数的最后return false来取消默认行为</p>
+  <div class="a1">
+    <div class="">
+      <input type="text" name="" id="input" value="">
+      <button id="submit">添加</button>
+    </div>
+    <div id="out">
+      <div class="">
+        <p>超链接1</p>
+        <p><a href="1.php">删除</a></p>
+      </div>
+      <div class="">
+        <p>超链接2</p>
+        <p><a href="javscript:;">删除</a></p>
+      </div>
+      <div class="">
+        <p>超链接3</p>
+        <p><a href="javscript:;">删除</a></p>
+      </div>
+      <div class="">
+        <p>超链接4</p>
+        <p><a href="javscript:;">删除</a></p>
+      </div>
+      <div class="">
+        <p>超链接5</p>
+        <p><a href="javscript:;">删除</a></p>
+      </div>
+    </div>
+  </div>
+  <script>
+    var deletea = function () {
+      // 点击超链接删除对应行
+      // alert(this)//this就是超链接
+      var div1 = this.parentNode.parentNode;
+      // console.log(div1);
+      var p1 = div1.getElementsByTagName("p")[0].innerHTML;//HMTL都是大写
+      // console.log(p1);
+      var flag = confirm("确认删除" + p1 + "么");
+      if (flag) {
+        div1.parentNode.removeChild(div1);
+      }
+      return false;//取消超链接跳转的默认行为
+    }
+
+    var allA = document.getElementsByTagName("a");
+    for (let i = 0; i < allA.length; i++) {
+      allA[i].onclick = deletea;//注意,这里for循环始终会比点击函数先执行
+    }
+
+
+
+
+    // 获取按钮
+
+    var submit1 = document.getElementById("submit")
+    var out = document.getElementById("out")
+
+    submit1.onclick = function () {
+      var input1 = document.getElementById("input")
+      var abc = input1.value;
+      var newson = document.createElement("div")
+      out.appendChild(newson);
+      // out.appendChild(div1);
+      // console.log(abc);
+      newson.innerHTML = "<p>" + abc + "</p>" + "<p><a href='javascript:;'>删除</a></p>";
+      // out.innerHTML+="<p>" + abc + "</p>" + "<p><a href='javascript:;'>删除</a></p>"//请注意,这里会替换整个div列表!!!!!!!!!(而且替换后所有a绑定的函数失效)(请不要使用)
+      // var allA = document.getElementsByTagName("a");
+      // for (let i = 0; i < allA.length; i++) {
+      //   allA[i].onclick = deletea;
+      // }//这个可以实现新添加的a删除
+      newson.getElementsByTagName("a")[0].onclick = deletea;
+      // out.getElementsByTagName("a")[0].onclick = deletea;
+
+
+    }
+
+  </script>
+</body>
+
+</html>
