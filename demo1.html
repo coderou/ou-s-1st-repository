@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=d, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- <script>
+    //==>拿到对象的keys数组的方法
+    var obj={
+      name:'小王',
+      age:19
+    }
+    console.log(Object.keys(obj));
+  </script> -->
+  <script>
+    //==>es6的类的使用方法
+    class Person{
+      //类的构造方法
+      constructor(name, age){
+        console.log('----constructor被调用-----')
+        this.name = name;
+        this.age = age;
+      }
+      //类的一般方法,和construstor统一放在实例对象的原型上了(__proto__)
+      showInfo(){
+        console.log(this.name,this.age)
+      }
+    }
+    let person1 = new Person('kobe', 32)
+    console.log(person1);
+
+  </script>
+</body>
+
+</html>
