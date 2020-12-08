@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- <script>
+    //==>一开始没听懂
+    //==>
+    /* var c = 1;
+    function test1() {
+      var c=2
+      // c = 3//这里找变量,自身有就改自身的,没有就去上一级
+      test2()
+      console.log('test1打印 ' + c);
+    }
+    function test2() {
+      c = 4
+      // var c = 4
+    }
+    test1()
+    console.log('外面打印 ' + c) */
+
+    //---------------------------
+
+    /* function a(a){
+      console.log(this.a)
+      console.log(a);//函数体//因为形参被覆盖了,形参优先级最低,即使传递了参数,,也会被修改
+      // function a(a){
+      // }
+      var a=1
+      console.log(a);//1
+    }
+    a(10) */
+
+    //---------------------------
+
+    /* function a(a) {//var a=10
+      // var a//忽略
+      // console.log(a)//a=10
+      // a = 1
+      // console.log(a)
+      console.log(a);//10//
+      var a = 1
+      console.log(a);//1
+    }
+    a(10) */
+
+
+    //---------------------------
+    /* function a(a) {
+      // var a = 1//1 1//因为函数是一等公民,声明在最前面
+      console.log(a);//函数体
+      // a = 1
+      function a(a) {
+        // a = 999
+        console.log(a);
+      }
+      a()
+      console.log(a);//1
+    }
+    a(10) */
+
+    //---------------------------
+
+    /* //函数放在堆内存,标识符在栈内存
+    // function c(){
+    //   console.log(c);
+    // }
+    // var c
+    // c=15
+    // c()
+    var c=15;
+    function c(){
+      console.log(c);
+    }
+    c()//报错 */
+    //-------------------
+
+    /*console.log(a);
+    a=1;//报错,不是变量声明(var)*/
+    //-------------------
+    /*  foo()
+     var foo = function aaa(){//函数表达式只提升foo,没有aaa也报错
+       console.log('aa');//报错TypeError:foo is not a function
+     } */
+
+    //--------------------
+     //过程
+    /* function foo(){
+      console.log(1);
+    }
+    var foo
+    foo()
+    foo=function(){
+
+    } */
+
+    /* foo()//1
+    var foo;
+    function foo() {
+      console.log(1);
+    }
+    foo = function () {
+      console.log(2);
+    } */
+
+    //---------------------
+
+
+  </script> -->
+  <!-- <script>
+    //-------------------
+    /* console.log(a);//undefined
+     var a=1
+    console.log(a);//1 */
+
+    //--------------------
+    /* function a(){}
+    var a
+    console.log(a);
+    a=''
+    console.log(a); */
+
+
+
+    /*  console.log(a);//函数
+     var a = 'abc'
+     function a() {
+       console.log('function');
+     }
+     console.log(a);//变量 */
+    //------------------
+    /*   function a(){}
+      var a
+      console.log(a);//函数
+      a++
+      console.log(a);//NaN
+      a='variable'
+      console.log(a);//'variable' */
+
+
+
+    /*   console.log((a));
+      a++
+      console.log((a));
+      var a='variable'
+      function a(){
+        console.log('function');
+      }
+      console.log((a));
+  */
+
+    //---------------------
+    /* function fn() { }
+    var a;
+    console.log(a);//undefined
+    a = 0
+    console.log(a);//0
+    {
+      var a;
+      console.log(a);//undefined
+      a = 1
+      console.log(a);//1
+    } 
+    console.log(a)*/
+
+
+
+
+    /* console.log(a);
+    var a = 0
+    console.log(a);
+    function fn() {
+      console.log(a);
+      var a = 1
+      console.log(a);
+    }
+    fn()
+    console.log(a); */
+    //----------------------
+
+    // oyx:undefined  0  0  1  1
+    // 
+    /* console.log(a);
+        var a = 0
+        console.log(a);
+        function fn() {
+          console.log(a);
+          a = 1
+          console.log(a);
+        }
+        fn()
+        console.log(a); */
+
+    //---------------------
+
+    //oyx: undefined  0  0  1  1  √
+    //
+    /* console.log(a);
+    var a = 0
+    console.log(a);
+    function fn() {
+      console.log(a);
+      a = 1
+      console.log(a);
+    }
+    fn()
+    var fn = function () {
+      console.log(a);
+      var a = 0
+      console.log(a++);
+    }
+    console.log(a); */
+    //--------------------
+
+    //undefined  0  0  1 undefined  0  1
+    /* console.log(a);
+    var a = 0
+    console.log(a);
+    function fn() {
+      console.log(a);
+      a = 1
+      console.log(a);
+    }
+    fn()
+    var fn = function () {
+      console.log(a);
+      var a = 0
+      console.log(a++);
+    }
+    fn()
+    console.log(a); */
+
+    //--------------------
+  </script> -->
+  <!-- <script>
+    /*  // IIFE
+     function foo(){
+       console.log('xxxx');
+     }(1)//这里的()是分组操作符,就是(1+1)/2的括号//会报错
+     //--------------
+     // 等价于==>
+     function foo(){}
+     (1)
+     //--------------
+     (function(){
+       console.log(123);
+     })(1)//这里就是立即执行
+     // (function(){})//这时候(里面的都是函数表达式),因为前面是一个能得到值的表达式
+     //-----------------
+     (function(){
+       console.log(2244);
+     }())//这里也是立即执行//因为不是function开始了,解析器就知道这是一个函数表达式而不是函数声明 */
+    //-----------------
+    /* (function(msg){
+      console.log(msg);
+    }('oyx'))//可以传参数 */
+
+    //----------------
+    // 递归函数(斐波那契)
+    /* function fn(n) {
+      // if (n <= 2) {
+      //   return 1
+      // } else {
+      //   return (fn(n - 1) + fn(n - 2))
+      // }
+      return n > 2 ? fn(n - 2) + fn(n - 1) : 1
+    }
+    // console.log(fn(1))
+    // console.log(fn(2))
+    // console.log(fn(3))
+    // console.log(fn(4))
+    // console.log(fn(5))
+    // console.log(fn(6))
+    // console.log(fn(7))
+    // console.log(fn(8))
+    console.log(fn(45))//50就GG,40要反应一会儿 */
+
+    /* var a=Date.now()
+    function fn(n) {
+      return n > 2 ? fn(n - 2) + fn(n - 1) : 1
+    };
+    console.log(fn(45))
+    var b=Date.now()
+    console.log(b-a) */
+    // VM59: 5 12586269025
+    // VM59: 7 107417
+    //---------------------
+    /* function say(a) {
+      console.log(a);
+      if (a >= 1) {
+        say(a - 1)
+      }
+      console.log(a);
+    }
+    say(3)//3 2 1 0 0 1 2 3 */
+    //----------------
+    
+
+  </script> -->
+  <!-- <script>
+    //==>我方法//尽量不要用,因为这样函数不能开箱即用//并且变量可能会被多个函数修改,即,找不到谁改的
+    var res = 0
+    function sum(n) {
+      // console.log(n);
+      console.log(res);
+      if (n > 0) {
+        res += n
+        n--
+        sum(n)
+      }
+      // console.log(n);
+    }
+    sum(5)
+    console.log('res=' + res)
+    sum(5)
+    console.log(res);//这里就是30了啊
+  </script> -->
+  <!-- <script>
+    //百度方法
+    function sum(n) {
+      if (n == 1) {
+        return 1
+      }
+      return sum(n - 1) + n
+    }
+    console.log(sum(5));
+  </script>
+  <script>
+    //老师方法
+    function sum(a){
+      if(a>=1){
+        a+=sum(a-1)
+      }
+      return a
+      // return a>1?a+=sum(a-1):a
+    }
+    console.log(sum(5))
+  </script> -->
+  <!-- <script>
+    // 我有一个数组，具体是几维的我也不清楚，现在我要知道里面具体有多少个元素。
+        //判断是否是数组Array.isArray();
+        var a = [
+            1,2,3,
+            [4,5,6],
+            [1,2,3,4,5,6,[1,2,3,4,5]]
+        ];
+
+        var a = [1,2,3];
+
+        /* var a = [
+            1,2,3,
+            [4,5,6],
+            [1,2,3,4,5,6,[1,2,3,4,5]]
+        ];
+        var sum=0
+        for(let i=0;i<a.length;i++){
+            if(Array.isArray(a[i])){
+                for(let j=0;j<a[i].length;j++){
+                    if(Array.isArray(a[i][j])){
+                        for(let q=0;q<a[i][j].length;q++){
+                            if(Array.isArray(a[i][j][q])){
+                                console.log('我不算了!');
+                            }else{
+                                sum+=1
+                            }
+                        }
+                    }else{
+                        sum+=1
+                    }
+                }
+            }else{sum+=1}
+        } */
+
+        var a = [
+            1,2,3,
+            [4,5,6],
+            [1,2,3,4,5,6,[1,2,3,4,5]]
+        ];
+        var res=0
+        function getNum(a){
+            for(var i=0;i<a.length;i++){
+                // console.log(a[i]);
+                if(Array.isArray(a[i])){
+                    getNum(a[i])
+                }else{
+                    res+=1
+                }
+            }
+        }
+        getNum(a)
+        console.log(res);
+  </script> -->
+</body>
+
+</html>
