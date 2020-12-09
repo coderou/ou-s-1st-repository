@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- <script>
+    //==>老师方法
+    var a = [1, 2, 3, [1, 2], [1, 2, [1, 2, 3]], [1, 2, 3]]
+    function countArray(arr) {
+      //定义一个计数器
+      var count = 0;
+      var numa = 0//oyx加的数组数量计算器
+      for (var i = 0; i < arr.length; i++) {
+        count++;
+        if (Array.isArray(arr[i])) {
+          // 如果是数组,再次进入判断,并且count加上内部出来的count
+          count += countArray(arr[i])
+          //如果是数组,numa加一次1,注意,每层都是如此,所以每次判断当前层是数组就不计数,只计算非数组的count
+          numa += 1;
+          //这里用ifelse的方法也可以,非数组count才++,不是就不++,而是进入判断,而在上面的if中计算count+=countArray,每次返回的值都会被加到该count里面,在最外层的for每次是数组都会计算鸡翅count
+        }
+      }
+      // 返回count,每次执行都会返回当前层count
+      // return count
+      return count - numa
+    }
+    //输出
+    console.log(countArray(a))
+
+  </script> -->
+  <script>
+    var a = [1, 2, 3, [1, 2, [2, 3]], [123, 2]]
+    function countArray(arr) {
+      var count = 0
+      for (var i = 0; i < arr.length; i++) {
+        if (Array.isArray(arr[i])) {
+          count += countArray(arr[i])
+          continue//小裁缝:这里是数组就跳过本次for的循环,直接跳过就不会执行for下面的count++
+        }
+        // else {
+        //   count++
+        // }
+        count++
+      }
+      return count
+    }
+    console.log(countArray(a))
+  </script>
+  <!-- 1.回调函数:函数也是对象类型的值,可以被当做参数传入到函数中
+  2.方法&属性==>特定的方法属于特定的对象
+  3.其他语言中new都是类
+  4.new是超会做饭Aa
+  5.for in 不要遍历数组,不保证顺序.txt
+
+  6.instanceof 和for...in
+  instanceof运算符的第一个变量时对象(a),第二个变量时函数(b),沿着A的__proto__同时沿着b的prototype如果能找到同一个对象就返回true,否则返回false
+
+  所有的引用类型都是Object的实例,在检测引用耐心的值和Object时,instance适中返回true
+
+  对应基本数据类型,不是对象,所以在使用instanceof时适中返回false
+
+  instanceof 中null和undefined的话,都是false.但是typeof null返回的是object,这是由于历史原因造成的
+
+  for...in 可以变量的是可枚举的属性和原型链中的属性(必须满足这2个)
+
+  数组函数都是对象,都可以添加属性,添加完属性后还能维持本来的功能(你大爷永远是你大爷,大妈就不一样了)
+
+  length是指的有序的下标的长度
+
+  for..in沿着__proto__一直向上找,可以被遍历出来的都可以遍历出来
+
+  for..in可以遍历数组,但是不能用,不能保证顺序!!!!!!!!!!!!!!!
+
+  this最终代表的是函数的执行者,最终指向一个对象,决定this值的是函数的调用方式
+
+  1.全局环境中的this就是window
+  ##2.如果是光秃秃的调用this也指向window
+  ##3.如果是通过对象的方法调用,this指向这个对象
+  3.1没有调用this就无法确定!!!
+  3.2不管在哪定义的,只管在哪里调用的,调用没有东西,就是window
+  3.3函数是引用类型,函数名,变量,属性,只不过是指向这个引用类型的指针,里面保存的是变量地址而已
+  3.4不管套多少层都找最近的对象
+  3.5不管前面多乱,只要是光秃秃的调用就是window最关键的是在哪里调用,而不是在哪里定义,只看调用处 -->
+
+  <script>
+    //懂了20k?阿里面试题
+    var a = 1
+    var foo = {
+      a: 2,
+      bar: function () {
+        console.log(this.a)
+      }
+    }
+      (foo.bar = foo.bar)()//1
+    //辅助运算符\逻辑运算符\逗号运算符都会调用Getvalue方法,返回真正的值,返回真正的值之后.返回的类型就不再是Reference类型
+  </script>
+
+  <script>
+    /* 
+    每个对象都有call和apply方法,本质就是设置函数体内的this的值
+    
+    作用:
+      1.使用场景:借用其他函数的方法让本对象使用
+      2.让其他的构造函数中的属性变成自己的
+    */
+    function Demo(name,sex) { this.name = name; this.sex = sex; }
+    var obj = {
+      sex: 'nan',
+      age: "18"
+    }
+    Demo.apply(obj, ['peiqi', 'nv'])//Demo,demo中的this指向了obj,相当于obj.name==>向对象里面添加属性
+    console.log(obj)
+  </script>
+
+
+
+</body>
+
+</html>
