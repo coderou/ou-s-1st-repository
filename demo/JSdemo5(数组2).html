@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 数组2 -->
+  <!-- <script>
+    //==>遍历二维数组并且放到表格里面
+    var performerces = [
+      [1, '张三', '李四', '王五', '喜欢偷电瓶'],
+      [2, '张三', '李四', '王五', '喜欢偷电瓶'],
+      [3, '张三', '李四', '王五', '喜欢偷电瓶'],
+      [4, '张三', '李四', '王五', '喜欢偷电瓶'],
+      [5, '张三', '李四', '王五', '喜欢偷电瓶'],
+    ]
+    document.write("<table border=1 width='800'>")
+    for (let i = 0; i < performerces.length; i++) {
+      document.write("<tr><td>" + performerces[i][0] + "</td>")
+      document.write("<td>" + performerces[i][1] + "</td>")
+      document.write("<td>" + performerces[i][2] + "</td>")
+      document.write("<td>" + performerces[i][3] + "</td>")
+      document.write("<td>" + performerces[i][4] + "</td></tr>")
+    }
+    document.write("</table>")
+  </script> -->
+  <!-- <script>
+    //==>数组求和
+    var arr=[1,2,3,4,5,6,7,8,9,10]
+    var sum=0;
+    for(let i=0;i<arr.length;i++){
+      sum+=arr[i]
+    }
+    console.log(sum);
+    //==>数组的最大值,最小值
+    var arr=[1,-24,23,40,-3,100,45,2,13,200,-2,241,32]
+    var max=arr[0];//这里随便设置一个数组里面的值都可以
+    var min=arr[0];
+    for(let j=0;j<arr.length;j++){
+      console.log('------');
+      if(max<arr[j]){
+        max=arr[j];
+      }
+      if(min>arr[j]){
+        min=arr[j]
+      }
+      console.log("max="+max);
+      console.log("min="+min);
+    }
+    console.log(max);
+    console.log(min);
+
+  </script> -->
+  <!-- <script>
+    //==>反转数组
+    var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    //方法一:新数组
+    var newArr = []
+    for (let i = arr.length - 1; i >= 0; i--) {
+      newArr[newArr.length] = arr[i]
+      console.log(newArr);
+    }
+    // 方法二:原数组(OYX方法,及其麻烦)
+    /* arr.length = (arr.length) * 2;
+    console.log(arr);
+    for (let i = 0; i < arr.length; i++) {
+      arr[arr.length - i - 1] = arr[i]
+      console.log(arr);
+    }
+
+    for (let j = 0; j < arr.length / 2; j++) {
+      console.log(j);
+      // arr[j]=arr[arr.length/2+3+j]
+      arr[j] = arr[arr.length / 2 + j]
+    }
+    console.log(arr);
+    var p=arr.length
+    for (let n = 0; n < p / 2; n++) {
+      arr.length--;
+    }
+    console.log(arr); */
+    //方法二:老师版
+    var arr = [1, 2, 3, 4, 5, 6,7]
+    for (i = 0; i < arr.length / 2; i++) {//当数量为5个,就是2.5
+      console.log(i);//前面的下标
+      console.log(arr.length - 1 - i);//和前面下标应该对调的值的下标
+      //交换值
+      var tmp = arr[i];
+      arr[i] = arr[arr.length - 1 - i]//如果是奇数个,比如5,就是arr[2]=arr[5-1-2]//等于没变!
+      arr[arr.length - 1 - i] = tmp//不需要让数组中某个项作为中转!直接变量中转!
+    }
+    console.log(arr);
+  </script> -->
+  <!-- <script>
+    //==>将2个数组合并到一个新数组中
+    var arr1 = [1, 2, 3, 4]
+    var arr2 = [5, 6, 7, 8]
+    var newArr = []
+    for (let i = 0; i < arr1.length; i++) {
+      newArr[newArr.length] = arr1[i]
+    }
+    for (let j = 0; j < arr2.length; j++) {
+      newArr[newArr.length] = arr2[j]
+    }
+    console.log(newArr);
+  </script> -->
+  <!--  <script>
+    //==>数组去重
+    var arr = [1, 2, 3, 4, 4, 3, 2, 1, 100, 4, 5]
+    var n = []
+    for (let i = 0; i < arr.length; i++) {
+      var tmp = true;
+      for (let j = 0; j < n.length; j++) {
+        if (n[j] === arr[i]) {
+          tmp = false;
+          break//提高程序性能
+        }
+      }
+      if (tmp) {
+        n[n.length] = arr[i]
+      }
+    }
+    console.log(n);
+  </script> -->
+  <!-- <script>
+    //==>数组去重(错2)
+    var arr = [1, 2, 3, 4, 4, 3, 2, 1, 100, 4, 5]//有问题哦
+    var arr = [4,4,3]
+    var n = [arr[0]]
+    for (let i = 0; i < arr.length; i++) {
+      var val=arr[i]
+      for (let j = 0; j < n.length; j++) {
+        if (n[j] !==val) {
+          n[n.length] = val
+        }
+      }
+    }
+    console.log(n);
+  </script> -->
+  <!-- <script>
+    //==>冒泡排序(test)
+    // var arr = [9, 5, 2, 25, 34, 2, 34, 2, 47, 12, 63, 53, 44, 82, 53, 73, 34]
+    var arr = [5, 4, 3, 2, 1]
+    for (let j = 0; j < arr.length; j++) {
+      for (let i = 0; i < arr.length - j; i++) {
+        var tmp;
+        if (arr[i] > arr[i + 1]) {
+          tmp = arr[i]
+          arr[i] = arr[i + 1]
+          arr[i + 1] = tmp
+        }
+        // for(let j=0;j<arr.length;j++){
+        // }
+      }
+    }
+    console.log(arr);
+  </script> -->
+  <!-- <script>
+    // 执行上下文???
+    //变量提升函数的优先级高于var?所以下面的var变量提升不会覆盖掉之前的function????
+    // 表达式var a=b;
+    function say(){
+      console.log("haha")
+    }
+    say()
+    var say=function(){
+      console.log("haha")
+    }
+  </script> -->
+</body>
+b
+</html>
