@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 数组 -->
+  <!-- <script>
+    var arr=[0,1,2,3,4,5,6,7,8,9]
+    for(let i=(arr.length-1);i>=0;i--){
+      console.log(arr[i]);
+    }
+
+    var a=[1,2,3,4]
+    a[-1]="123"
+    console.log(a[-1]);
+  </script> -->
+  <!-- <script>
+    //==>数组前面新增数据的操作
+    var arr = ['1', '2', '3']
+    var newValue = "123";
+    for (let i = (arr.length); i >= 0; i--) {
+      // console.log(i);
+      // console.log(arr);
+      arr[i] = arr[i - 1]
+      console.log(arr);
+    }
+    arr[0] = newValue;
+    console.log(arr);
+    arr.unshift("newww")
+    console.log(arr);
+    console.log(Array());
+  </script> -->
+  <!-- <script>
+    //==>中间位置添加
+    //下标为2的位置添加
+    var arr = ['1', '2', '3', '4', '5']
+    for (let i = arr.length; i >= 2; i--) {
+      // console.log(arr);
+      arr[i] = arr[i - 1]
+      console.log(arr);
+    }
+    arr[2] = '哈哈'
+    console.log(arr);
+  </script> -->
+  <!-- <script>
+    //==>数组拼接
+    var arr1 = [1, 2, 3, 4]
+    var arr2 = [5, 6, 7, 8]
+    var p = arr1.length
+    for (let i = 0; i < arr2.length; i++) {
+      arr1[p + i] = arr2[i]
+      console.log(arr1);
+    }
+  </script> -->
+  <!-- <script>
+    //==>删除数组
+    //删除最后一个
+    var arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    arr.length = arr.length - 1
+    console.log(arr);
+    arr.length--
+    console.log(arr);
+    console.log("--------");
+    //删除第一个
+    /* for (let i = 0; i < arr.length; i++) {
+      arr[i] = arr[i + 1]
+      console.log(arr);
+    }
+    arr.length--;
+    console.log(arr); */
+    //删除第一个
+    for (let i = 1; i < arr.length; i++) {
+      arr[i - 1] = arr[i];
+      // console.log(arr);
+    }
+    arr.length--;
+    console.log(arr);
+  </script> -->
+  <!-- <script>
+    //==>删除指定位置的元素
+    arr=[0,1,2,3,4,5]
+    for (let i = 2; i < arr.length; i++) {
+      arr[i - 1] = arr[i];
+      // console.log(arr);
+    }
+    arr.length--;
+    console.log(arr);
+  </script> -->
+</body>
+
+</html>
