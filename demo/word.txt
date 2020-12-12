@@ -1,0 +1,722 @@
+web [web] 
+n. 网； 
+hypertext ['haɪpətekst] 
+n. [计] 超文本（含有指向其它文本文件链接的文本）
+markup ['mɑːkʌp]
+n. 标记
+language ['læŋgwɪdʒ]
+n. 语言；语言文字；表达能力
+text [tekst] 
+n. [计] 文本；课文；主题;vt. 发短信 
+binary ['baɪnərɪ] 
+adj. [数] 二进制的；二元的，二态的 
+body ['bɒdɪ] 
+n. 身体；主体；大量；团体；主要部分; 
+head [hed] 
+n. 头；头痛；上端；最前的部分；理解力;  
+title ['taɪt(ə)l] 
+n. 冠军；标题；头衔；权利；字幕; 
+meta ['metə] 
+pref. 表示“变化”“变换”之义; 
+photo ['fəʊtəʊ] 
+n. 照片 
+chrome [krəʊm] 
+n.谷歌浏览器 
+explorer [ek'splɔːrə(r)] 
+n. 探险家； 
+firefox [faifɔ:ks] 
+n. 火狐浏览器 
+shop [ʃɒp] 
+n. 商店；店铺; 
+client ['klaɪənt] 
+n. [经] 客户；顾客；委托人 
+browser ['braʊzə] 
+n. [计] 浏览器；吃嫩叶的动物；浏览书本的人 
+doctype 
+n. 文档类型 
+quirk [kwɜːk]
+n. 怪癖；急转；借口
+standard ['stændəd]
+n. 标准；水准；旗；度量衡标准
+navigator ['nævɪgeɪtə] 
+n. 航海家；领航员；驾驶员 
+note [nəʊt] 
+n. 笔记； 
+copyright ['kɒpɪraɪt] 
+n. 版权，著作权; 
+index ['ɪndeks] 
+n. 指标；指数；索引；指针; 
+element ['elɪm(ə)nt] 
+n. 元素；要素；原理；成分；自然环境; 
+attribute [ə'trɪbjuːt] 
+n. 属性；特质; 
+definition [defɪ'nɪʃ(ə)n] 
+n. 定义；[物] 清晰度；解说 
+term [tɜːm] 
+n. 术语；学期；期限；条款; 
+description [dɪ'skrɪpʃ(ə)n] 
+n. 描述，描写；类型；说明书 
+deleted [dɪ'lit] 
+v. 删除，划掉（delete的过去分词） 
+inserted [ɪn'sɜːtɪd] 
+adj. 插入的；[生物] 嵌入的；著生的；附着的 
+header ['hedə] 
+n. 头球；页眉；数据头；收割台 
+paragraph ['pærəgrɑːf] 
+n. 段落；短评；段落符号; 
+horizontal [hɒrɪ'zɒnt(ə)l] 
+n. 水平线，水平面；水平位置 
+rule [ruːl] 
+n. 统治；规则; 
+anchor ['æŋkə] 
+n. 锚；抛锚停泊； hook:钩子
+abbreviation [əbriːvɪ'eɪʃ(ə)n] 
+n. 缩写；缩写词 
+acronym ['ækrənɪm] 
+n. 首字母缩略词 
+address [ə'dres] 
+n. 地址； 
+variable ['veərɪəb(ə)l] 
+n. [数] 变量； 
+preformat [pri:'fɔmət] 
+n. [计] 预先格式 
+block [blɒk] 
+n. 块；街区；大厦；障碍物; 
+quotation [kwə(ʊ)'teɪʃ(ə)n] 
+n.引用语；引证 
+strong [strɒŋ] 
+adj. 坚强的；强壮的； 
+emphasized ['ɛmfə,saɪz] 
+v. 强调，着重
+reference ['ref(ə)r(ə)ns] 
+n. 参考，参照；涉及，提及；参考书目；介绍信；证明书; 
+another [ə'nʌðə] 
+adj. 又一，另一；另外的；不同的; 
+input ['ɪnpʊt] 
+n. 投入；输入电路; 
+area ['eərɪə] 
+n. 区域，地区；面积；范围; 
+field [fiːld] 
+n. 领域；牧场；旷野；战场；运动场; 
+form [fɔːm] 
+n. 表单; 
+label ['leɪb(ə)l] 
+n. 标签；商标；签条; 
+document ['dɒkjʊm(ə)nt] 
+n. 文件，公文；[计] 文档；证件; 
+entity ['entɪtɪ] 
+n. 实体；存在；本质 
+enabled [ɪ'nebld] 
+adj. 激活的；可行的; 
+disabled [dɪs'eɪbld] 
+v. 使…失去能力（disable的过去分词） 
+checked [tʃekt] 
+adj. 选中的；格子花纹的; 
+selection [sɪ'lekʃ(ə)n] 
+n. 选择，挑选；选集；精选品 
+name [neɪm] 
+n. 名称，名字；姓名；名誉; 
+value ['væljuː] 
+n. 值；价值； 
+gender ['dʒendə] 
+n. 性别； 
+male [meɪl] 
+n. 男人；雄性动物; 
+female ['fiːmeɪl] 
+n. 女人；[动] 雌性动物 
+hobby ['hɒbɪ] 
+n. 嗜好；业余爱好; 
+image ['ɪmɪdʒ] 
+n. 影像；想象；肖像；偶像; 
+line [laɪn] 
+n. 路线，航线；排；绳; 
+side [saɪd] 
+n. 方面；侧面；旁边; 
+empty ['em(p)tɪ] 
+n. 空车；空的东西 
+source [sɔːs] 
+n. 来源；水源；原始资料; 
+reset [riː'set] 
+n. 重新设定；重新组合；重排版 
+target ['tɑːgɪt] 
+n. 目标；靶子; 
+collapse [kə'læps] 
+n. 倒塌；失败；衰竭 
+spacing ['speɪsɪŋ] 
+n. 间隔；调节间隔；字距; 
+cells 
+n. [细胞] 细胞；单元格（cell的复数）；牢房；小屋; 
+table ['teɪb(ə)l] 
+n. 桌子；表格；平地层; 
+lang [læŋ] 
+abbr. 语言（language）; 
+type [taɪp] 
+n. 类型，品种；模范；样式; 
+item ['aɪtəm] 
+n. 条款，项目；一则；一件商品（或物品）; 
+bold [bəʊld] 
+adj. 黑体的； 
+italic [ɪ'tælɪk] 
+n. 斜体字（或字母、数码等）; 
+big [bɪg] 
+adj. 大的；重要的；量大的; 
+small [smɔːl] 
+adj. 少的，小的；微弱的；几乎没有的；不重要的；幼小的; 
+superscript ['suːpəskrɪpt] 
+n. 上标 
+subscript ['sʌbskrɪpt] 
+n. 下标；脚注 
+break [breɪk] 
+vi. 打破；折断；弄坏；削弱; 
+center ['sɛntɚ] 
+n. 中心，中央；中锋；中心点; 
+font [fɒnt] 
+n. 字体；字形；泉；洗礼盘，圣水器; 
+underlined ['ʌndɚˌlaɪnd] 
+adj. 下划线的 
+strikethrough 
+n. 删除线，加删除线 
+fieldset 
+n. 自定义字段；控件组 
+legend ['ledʒ(ə)nd] 
+n. 说明；图例；刻印文字; 
+caption ['kæpʃ(ə)n] 
+n. 标题；字幕；说明；逮捕; 
+division [dɪ'vɪʒ(ə)n] 
+n. [数] 除法；部门；分割；师（军队）；赛区 
+span [spæn] 
+n. 跨度，跨距；范围; 
+ordered ['ɔːdəd] 
+adj. [数] 有序的；整齐的；安排好的; 
+list [lɪst] 
+n. [计] 列表；清单；目录; 
+unordered [ʌn'ɔːdəd] 
+adj. 无序的 
+id [ɪd] 
+身份证件; 
+class [klɑːs] 
+n. 阶级；班级；种类；班；等级;
+black [blæk] 
+n. 黑色；黑人；黑颜料; 
+silver ['sɪlvə] 
+n. 银；银器；银币；银质奖章；餐具；银灰色; 
+gray [greɪ] 
+n. 灰色；暗淡的光线; 
+white [waɪt] 
+n. 白色；洁白；白种人 
+maroon [mə'ruːn] 
+n. 栗色；逃亡黑人奴隶；孤立的人; 
+adj. 栗色的 
+red [red] 
+n. 红色，红颜料；赤字; 
+purple ['pɜːp(ə)l] 
+n. 紫色；紫袍; 
+fuchsia ['fjuːʃə] 
+n. 紫红色；[植]倒挂金钟属 
+green [griːn] 
+n. 绿色；青春; 
+lime [laɪm] 
+n. 石灰；酸橙；绿黄色; 
+olive ['ɒlɪv] 
+n. 橄榄；橄榄树；橄榄色; 
+yellow ['jeləʊ] 
+n. 黄色；黄种人；黄色颜料; 
+navy ['neɪvɪ] 
+n. 海军; 深蓝色的 
+blue [bluː] 
+n. 蓝色 
+teal [tiːl] 
+n. 茶色
+aqua ['ækwə] 
+n. 水；溶液；浅绿色; 
+orange ['ɒrɪn(d)ʒ] 
+n. 橙；橙色；桔子 
+hack [hæk] 
+vi. 砍; 
+foot [fʊt] 
+n. 脚；英尺；步调；末尾; 
+main [meɪn] 
+n. 主要部分，要点；体力；总管道; 
+menu ['menjuː] 
+n. 菜单; 
+animation [ænɪ'meɪʃ(ə)n] 
+n. 活泼，生气；激励；卡通片绘制 
+key [kiː] 
+n. 关键；钥匙; 
+background ['bækgraʊnd] 
+n. 背景；隐蔽的位置; 
+color ['kʌlə(r)] 
+n. 颜色；肤色；颜料；脸色; 
+position [pə'zɪʃ(ə)n] 
+n. 位置，方位；职位，工作；姿态；站位; 
+repeat [rɪ'piːt] 
+n. 重复；副本; 
+size [saɪz] 
+n. 大小；尺寸; 
+border ['bɔːdə] 
+n. 边境；边界；国界; 
+bottom ['bɒtəm] 
+n. 底部；末端；臀部；尽头; 
+style [staɪl] 
+n. 风格；时尚；类型；字体; 
+width [wɪtθ; wɪdθ] 
+n. 宽度；广度 
+left [left] 
+n. 左边；左派；激进分子; 
+top [tɒp] 
+n. 顶部，顶端；上部；首席；陀螺; 
+outline ['aʊtlaɪn] 
+n. 轮廓；大纲；概要；略图; 
+outset ['aʊtset] 
+n. 开始；开端 
+overflow [əʊvə'fləʊ] 
+n. 充满，洋溢；泛滥；超值；溢值; 
+height [haɪt] 
+n. 高地；高度；身高；顶点 
+max [mæks] 
+n. 完全；彻 底；最大限度；最大量；最大数 
+min [min] 
+abbr. 最小值;
+box [bɒks] 
+n. 箱，盒子；包厢；一拳; 
+family ['fæmɪlɪ; -m(ə)l-] 
+n. 家庭；亲属；家族；子女；[生]科；语族；[化]族; 
+variant ['veərɪənt] 
+n. 变体；转化 
+weight [weɪt] 
+n. 重量，重力； 
+content [kən'tent] 
+n. 内容，目录；满足；容量; 
+new [njuː] 
+adj. 新的，新鲜的；更新的；初见的; 
+news [njuːz] 
+n. 新闻，消息；新闻报导 
+offset ['ɒfset] 
+n. 偏移;
+margin ['mɑːdʒɪn] 
+n. 边缘；利润，余裕；页边的空白; 
+padding ['pædɪŋ] 
+n. 填料；垫料; 
+clear [klɪə] 
+n. 清除；空隙; 
+cursor ['kɜːsə] 
+n. 光标；（计算尺的）[计] 游标，指针 
+display [dɪ'spleɪ] 
+n. 显示；炫耀; 
+float [fləʊt] 
+vt. 使漂浮；实行; 
+vertical ['vɜːtɪk(ə)l] 
+n. 垂直线，垂直面 
+align [ə'laɪn] 
+vi. 排列；排成一行 
+visibility [vɪzɪ'bɪlɪtɪ] 
+n. 能见度，可见性；能见距离；明显性 
+layout ['leɪaʊt] 
+n. 布局；设计；安排；陈列 
+decoration [dekə'reɪʃ(ə)n] 
+n. 装饰，装潢；装饰品；奖章 
+indent [ɪn'dent] 
+n. 缩进；订货单；凹痕；契约 
+transform [træns'fɔːm; trɑːns-; -nz-] 
+vt. 改变，使…变形；转换; 
+space [speɪs] 
+n. 空间；太空；距离; 
+word [wɜːd] 
+n. [语] 单词；话语；消息；诺言；命令; 
+last [lɑːst] 
+n. 末尾，最后；上个；鞋楦（做鞋的模型）; 
+emphasis ['emfəsɪs] 
+n. 重点；强调；加强语气 
+trim [trɪm] 
+n. 修剪；整齐；情形; 
+justify ['dʒʌstɪfaɪ] 
+vi. 证明合法；整理版面; 
+wrap [ræp] 
+vt. 包；缠绕；隐藏；掩护; 
+shadow ['ʃædəʊ] 
+n. 阴影；影子；幽灵；庇护；隐蔽处; 
+origin ['ɒrɪdʒɪn] 
+n. 起源；原点；出身；开端 
+perspective [pə'spektɪv] 
+n. 观点；远景；透视图; 
+transition [træn'zɪʃ(ə)n; trɑːn-; -'sɪʃ-] 
+n. 过渡；转变；[分子生物] 转换；变调 
+resize [riː'saɪz] 
+vt. 调整大小 
+icon ['aɪkɒn; -k(ə)n] 
+n. 图标；偶像；肖像，画像；圣像 
+footer ['fʊtə] 
+n. 页脚; 
+first [fɜːst] 
+n. 第一；开始；冠军; 
+before [bɪ'fɔː] 
+prep. 在…之前，先于; 
+after ['ɑːftə] 
+adv. 后来，以后; 
+only ['əʊnlɪ] 
+adv. 只，仅仅；不料; 
+child [tʃaɪld] 
+n. 儿童，小孩，孩子；产物；子孙；幼稚的人；弟子; 
+root [ruːt] 
+n. 根；根源；词根；祖先; 
+base [beɪs] 
+n. 基础；底部；垒; 
+radio ['reɪdɪəʊ] 
+n. 收音机；无线电广播设备; 
+submit [səb'mɪt] 
+vt. 使服从；主张；呈递; 
+vi. 提交；服从 
+button [ˈbʌtn] 
+n. 按钮；纽扣; 
+select [sɪ'lekt] 
+vt. 挑选；选拔; 
+option ['ɒpʃ(ə)n] 
+n. [计] 选项；选择权；买卖的特权 
+cite [saɪt] 
+vt. 引用；传讯；想起；表彰 
+canvas ['kænvəs] 
+n. 帆布; 
+code [kəʊd] 
+n. 代码，密码；编码；法典; 
+frame [freɪm] 
+n. 框架；结构；[电影] 画面; 
+mark [mɑːk] 
+n. 标志；马克；符号；痕迹; 
+script [skrɪpt] 
+n. 脚本；手迹；书写用的字母; 
+file [faɪl] 
+n. 文件；档案；文件夹；锉刀; 
+number ['nʌmbə] 
+n. 数；（杂志等的）期；号码；数字；算术; 
+hidden ['hɪdn] 
+adj. 隐藏的; 
+hide [haɪd] 
+vt. 隐藏；隐瞒；鞭打; 
+page [peɪdʒ] 
+n. 页；记录；大事件，时期；男侍者; 
+cascading [kæ'skeɪdɪŋ] 
+v. 瀑布般落下；串联；传递信息（cascade的ing形式） 
+sheet [ʃiːt] 
+n. 薄片，纸张；薄板；床单; 
+extensible [ek'stensɪbl; ɪk'stensɪb(ə)l] 
+adj. 可延长的；可扩张的 
+link [lɪŋk] 
+vt. 连接，连结；联合，结合; 
+auto ['ɔːtəʊ] 
+n. 自动; 
+banner ['bænə] 
+n. 旗帜，横幅；标语; 
+url [,ju: ɑ:r 'el] 
+abbr. 全球资源定位器（Uniform Resource Locator）; 
+div [dɪv] 
+abbr. 分开（divide）；区分（division）; 
+section ['sekʃ(ə)n] 
+n. 截面；部分；部门；地区；章节; 
+container [kən'teɪnə] 
+n. 集装箱；容器 
+sprite [spraɪt] 
+n. 妖精，精灵；鬼怪；调皮鬼 
+region ['riːdʒ(ə)n] 
+n. 地区；范围；部位 
+mast [mɑːst] 
+n. 桅杆；柱；橡树果实; 
+javascript['dʒɑ:və,skrɪpt]
+n. 基于对象和事件驱动的客户端脚本语言	
+alert [ə'lɜːt]
+vt. 警告；使警觉，使意识到
+write [raɪt]
+vi. 写，写字；写作，作曲；写信
+console [kən'səʊl]
+n. [计] 控制台；[电] 操纵台
+log [lɒg] 
+日志， 记录 
+keyword ['ki:wə:d] 
+关键字 
+null [nʌl] 
+空, 空的 
+memory ['mem(ə)rɪ] 
+内存, 记忆 
+type [taɪp] 
+类型 
+Number ['nʌmbə] 
+数字， 数值 
+String [strɪŋ] 
+字符串 
+Boolean ['bu:liən] 
+布尔 
+true [truː] 
+真的 
+false [fɔːls; fɒls] 
+假的 
+undefined [ʌndɪ'faɪnd] 
+未定义的; 未赋值的 
+function ['fʌŋ(k)ʃ(ə)n] 
+函数; 功能 
+Object ['ɒbdʒɪkt] 
+对象 
+array [ə'reɪ] 
+数组 
+infinity [ɪn'fɪnɪtɪ] 
+无穷；无限大 
+cast [kɑːst] 
+转换 
+expression [ɪk'spreʃ(ə)n; ek-] 
+表达式 
+statement ['steɪtm(ə)nt] 
+语句 
+parse [pɑːz] 
+解析 
+int [int] integer ['intidʒə] 
+整数 
+float [fləʊt] 
+浮点数 
+instance ['ɪnst(ə)ns] 
+实例 
+NaN [næn] 
+Not a Number： 不是一个数字 
+if [ɪf] 
+如果；条件 
+else [els] 
+别的；其他的 
+switch [swɪtʃ] 
+开关；转换 
+case [keɪs] 
+情况；实例 
+break [breɪk] 
+打破；折断 
+default [dɪ'fɔːlt] 
+默认的 
+while [waɪl] 
+当……的时候 
+continue [kən'tɪnjuː] 
+继续 
+declare [dɪ'kleə] 
+声明 
+module ['mɒdjuːl] 
+模块；组件 
+call [kɔːl] 
+打电话， 调用 
+scope [skəʊp] 
+范围 
+return [rɪ'tɜːn] 
+返回 
+argument ['ɑːgjʊm(ə)nt] 
+参数，实参 
+parameter [pə'ræmɪtə] 
+参数; 形参 
+global ['gləʊb(ə)l] 
+全局的 
+local ['ləʊk(ə)l] 
+局部的， 本地的 
+destroy [dɪ'strɒɪ] 
+销毁 
+value ['væljuː] 
+值 
+DOM [dɑm] 
+Document Object Model 文档对象模型 
+BOM 
+Browser Object Model浏览器对象模型 
+window ['wɪndəʊ] 
+窗；窗口 
+property ['prɒpətɪ] 
+属性 
+method ['meθəd] 
+方法 
+constructor [kənˈstrʌktə(r)] 
+构造函数；构造器 
+element ['elɪm(ə)nt] 
+元素 
+index ['ɪndeks] 
+下标， 索引 
+length [leŋθ] 
+长度 
+push [pʊʃ] 
+推, 添加到最后 
+shift [ʃɪft] 
+添加为第一个 
+pop [pɒp] 
+取出 
+unshift [,ʌn'ʃift] 
+删除第一个 
+join [dʒɒɪn] 
+连接 
+reverse [rɪ'vɜːs] 
+颠倒；倒转 
+sort [sɔːt] 
+排序 
+concat 
+合并 
+slice [slaɪs] 
+取出部分 
+filter ['fɪltə] 
+过滤 
+prototype ['prəʊtətaɪp] 
+原型 
+own [əʊn] 
+自己的 
+splice [splaɪs] 
+拼接 
+apply [ə'plaɪ] 
+申请；应用到... 
+time [taɪm] 
+时间 
+millisecond ['mɪlɪsek(ə)nd] 
+n. 毫秒 
+GMT [,dʒi: em 'ti:] 
+格林威治标准时间 
+Regular ['regjʊlə] 
+正规的， 正常的 
+Regular Expression 
+正则表达式 
+pattern ['pæt(ə)n] 
+模式 
+modifier ['mɒdɪfaɪə] 
+修饰语
+exec [ɪg'zek; eg-] 
+执行 
+search [sɜːtʃ] 
+查找 
+match [mætʃ] 
+匹配 
+replace [rɪ'pleɪs] 
+取代，代替 
+Range [reɪn(d)ʒ] 
+范围；幅度 
+eval [ɪ'væl] 
+重新运算求出参数的内容 
+Reference ['ref(ə)r(ə)ns] 
+引用， 参考 
+catch [kætʃ] 
+捕捉；捕获 
+fix [fɪks] 
+固定 
+digits ['didʒits] 
+位数 
+substring ['sʌb,striŋ] 
+子串；子链 
+LowerCase [,ləʊə'keɪs] 
+小写字母 
+UpperCase ['ʌpə'keɪs] 
+大写字母 
+Location [lə(ʊ)'keɪʃ(ə)n] 
+位置, 定位  
+Screen [skriːn] 
+屏幕 
+History ['hɪst(ə)rɪ] 
+历史 
+parent ['peər(ə)nt] 
+父亲 
+confirm [kən'fɜːm] 
+确认 
+prompt [prɒm(p)t] 
+提示 
+Timeout [taim'aut] 
+超时 
+Interval ['ɪntəv(ə)l] 
+间隔；间歇 
+Scroll [skrəʊl] 
+滚动 
+open ['əʊp(ə)n] 
+打开 
+close [kləʊs] 
+关闭 
+node [nəʊd] 
+节点 
+anchor ['æŋkə] 
+锚；抛锚 
+cookie ['kʊkɪ] 
+饼干；小甜点 
+tag [tæg] 
+标签 
+create [kriː'eɪt] 
+创造，创建 
+child [tʃaɪld] 
+孩子 
+first [fɜːst] 
+第一个 
+last [lɑːst] 
+最后一个 
+next [nekst] 
+下一个 
+previous ['priːvɪəs] 
+上一个 
+sibling ['sɪblɪŋ] 
+兄弟姊妹 
+check [tʃek] 
+勾选 
+append [ə'pend] 
+附加上 
+insert [ɪn'sɜːt] 
+插入；嵌入 
+remove [rɪ'muːv] 
+移除 
+inner [ɪnə] 
+内部的 
+event [ɪ'vent] 
+事件 
+CallBack ['kɔːlbæk] 
+回调 
+blur [blɜː] 
+失去焦点 
+focus ['fəʊkəs] 
+n. 焦点；中心；清晰；焦距
+change [tʃeɪn(d)ʒ] 
+变化 
+click [klɪk] 
+单击；点击 
+load [ləʊd] 
+加载 
+press [pres] 
+压；按 
+mouse [maʊs] 
+鼠标 
+over ['əʊvə] 
+在…之上 
+listener ['lɪs(ə)nə] 
+监听器 
+attach [ə'tætʃ] 
+附加；附属 
+capture ['kæptʃə] 
+捕获 
+bubble ['bʌb(ə)l] 
+冒泡 
+cancel ['kæns(ə)l] 
+取消 
+expires [ɪk'spaɪəz] 
+有效期 
+session ['seʃ(ə)n] 
+会话 
+prevent [prɪ'vent] 
+阻止, 防止 
+wheel [wiːl] 
+滚轮 
+closure ['kləʊʒə] 
+闭包 
+context ['kɒntekst] 
+环境；上下文 
+selector [sɪ'lektə] 
+选择器 
+offset ['ɒfset] 
+偏移 
+visible [ˈvɪzəbl] 
+可见 
+find [faɪnd] 
+查找 
+show [ʃəʊ] 
+显示 
+toggle ['tɒg(ə)l] 
+开关 
+slide [slaɪd] 
+平滑的 
+fadein 
+n. 渐显；渐明 
+animate ['ænɪmeɪt] 
+动画 
+delay [dɪ'leɪ] 
+延迟 
+serialize ['siəriəlaiz] 
+序列化 
+extends [ɪk'stendz; ek-] 
+继承 
+support [sə'pɔːt] 
+支持
