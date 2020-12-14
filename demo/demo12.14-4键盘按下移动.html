@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .box1 {
+      height: 100px;
+      width: 100px;
+      background-color: skyblue;
+      position: absolute;
+      left: 33px;
+      top: 0;
+    }
+  </style>
+  <div class="box1"></div>
+  <script>
+    var box1 = document.getElementsByClassName('box1')[0]
+    var zb = {
+      x: box1.offsetLeft,
+      y: box1.offsetTop
+    }
+    document.onkeydown = function (e) {
+      console.log(e);
+      var speed = 20
+      function setzb() {
+        box1.setAttribute('style', 'left:' + zb.x + 'px;' + '  ' + 'top:' + zb.y + 'px')
+      }
+      switch (e.keyCode) {
+        case 37://左
+          zb.x -= speed
+          setzb()
+          break
+
+        case 38://上
+          zb.y -= speed
+          setzb()
+          break
+
+        case 39://右
+          zb.x += speed
+          setzb()
+          break
+
+        case 40://下
+          zb.y += speed
+          setzb()
+          break
+      }
+    }
+
+
+
+
+
+
+
+
+    /* document.onkeydown = function (e) {
+      switch (e.keyCode) {
+        case 37://左
+          var n = box1.offsetLeft
+          n-=10
+          box1.setAttribute('style', ('left:' + n + 'px'))
+          break
+        case 38://上
+          var n = box1.offsetTop
+          n-=10
+          box1.setAttribute('style', ('top:' + n + 'px'))
+          break
+        case 39://右
+          var n = box1.offsetLeft
+          n+=10
+          box1.setAttribute('style', ('left:' + n + 'px'))
+          break
+        case 40://下
+          var n = box1.offsetTop
+          n+=10
+          box1.setAttribute('style', ('top:' + n + 'px'))
+          break
+      }
+    } */
+
+  </script>
+</body>
+
+</html>
