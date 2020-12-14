@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box1 {
+            height: 100px;
+            width: 100px;
+            background-color: skyblue;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    <div class="box1"></div>
+    <script>
+        var box1 = document.getElementsByClassName('box1')[0]
+        var zb = {//坐标
+            x: box1.offsetLeft,
+            y: box1.offsetTop
+        }
+        var winWH = {//窗口属性
+            x: document.documentElement.clientWidth,
+            y: document.documentElement.clientHeight
+        }
+        console.log(winWH.x);
+        function setzb() {//设置坐标函数
+            box1.setAttribute('style', 'left:' + zb.x + 'px;' + '  ' + 'top:' + zb.y + 'px')
+        }
+        var speed = 2//速度
+        var flag = true//定义x前进还是后退
+        function paox() {//定义函数跑
+            if (flag) {//如果true,正跑
+                zb.x += speed
+                setzb()
+                if (zb.x >= (winWH.x - box1.offsetWidth)) {
+                    zb.x = winWH.x - box1.offsetWidth
+                    flag = false
+                    paox()
+                }
+            } else {
+                zb.x -= speed
+                setzb()
+                if (zb.x <= 0) {
+                    zb.x = 0
+                    flag = true
+                    paox()
+                }
+            }
+        }
+        var flag2 = true//定义y前进还是后退
+        function paoy() {//定义函数跑
+            if (flag2) {//如果true,正跑
+                zb.y += speed
+                setzb()
+                if (zb.y >= (winWH.y - box1.offsetHeight)) {
+                    zb.y = winWH.y - box1.offsetHeight
+                    flag2 = false
+                    paoy()
+                }
+            } else {
+                zb.y -= speed
+                setzb()
+                if (zb.y <= 0) {
+                    zb.y = 0
+                    flag2 = true
+                    paoy()
+                }
+            }
+        }
+
+        setInterval(function () {
+            paox()
+            paoy()
+        }, 1)
+    </script>
+</body>
+
+</html>
