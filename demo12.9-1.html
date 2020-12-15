@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn1">性感的按钮1</button>
+  <button id="btn2">骚气的按钮2</button>
+  <div id="wrapper" style="width: 100px;border: 3px solid red;">
+    <div id="box1" style="height: 100px;width: 100px;background-color: darkcyan;"></div>
+    <div id="box2" style="height: 100px;width: 100px;background-color: cyan;display: none;"></div>
+  </div>
+  <h2 id="haha">倒计时3秒</h2>
+  <a href="./history/1.html">去1.html</a>
+  <a href="./history/2.html">去2.html</a>
+  <div id="outer" style="height: 100px;width: 100px;background-color: blanchedalmond;overflow: auto;">
+    <div id="inner" style="height: 50px;width: 1000px;background-color: aquamarine;padding: 10px;"></div>
+  </div>
+  ```window对象
+  <!-- <script>
+    console.log(window);
+    var a = 1;
+    function fn() {
+      var b = c = 2
+    }
+    window.fn()
+    console.log(a);//1
+    console.log(c);//2
+    console.log(b);//undefined
+  </script> -->
+  ```系统弹窗
+  <!-- <script>
+    var a=alert('你只能确认')
+    var b=confirm('确认么?')
+    var c=prompt('你是谁?')
+    console.log(a);//返回undefined
+    console.log(b);//返回true&false
+    console.log(c);//返回输入内容&null
+    //==> 叫爸爸测试:
+    (function callmefather(){
+      if(prompt('叫爸爸,不叫不给你看')==='爸爸'){
+        console.log('小伙子可以,是狠人');
+      }else{
+        callmefather()
+      }
+    })()
+  </script> -->
+  ```打开啊关闭新窗口
+  <!-- <script>
+    var btn1 = document.getElementById('btn1')
+    var btn2 = document.getElementById('btn2')
+    btn1.onclick = function () {
+      // window.open('http://www.baidu.com')//默认新标签页跳转
+      // window.open('http://www.baidu.com','_self')//自身跳转
+      // window.open('http://www.baidu.com','_blank')//新窗口跳转
+      newWindow = window.open('http://www.baidu.com', '_blank', 'width=300,height=300,left=500,top=500px')//小窗口打开(常用)px加了效果一样,默认
+    }
+    btn2.onclick = function () {
+      newWindow.close()//关闭窗口需要对应窗口有自己的名字
+      window.close()//关闭自己,一些浏览器不支持,报错:(Scripts may close only the windows that were opened by them)
+    }
+  </script> -->
+  ```超时调用计时器
+  <!-- <script>
+    // eval方法: 将一个字符串的代码解析运行, 并且是自动运行, 因为比较不安全, 所以不推荐主动调用eval方法, setTimeout是自动调用
+    // eval('var a =1;a++;alert(a)')
+    // window.setTimeout(alert(1), 2000)//执行的时候alert是直接调用的,返回的是undefined,所以2s后执行的是undefined
+    // window.setTimeout(alert, 2000, 1)//1号参数,函数名,2号参数,延迟时间(默认0),3号和之后的参数,都是形参
+    window.setTimeout('console.log(123)', 2000,)
+    // function fn() {
+    //   console.log('函数可以外置');
+    // }
+    // window.setTimeout(fn, 1000)
+
+  </script> -->
+  ```超时计时器练习(延迟消失)
+  <!-- <script>
+    var box1 = document.getElementById('box1')
+    var box2 = document.getElementById('box2')
+    var wrapper = document.getElementById('wrapper')
+    var timer = null
+    wrapper.onmouseenter = function () {
+      clearTimeout(timer)
+      box2.style.display = 'block'
+    }
+    wrapper.onmouseleave = function () {
+      timer = setTimeout(function () {
+        box2.style.display = 'none'
+      }, 500)
+    }
+  </script> -->
+  ```取消超时计时器(句柄)
+  <!-- <script>
+    var btn1 = document.getElementById('btn1')
+    var btn2 = document.getElementById('btn2')
+    var timer = null
+    btn1.onclick = function () {
+      timer = setTimeout(function () {
+        console.log('下面是这个定时器的"句柄"');
+        console.log(timer);
+      }, 500)
+    }
+    btn2.onclick = function () {
+      clearTimeout(timer)
+      console.log(timer);//打印的是句柄(定时器的返回值,是这个定时器的id)
+    }
+  </script> -->
+  ```间歇调用定时器(解释句柄增加问题)
+  <!-- <script>
+    var btn1 = document.getElementById('btn1')
+    var btn2 = document.getElementById('btn2')
+    var timer = null
+    btn1.onclick = function () {
+      timer = setInterval(function () {
+        console.log('我是间歇抽筋函数,约点越快版本');
+      }, 1000)
+    }
+
+    btn2.onclick = function () {
+      clearInterval(timer)
+      console.log('清除间歇抽筋函数');
+    }//这里可以解释句柄问题,因为每次清除函数调用,清除的都是改回调函数当前的句柄,而如果n次点击抽筋函数,那么n-1次的抽筋函数的句柄就丢失了,永远无法找回
+  </script> -->
+  ```倒计时练习
+  <!-- <script>
+    var haha = document.getElementById('haha')
+    var btn1 = document.getElementById('btn1')
+    btn1.onclick = function () {
+      // 定义初始值
+      var num = 3
+      var timer = setInterval(function () {
+        num--
+        if(num<=0){
+          clearInterval(timer)
+          haha.textContent='午时已到'
+          return
+        }
+        haha.textContent = '倒计时' + num + '秒'
+
+      },1000)
+    }
+  </script> -->
+  ```js做动画
+  <!-- <script>
+    var wrapper = document.getElementById('wrapper')
+    var btn1 = document.getElementById('btn1')
+    var btn2 = document.getElementById('btn2')
+    var num = 0
+    var timer = null
+    btn1.onclick = function () {
+      timer = setInterval(function () {
+        num += 100
+        if (num >= 1000) {
+          num = 1000
+          clearInterval(timer)
+        }
+        wrapper.style.marginLeft = num + 'px'
+      }, 100)
+    }
+    btn2.onclick = function () {
+      timer = setInterval(function () {
+        num -= 100
+        if (num <= 0) {
+          num = 0
+          clearInterval(timer)
+        }
+        wrapper.style.marginLeft = num + 'px'
+      }, 100)
+    }//第二个定时器和第一个定时同时开启,就会抖抖抖,往左往右不知道,并且似乎第二个定时器无法清除第一个定时器的句柄
+  </script> -->
+  ```计时器面试题
+  <!-- <script>
+    //==>正常情况下,计时器的this都是指向window的
+    /* setTimeout(function () {
+      console.log(this);//window
+    }, 0)
+    var obj = {
+      name: 'asdf',
+      shabi: function () {
+        console.log(this);//obj
+        setTimeout(function () {
+          console.log(this);//window
+        }, 0)
+      }
+    }
+    obj.shabi() */
+    //==>
+    for (var i = 0; i < 3; i++) {
+      setTimeout(function () {
+        console.log(i);//3 3 3//计时器是异步代码,延迟0秒也是异步,也要等待全部的同步代码完成
+      }, 0)
+    }
+    // es5解决方式:利用函数作用域
+    for (var i = 0; i < 3; i++) {
+      (function (i) {
+        setTimeout(function () {
+          console.log(i);//这里每一个i都不能少哦,不然i就没法传递到对应的函数作用域
+        }, 0)
+      })(i)
+    }
+    // es6解决方式:var==>let
+  </script> -->
+  ```navigator对象与检测浏览器方法
+  <!-- <script>
+    console.log(navigator);//浏览器信息
+    console.log(navigator.onLine);//是否连接网络
+    console.log(navigator.platform);//当前操作系统
+    console.log(navigator.userAgent);//浏览器识别码,用户代理信息
+    //==>浏览器检测方法有2种,一种是字符串检测法,不常用,因为IE某版本有伪装\特征检测法(常用),利用当前浏览器支持与否某个属性检测是否是'那个'浏览器
+    //==>字符串检测法
+    /* var ua = navigator.userAgent.toLowerCase();
+        var info = {
+            ie: /msie/.test(ua) && !/opera/.test(ua),
+            op: /opera/.test(ua),
+            sa: /version.*safari/.test(ua),
+            ch: /chrome/.test(ua),
+            ff: /gecko/.test(ua) && !/webkit/.test(ua)
+        }
+        info.ie && console.log("ie");
+        info.op && console.log("欧朋");
+        info.sa && console.log("safari");
+        info.ch && console.log("chrome");
+        info.ff && console.log("firfox"); */
+    //==>检测操作系统(不常用)
+    /* var isWin = (navigator.userAgent.indexOf("Win") != -1);
+        // 如果是Macintosh系统，则返回true
+        var isMac = (navigator.userAgent.indexOf("Mac") != -1);
+        // 如果是UNIX系统，则返回true
+        var isUnix = (navigator.userAgent.indexOf("X11") != -1);
+        // 如果是Linux系统， xc则返回true
+        var isLinux = (navigator.userAgent.indexOf("Linux") != -1);
+        console.log(isWin, isMac, isUnix, isLinux) */
+  </script> -->
+  ```location对象
+  <!-- <script>
+    // location对象是关于浏览器url地址的
+    console.log(location);
+    //一个完整的url地址：http://www.baidu.com:80?user=laoli&pass=123456#like
+    //协议://主机地址:端口号?查询字符串#锚点
+    // http://127.0.0.1:5500/day03-BOM/13.location%E5%AF%B9%E8%B1%A1.html?user=laoli#hello
+    document.onclick = function () {
+      //href:设置和获取url地址（设置也叫重定向）
+      //获取整个url地址
+      console.log(location.href)
+      //可以直接设置 就是重定向-跳转
+      location.href = "http://www.baidu.com"
+      //protocol:协议
+      console.log(location.protocol) //http:
+      console.log(location.host)//host:主机和端口名
+      console.log(location.hostname)//hostname：主机
+      console.log(location.port)//port
+      console.log(location.pathname)//pathname路径
+      console.log(location.search)//search查询字符串
+      console.log(location.hash)//hash 锚链接部分
+      //location的方法 -assign 和href一样 设置重定向
+      location.assign("http://www.baidu.com")
+      //reload方法：重新加载文档
+      location.reload();
+      //replace方法：替换当前url地址(替换之前页面的历史记录)
+      location.replace("http://www.baidu.com")
+    }
+  </script> -->
+  ```history历史记录操作:常用于移动端
+  <!-- <script>
+    //history.forword()//是前进1页
+    //history.back()//是后退1页
+    // history.go(-2)//跳转指定数量的历史记录
+    var btn1=document.getElementById('btn1')
+    var btn2=document.getElementById('btn2')
+    btn1.onclick=function(){
+      history.go(-2)
+    }
+    btn2.onclick=function(){
+      history.back()
+    }
+  </script> -->
+  ```offsetWidth\Height和clientWidth\Height获取元素宽高
+  <!-- <script>
+    // # offsetWidth:
+    //   - 获取元素的宽度
+    //   - 包含 内容+内边距+边框的总宽度
+    //   - 可获取行内
+    //   - 当元素是display:none==>0
+    //   - 图片或者其他资源未加载,且未设置宽==>0
+    var box1 = document.getElementById('box1')
+    var box2 = document.getElementById('box2')
+    var aa = document.querySelector(' a')
+    console.log(box1.offsetWidth);//100
+    console.log(box1.offsetHeight);//100
+    console.log(aa.offsetWidth);//65
+    console.log(aa.offsetHeight);//21
+
+    
+    // # clientWidth:
+    //   - 获取元素宽度
+    //   - 包含 内容+内部边距
+    //   - 行内元素标签的clientWidth属性是0
+    //   - 当元素是display:none==>0
+    //   - 图片或者其他资源未加载完,且未设置宽度==>0
+    var box1 = document.getElementById('box1')
+    var box2 = document.getElementById('box2')
+    var aa = document.querySelector(' a')
+    console.log(box1.clientHeight);//100
+    console.log(box1.clientWidth);//100
+    console.log(aa.clientHeight);//0
+    console.log(aa.clientWidth);//0
+  </script> -->
+  ```scrollWidth
+  <!-- <script>
+    var outer=document.getElementById('outer')
+    var inner=document.getElementById('inner')
+    // scrollWidth:元素的完整内容和自身的padding(无论是否超出,无论是否隐藏)
+
+    console.log(outer.scrollWidth);
+  </script> -->
+  ```获取窗口宽度和高度
+  <!-- <script>
+    /* 在主流浏览器中:窗口的宽高是通过html标签的clientWidth和ClientHeight获取的
+    在低版本IE(IE6及以下)中,窗口的宽高是通过body的clientWidth和clientHeight */
+    console.log(document.documentElement.clientHeight);
+    console.log(document.body.clientHeight);
+
+    // 如果要兼容Ie6
+    var windowHeight = document.documentElement.clientHeight || document.body.clientHeight
+    console.log(windowHeight);
+  </script> -->
+  ```练习
+  <!-- 练习1：
+  已知一个地址"http://www.baidu.com:80?user=laoli&pass=123456"
+  把查询字符串以对象的形式表现出来，得到一个对象{user:"laoli",pass:"123456}
+
+  练习2：
+  已知一个查询字符串的对象{user:"laoli",pass:"123456}
+  已知一个地址http://www.baidu.com:80
+  得到一个url字符串"http://www.baidu.com:80?user=laoli&pass=123456" -->
+  <script>
+    var str = 'http://www.baidu.com:80?user=laoli&pass=123456'
+    var key1 = str.split('?')[1].split('&')[0].split('=')[0]//user
+    var val1 = str.split('?')[1].split('&')[0].split('=')[1]//laoli
+    var key2 = str.split('?')[1].split('&')[1].split('=')[0]//pass
+    var val2 = str.split('?')[1].split('&')[1].split('=')[1]//123456
+    var res = {
+      [key1]: val1,
+      [key2]: val2
+    }
+    console.log(res);
+  </script>
+  <script>
+    var obj = {
+      user: "laoli",
+      pass: "12345"
+    }
+    var dizi = 'http://www.baidu.com:80'
+    var arr = []
+    for (var i in obj) {
+      // arr.push[i]
+      arr.push(i)
+      arr.push(obj[i])
+    }
+    console.log(dizi+'?'+arr[0]+arr[1]+'&'+arr[2]+arr[3]);
+  </script>
+
+
+</body>
+
+</html>
