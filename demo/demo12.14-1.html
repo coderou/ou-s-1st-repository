@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<!-- <script>
+  /* window的onload事件：
+    - 当DOM节点加载完成 并且所有的资源也加载完成以后才能触发
+  DOMContentLoaded事件：
+    - 当DOM节点加载完成以后就执行 不再等待资源
+    - 是DOM2级事件 必须事件处理函数绑定 */
+  var img = document.getElementById('img')
+  console.log(img);//null
+  window.onload = function () {
+    var img = document.getElementById('img')
+    console.log(img);//可获取(最后执行)
+  }
+  window.addEventListener("DOMContentLoaded",function(){
+    var img = document.getElementById('img')
+    console.log(img);//可获取
+    console.log(img.offsetWidth);//0
+  })
+</script> -->
+
+<body>
+  <style>
+    .box1 {
+      background-color: cadetblue;
+      height: 400px;
+    }
+
+    .box2 {
+      height: 200px;
+      width: 200px;
+      background-color: pink;
+      margin-left: 50px;
+    }
+
+    .outer {
+      background-color: darkcyan;
+      margin-top: 10px;
+    }
+  </style>
+  <button id="btn1">按钮1</button>
+  <!-- <div class="box1" onclick='fn1()'>box1</div> -->
+  <div id="ul1">
+    <p>假li</p>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </div>
+  <div class="box1">box1
+    <div class="box2">box2</div>
+  </div>
+
+
+  <div class="outer">
+    <div class="inner">
+      <div class="content">内容区</div>
+    </div>
+  </div>
+  <div><img id="img" src="./1_5535.1.jpg" alt=""></div>
+
+  <!-- ```W3C事件流\静态绑定\动态绑定 -->
+  <!-- <script>
+    //==>事件流
+    /* # 什么叫事件流？(事件模型、事件机制)一个意思
+      - 多个节点对象对同一个事件的响应顺序，被称作为事件流
+    # W3C事件流：
+      - 1.执行捕获阶段：网景浏览器提出，事件由最不精确的对象（document）依次执行到最精确的目标元素（target）
+      - 2.执行目标事件
+      - 3.执行冒泡阶段：IE浏览器提出，事件由最精确的目标元素（target） 依次执行到 最不精确的对象（document）
+      - 4.事件根据自身是冒泡还是捕获，决定自身在哪一个阶段执行 */
+    //==>静态绑定：把JS脚本作为属性值，直接赋值给元素事件属性
+    function fn1() {
+      alert("我是box1");
+    }
+    //==>动态绑定事件
+    /* 动态绑定：
+      - 把匿名函数直接赋值给 DOM对象的事件属性，当事件触发就会执行匿名函数
+
+    特点：
+      - 1.同一个事件对用一个元素只能绑定1次，否则会覆盖
+      - 2.只能执行冒泡
+
+    取消事件：
+      - 直接把事件属性的值赋值为null即可 */
+    var btn1 = document.getElementById('btn1')
+    var outer = document.querySelector('.outer')
+    var inner = document.querySelector('.inner')
+    var content = document.querySelector('.content')
+    /* content.onclick = function () { alert('content1') }//可以被覆盖
+    content.onclick = function () { alert('content2') }//可以被覆盖
+    content.onclick = function () { alert('content3') }//可以被覆盖 */
+
+    /* content.onclick = function () { alert('content') }
+    inner.onclick = function () { alert('inner') }
+    outer.onclick = function () { alert('outer') }
+    //默认从内到外(冒泡) */
+
+    content.onclick = function () { alert('content') }
+    btn1.onclick = function () {
+      content.onclick = null//将对应的点击事件变为null,就能取消事件
+    }
+  </script> -->
+  <!-- ```事件处理函数 -->
+  <!-- <script>
+    var btn1 = document.getElementById('btn1')
+    var outer = document.querySelector('.outer')
+    var inner = document.querySelector('.inner')
+    var content = document.querySelector('.content')
+    /* 事件处理函数：
+      - w3c提供了一个事件处理函数 addEventListener() 专门用来处理事件
+      - 参数1: 事件名称 （没有on）
+      - 参数2：事件函数
+      - 参数3：布尔值，代表冒泡（false）或捕获（true）时候触发，默认false
+    特点：
+      - 可以给同一个元素绑定同一个事件多次(不会被覆盖了)
+      - 可以控制冒泡或捕获
+    删除事件：
+      - 使用removeEventListener()方法
+      - 参数1：移除的事件名
+      - 参数2：移除当前事件名的哪一个事件函数
+      - 参数3：移除的当前事件是冒泡阶段还是捕获阶段 是一个布尔值 */
+
+    /* content.addEventListener('click', function () {
+      alert('content1')
+    }, false)//不会被覆盖
+    content.addEventListener('click', function () {
+      alert('content2')
+    }, false)//不会被覆盖
+    content.addEventListener('click', function () {
+      alert('content3')
+    }, false)//不会被覆盖 */
+
+    /* content.addEventListener('click', function () {
+      alert('content2')
+    }, false)//target阶段不区分捕获还是冒泡,按照文档顺序执行
+    content.addEventListener('click', function () {
+      alert('content1')
+    }, true)//target阶段不区分捕获还是冒泡,按照文档顺序执行
+    outer.addEventListener('click', function () {
+      alert('outer')
+    }, false)//冒泡
+    inner.addEventListener('click', function () {
+      alert('inner')
+    }, true)//捕获
+    document.addEventListener('click', function () {
+      alert('document')
+    }, false)//冒泡 */
+
+    function fn() {
+      alert('content')
+    }//将函数提出来,使不同事件处理函数能找到
+    // content.addEventListener('click', fn, true)
+    content.addEventListener('click', fn, false)
+    btn1.onclick = function () {
+      content.removeEventListener('click', fn, false)//移除事件,默认也是false,且只移除对应事件流的函数
+    }
+  </script> -->
+  <!-- ```IE低版本处理函数和兼容 -->
+  <!-- <script>
+    //==>IE低版本,事件要加on哦
+    /* IE绑定：
+      1.attachEvent方法
+        - 参数1：on + 事件名
+        - 参数2：事件函数
+        - 低版本IE只支持冒泡，所以不需要第三个参数
+
+      2.detachEvent方法移除attachEvent绑定的事件 */
+    var box1 = document.querySelector('.box1')
+    var btn1 = document.getElementById('btn1')
+    // box1.addEventListener('click', function () { alert('box1') })//直接通过eventlistener不支持
+    /* function fn() {//外置一个函数
+      alert('box')
+    }
+    box1.attachEvent('onclick', fn)//为box1绑定点击事件,on开头
+    btn1.onclick = function () {
+      box1.datachEvent('onclick', fn)//点击btn1移除box1的点击事件
+    } */
+
+    //==>书事件绑定兼容写法
+    function addEvent(Ele, Type, Fn, Bool) {
+      if (Ele.addEventListener) {
+        Ele.addEventListener(Type, Fn, Bool || false)
+      } else if (Ele.attachEvent) {
+        Ele.attachEvent('on' + Type, Fn)
+      } else {
+        Ele['on' + Type] = Fn
+      }
+    }
+    function fn() {
+      alert('hello')
+    }
+    addEvent(box1, 'click', fn, false)//分别是(元素)(事件名)(函数名)(冒泡/捕获)
+  </script> -->
+  <!-- ```DOMContentLoaded事件 -->
+  <!-- <script>
+    var img = document.getElementById('img')
+    console.log((img));//可获取
+    console.log(img.offsetWidth);//0
+    window.onload = function () {
+      var img = document.getElementById('img')
+      console.log((img));//可获取
+      console.log(img.offsetWidth);//382
+    }
+
+    window.addEventListener("DOMContentLoaded", function () {
+      var img = document.getElementById('img')
+      console.log((img));//可获取
+      console.log(img.offsetWidth);//0
+    })
+  </script> -->
+  <!-- ```event事件对象&鼠标定位 -->
+  <!-- <script>
+    //==>event事件
+    var box1 = document.querySelector('.box1')
+    /* event事件对象：
+      - 当事件发生的时候，有一个对象保存的是当前事件所有相关的信息，这个对象被称作为event事件对象
+
+    怎么获取event事件对象：
+      # 高版本浏览器：
+        - 当事件触发的时候，事件自动的调用了事件函数，并向事件函数中传递一个实参，这个实参就是event事件对象
+      # 低版本：
+        - 直接在事件函数中 获取window对象的event属性即可
+        - 当事件发生的时候，就会创建一个event事件对象 放在window对象上 */
+    /* box1.onclick = function (e) {//最好写ev或者event或者e
+      // console.log(window.e);
+      // console.log(e);
+      var e = e || window.e//兼容写法
+      console.log(e);
+    } */
+
+    //==>获取鼠标定位
+    /* clientX: 事件发生位置 到 浏览器视口边缘的距离
+    offsetX: 事件发生位置 到 目标元素边缘的距离
+    pageX: 事件发生位置 到 文档边缘的距离(ie8不兼容)
+    screenX：事件发生位置 到 电脑屏幕边缘的距离 */
+    box1.onclick = function (e) {
+      var e = e || window.e//兼容
+      console.log('------------------');
+      console.log(e.clientY);//距离浏览器视口边缘距离
+      console.log(e.offsetY);//距离目标元素边缘的距离//因为事件冒泡,点击box2边缘也会=0
+      console.log(e.pageY);//距离文档边缘的距离(ie8不兼容,但是可以用(clientY+window.scrollTop)获取
+      console.log(e.screenY);//到电脑屏墓边缘的距离
+    }
+  </script> -->
+  <!-- ```阻止默认事件 -->
+  <!-- <script>
+    /* 阻止默认事件：
+      主流浏览器中：
+        event对象的preventDefault()
+      ie低版本：
+        event对象的returnValue属性 值设置为false
+    简单粗暴的阻止方法：
+      return false;
+    但是必须书写在末尾，因为会直接退出函数 */
+    var box1 = document.querySelector('.box1')
+    box1.oncontextmenu = function (e) {
+      // e.preventDefault()//主流浏览器
+      // e.returnValue = false//ie低版本
+      e.preventDefault ? e.preventDefault() : e.returnValue = false//兼容写法
+    }
+  </script> -->
+  <!-- ```阻止传播1 -->
+  <!-- <script>
+    var outer = document.querySelector('.outer')
+    var inner = document.querySelector('.inner')
+    var content = document.querySelector('.content')
+    var btn1 = document.getElementById('btn1')
+    /* 阻止传播：
+      无论是冒泡还是捕获，当执行到某个事件的时候，如果遇到了阻止传播代码，则直接停止当前事件的事件流的传播
+
+    主流浏览器：
+      event事件对象的 stopPropagation
+
+    ie低版本：
+      event事件对象的 cancelBubble 为 true */
+    content.addEventListener("click", function () { alert('content') }, false)
+    inner.addEventListener("click", function (e) {
+      // e.stopPropagation()//依然会执行下面的代码
+      // e.cancelable = true//ie低版本
+      e.stopPropagation ? e.stopPropagation() : e.cancelable = true
+      alert('inner')
+    }, false)
+    outer.addEventListener("click", function () { alert('outer') }, false)
+    document.addEventListener("click", function () { alert('document') }, false) 
+  </script> -->
+  <!-- ```阻止传播2(阻止冒泡&捕获) -->
+  <!-- <script>
+    var box1 = document.querySelector('.box1')
+    var box2 = document.querySelector('.box2')
+    //==>阻止当前事件传播
+    /* box2.onmousedown = function (e) {
+      // e.stopPropagation()
+      console.log('box2点击');
+    }
+    box2.onmouseup = function (e) {
+      // e.stopPropagation()
+      console.log('box2抬起');
+    }
+    box2.onclick = function (e) {
+      e.stopPropagation()
+    }
+    box1.onclick = function () {
+      console.log('box1点击-----');
+    } */
+    //==>元素内可以右键,其他没有右键
+    box1.oncontextmenu = function (e) {
+      e.stopPropagation()
+    }
+    box2.oncontextmenu = function (e) {
+      return false
+    }
+    document.oncontextmenu = function () {
+      return false
+    }
+  </script> -->
+  <!-- ```键盘事件event事件对象&阻止君子复制 -->
+  <!-- <script>
+    //==>键盘事件
+    /* 绑定键盘事件：
+      - 1.可输入的表单元素
+      - 2.document */
+    /* 键盘事件中，event对象的keyCode属性 代表当前按键的键码
+    根据键码 可以判断当前按下的是哪一个键 */
+    /* document.onkeydown = function (e) {
+      console.log(e.keyCode);
+      if (e.keyCode == 13) {
+        console.log('回车!!');
+      }
+    } */
+    //==>阻止君子复制
+    document.oncontextmenu = function () {//右键菜单事件
+      // return false//这里是阻止右键事件复制
+    }
+    document.onkeydown = function (e) {//监控当按键按下的时候
+      // console.log(e.keyCode);
+      // console.log(e);
+      // if (e.keyCode === 17 && e.keyCode === 67) { console.log(1); }//无法实现
+      if (e.ctrlKey && e.keyCode === 67) {
+        // console.log(2);
+        return false
+      }
+    }
+  </script> -->
+  <!-- ```事件委托 -->
+  <!-- <script>
+    var btn1 = document.getElementById('btn1')
+    var ul1 = document.getElementById('ul1')
+    var lis = document.getElementsByTagName('li')
+
+    //==>普通方法(多次遍历,无法给未来的元素绑定事件)
+    Array.from(lis).forEach(function (i, j) {//lis转数组,再遍历所有li
+      i.onclick = function () {//添加点击事件
+        this.style.background = 'red'//this是对应的i
+      }
+    })
+
+    btn1.onclick = function () {//为按钮添加事件
+      var newli = document.createElement('li')
+      newli.textContent = '新的li(普通方法版)'
+      ul1.appendChild(newli)
+      Array.from(lis).forEach(function (i, j) {//每次点击按钮1,都遍历一次lis(lis用老方法是动态的)
+        i.onclick = function () {
+          this.style.background = 'red'
+        }
+      })
+    }
+    //==>事件委托
+    /* 事件委托：
+      - 事件就是我们普通绑定的事件
+      - 委托就是不绑定在当前元素上，而是绑定在了父级或者祖辈元素上, 通过event事件对象的target属性，获取当前点击的精确元素
+      - 使用了冒泡的原理
+    优点：
+      - 1.减少for循环，减少绑定事件数量，提高效率
+      - 2.可以给未来的元素绑定事件 */
+    ul1.onclick = function (e) {//将点击事件添加给ul1
+      console.log(e.target);//点击的li
+      console.log(e.target.nodeName);//LI
+      console.log(e.target.nodeName.toLowerCase())//li
+      if (e.target.nodeName.toLowerCase() === 'li') {//判断是否为li
+        e.target.style.background = 'red'//li改变颜色
+      }
+    }
+
+    btn1.onclick = function () {//点击按钮1添加节点
+      var newli = document.createElement('li')
+      newli.textContent = '我是新新新li'
+      ul1.appendChild(newli)
+    }
+  </script> -->
+</body>
+
+</html>
