@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #box {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+  }
+</style>
+
+<body>
+  <div id="box"></div>
+  <!-- ```滚轮事件 -->
+  <!-- <script>
+    /* 滚轮事件：
+        谷歌 / ie:onmousewheel
+          上滚： e.wheelDelta > 0
+          下滚：e.wheelDelta < 0
+
+        火狐：DOMMouseScroll
+          上滚：e.detail < 0
+          下滚：e.detail > 0 */
+    var box = document.getElementById('box')
+    // 这是鼠标的初始长度
+    var i = 200
+    // 当鼠标滚动,调用fn
+    document.onmousewheel = fn
+    // 给box添加一个事件监听函数(兼容ie8及以下,因为ie8及以下木有onmousewheel)
+    document.addEventListener('DOMMouseScroll', fn)
+    
+    function fn(e) {
+      //判断是不是谷歌的onmousewheel事件
+      if (e.wheelDelta) {
+        if (e.wheelDelta > 0) {
+          i += 10;
+        } else {
+          i -= 10;
+        }
+      } else {
+        //火狐的DOMMouseScroll事件
+        if (e.detail > 0) {
+          i -= 10;
+        } else {
+          i += 10;
+        }
+      }
+      box.style.height = i + "px";//改变高度
+    }
+  </script> -->
+  ```
+</body>
+
+</html>
