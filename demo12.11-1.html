@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  html {
+    padding: 3px;
+  }
+
+  body {
+    margin: 3px;
+  }
+
+  .outer {
+    width: 500px;
+    height: 500px;
+    background-color: cadetblue;
+    margin: 50px;
+    border: 5px solid #000;
+    padding: 10px;
+    position: relative;
+  }
+
+  .inner {
+    width: 400px;
+    height: 300px;
+    margin: 40px;
+    border: 4px solid #000;
+    padding: 10px;
+    background-color: salmon;
+    position: relative;
+  }
+
+  .content {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    border: 1px solid #000;
+    padding: 10px;
+    background-color: seagreen;
+  }
+</style>
+
+<body>
+  <div class="outer">
+    <div class="inner">
+      <div class="content" style="overflow: auto;">
+        <div style="width: 1000px;height: 20px;background-color: skyblue;"></div>
+      </div>
+    </div>
+  </div>
+  <button id="btn1" style="position: fixed;left: 10px;top: 10px;">骚气的按钮1</button>
+  <button id="btn2" style="position: fixed;left: 100px;top: 10px;">妖娆的按钮2</button>
+  <div class="chengKaiDoc" style="height: 2000px;width: 2000px;"></div>
+  ```作业复习1&2
+  <!-- <script>
+    //==>作业1:已知一个地址"http://www.baidu.com:80?user=laoli&pass=123456"==>把查询字符串以对象的形式表现出来，得到一个对象{user:"laoli",pass:"123456}
+    var url = 'http://www.baidu.com:80?user=laoli&pass=123456'
+    var obj = {}//保存结果
+    url.split('?')[1].split('&').forEach(function (i, j) {//i是item,j是index
+      var key = i.split('=')[0]//这里i为一个字符串,user=laoli,用'='切割后,变成数组,再将数组的0号提取,就是key,每次foreach都会遍历一次
+      var value = i.split('=')[1]
+      obj[key] = value//将每次foreach遍历到的元素放进去数组
+    })
+    console.log(obj);
+  </script> -->
+  <!-- <script>
+    //==>作业2:已知一个查询字符串的对象{user:"laoli",pass:"123456}已知一个地址http://www.baidu.com:80得到一个url字符串"http://www.baidu.com:80?user=laoli&pass=123456"
+    var obj = {
+      user: "laoli",
+      pass: 123456
+    }
+    var url = 'http://www.baidu.com:80?'
+    for (var key in obj) {
+      url = url + key + '=' + obj[key] + '&'
+    }
+    var newurl = url.slice(0, -1)
+    console.log(newurl)
+  </script> -->
+  ```offsetLeft\clientLeft
+  ```scrollLeft\offsetParent
+  <!-- <script>
+    /* css包含块：
+        如何判断元素的包含块
+        如果元素position属性是static和relative 则包含块是根元素
+        如果元素position属性是absolute 则包含块是最近的定位祖辈元素
+        如果元素position属性是fixed 则包含块是窗口
+      offsetLeft的包含块：
+        如果其祖辈元素有不为static的定位属性，则这个祖辈元素就是其包含块
+      offsetLeft:
+        获取一个元素的左边框外侧 到 其包含块的边框内部的距离
+      */
+    var outer = document.querySelector('.outer')
+    var inner = document.querySelector('.inner')
+    var content = document.querySelector('.content')
+    var btn1 = document.getElementById('btn1')
+    var btn2 = document.getElementById('btn2')
+    console.log('---以下元素从外到内的---');
+    console.log('下面是offsetLeft');//元素(边框外侧)距离包含块(边框内侧)的距离
+    console.log(outer.offsetLeft);//注意!这里虽然包含块是body,但是是相对html拿到的offsetLeft
+    //56//outer(margin-left:50)+body(margin:8)
+    console.log(inner.offsetLeft);
+    //50//inner(margin-left:40)+outer(padding:10)
+    console.log(content.offsetLeft);
+    //20//content(margin-left:10)+inner(padding:10)
+    console.log('下面是offsetParent');//包含块
+    console.log(outer.offsetParent);//其实是html哦
+    console.log(inner.offsetParent);
+    console.log(content.offsetParent);
+    console.log('下面是clientLeft');//就是边框宽度
+    console.log(outer.clientLeft);
+    console.log(inner.clientLeft);
+    console.log(content.clientLeft);
+    
+    btn1.onclick = function () {
+      console.log(content);
+      console.log(content.scrollLeft);
+    }
+    btn2.onclick = function () {
+      content.scrollLeft = '100'
+    }
+  </script> -->
+  ```获取元素到文档边缘的距离(含方法封装)
+  <script>
+    //==>方法1
+    var outer = document.querySelector('.outer')
+    var inner = document.querySelector('.inner')
+    var content = document.querySelector('.content')
+    var obj = content
+    var num = 0
+    while (obj) {
+      console.log(obj);//打印当前obj是哪一个
+      if (obj === content) {//如果是content自己,不计算clientLeft
+        num += obj.offsetLeft
+      } else {//否则计算clientLeft
+        num += obj.clientLeft
+        num += obj.offsetLeft
+      }
+      obj = obj.offsetParent
+      console.log(num);//打印当前obj计算完成后的num
+    }
+
+    //==>方法2
+    function getElementToDoc(element) {//封装一个函数专门计算元素到Doc的距离
+      var l = 0//初始化left
+      var t = 0//初始化top
+      var obj = element
+      while (element) {
+        if (obj === element) {
+          l += element.offsetLeft
+          t += element.offsetTop
+        } else {
+          l += (element.offsetLeft + element.clientLeft)
+          t += (element.offsetTop + element.clientTop)
+          // l += element.clientLeft
+          // t += element.clientTop
+        }
+        element = element.offsetParent
+      }
+      return{left:l,top:t}
+    }
+    console.log(getElementToDoc(outer));
+    console.log(getElementToDoc(inner));
+    console.log(getElementToDoc(content));
+  </script>
+  ```获取文档的宽高
+  <!-- <script>
+    /* 主流浏览器中：
+    html的offsetHeight就是文档的高度
+    ie低版本（6）：
+    body.offsetHeight就是文档的高度 */
+    //==>宽度不是文档的宽度,而是窗口的宽度(水平方向上不会出现滚动条,不然就是反人类)
+    console.log(document.documentElement.offsetWidth);
+    //==>真正的文档高度
+    console.log(document.documentElement.offsetHeight);
+  </script> -->
+  ```获取和设置窗口滚动条(常用)(已改为XY都获取)
+  <!-- <script>
+    //console.log(window.screenTop);//==>系统滚动条不是window对象的
+    /* 系统滚动条：
+      高版本浏览器(ie7及以上)：
+          html的scrollTop
+      ie6-：
+          body的scrollTop
+      高版本浏览器（ie9及以上）
+          window.pageYoffset
+
+    设置系统滚动条：
+      - 可以直接对html或body的scrollTop属性直接设置
+      - 也可以使用window.scrollTo();完美兼容的
+      - scrollTo():接受两个参数，一个是x滚动条位置 一个是y滚动条位置 */
+    var btn1 = document.getElementById('btn1')
+    var btn2 = document.getElementById('btn2')
+    btn1.onclick = function () {
+      // console.log(document.documentElement.scrollTop)//大部分浏览器
+      // console.log(document.body.scrollTop);//只有IE6及以下的是body的scrollTop
+      // console.log(window.pageYOffset);//全兼容
+
+
+      console.log('x=' + getWinXScroll());
+      console.log('y=' + getWinYScroll());
+    }
+    btn2.onclick = function () {
+      // document.documentElement.scrollTop=100
+      // document.body.scrollTop=100
+      // window.scrollTo(0,100)
+      setWinXYScroll(20, 100)
+    }
+    function setWinXYScroll(a, b) {
+      document.documentElement.scrollLeft = a
+      document.documentElement.scrollTop = b
+      document.body.scrollLeft = a
+      document.body.scrollTop = b
+      window.scrollTo(a, b)
+    }
+    function getWinYScroll() {//函数==>获取元素距离docY轴距离
+      return document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
+    }
+    function getWinXScroll() {//函数==>获取元素距离docX轴距离
+      return document.documentElement.scrollLeft || document.body.scrollLeft || window.pageXOffset
+    }
+  </script> -->
+  ```回到顶部(瞬间移动版本)
+  <!-- <script>
+    window.onscroll = function () {//监听window的滚动条事件
+      if (window.pageYOffset <= 100) {//当window的滚动条小于100,隐藏btn1
+        btn1.style.display = 'none'
+      } else {
+        btn1.style.display = 'block'
+      }
+    }
+    btn1.onclick = function () {
+      window.scrollTo(0,0)//瞬间移动
+    }
+  </script> -->
+  ```回到顶部版本2(回调时间不定)
+  <!-- <script>
+    var btn1 = document.getElementById('btn1')
+    window.onscroll = function () {//监听window的滚动条事件
+      if (window.pageYOffset <= 100) {//当window的滚动条小于100,隐藏btn1
+        btn1.style.display = 'none'
+      } else {
+        btn1.style.display = 'block'
+      }
+    }
+
+    btn1.onclick = function () {
+      var num = window.pageYOffset
+      var totop = null
+      clearInterval(totop)//每次点击清除定时器
+      totop = setInterval(function () {
+        num -= 10//每次让pageYOffset减10
+        if (num <= 0) {//到顶部了
+          clearInterval(totop)//清除定时器
+          // window.scrollTo(0, 0)
+          num = 0
+        }
+        window.scrollTo(0, num)
+      }, 1);
+    }
+  </script> -->
+  ```回到顶部版本3(回调时间固定)
+  <!-- <script>
+    var btn1 = document.getElementById('btn1')
+    var totop = null
+    window.onscroll = function () {//监听window的滚动条事件
+      if (window.pageYOffset <= 100) {//当window的滚动条小于100,隐藏btn1
+        btn1.style.display = 'none'
+      } else {
+        btn1.style.display = 'block'
+      }
+    }
+    btn1.onclick = function () {
+      clearInterval(totop)
+      var startLocation = window.pageYOffset//开始位置(当前滚动条位置)
+      var endLocation = 0//结束位置(顶部)
+      var startStep = 0//开始步数
+      var endStep = 80//结束步数
+      var everyStep = (endLocation - startLocation) / (endStep - startStep)//每一步的距离
+      totop = setInterval(function () {
+        startLocation += everyStep
+        startStep++
+        if (startStep >= endStep) {
+          clearInterval(totop)
+        }
+        window.scroll(0, startLocation)
+      }, 1)
+    }
+
+    btn2.onclick = function () {
+      clearInterval(totop)
+      var startLocation = window.pageYOffset//开始位置(当前)
+      var endLocation = 0//结束位置(顶部)
+      var useStep = 80//要用多少步
+      var everyStep = (startLocation - endLocation) / useStep//每一步要走多少像素
+      totop = setInterval(function () {//每次间歇抽筋函数调用,减少当前的位置并且设置
+        startLocation -= everyStep
+        if (startLocation <= endLocation) {
+          clearInterval(totop)//判断是否到终点
+        }
+        window.scrollTo(0, startLocation)//设置
+      }, 1)
+    }//自己写的,也可以实现,但是总感觉不对劲??
+  </script> -->
+  ```getBoundingClientRect
+  <!-- <script>
+    Ele.getBoundingClientRect()
+    /* 获取元素四个方法到视窗左和上的距离
+      left:   元素左侧  到 视窗 左侧的距离
+      right:  元素右侧  到 视窗 左侧的距离
+      top:    元素上侧  到 视窗 上侧的距离
+      bottom: 元素下侧  到 视窗 上侧的距离
+      width： 元素的宽度（border - box）
+      height: 元素的高度 */
+    var content = document.querySelector('.content')
+    var btn1 = document.getElementById('btn1')
+    btn1.onclick = function () {
+      console.log(content.getBoundingClientRect())
+    }
+  </script> -->
+  
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body,
+  html {
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .scrollBar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 30px;
+    background-color: silver;
+    height: 100%;
+  }
+
+  .scrollBar .box {
+    position: absolute;
+    top: 0;
+    width: 30px;
+    /* height: 60px; */
+    background-color: darkcyan;
+  }
+</style>
+
+<body>
+  <!-- 外层容器 -->
+  <div class="outer">
+    <!-- 内容区撑开文档 -->
+    <div class="con"></div>
+    <!-- 自定义滚动条 -->
+    <div class="scrollBar">
+      <div class="box">box</div>
+    </div>
+  </div>
+  <!-- ```自定义滚动条(基础版\不定高\无法滚轮) -->
+  <script>
+    //==>系统滚动条怎么来的
+    /* 系统的滚动条其实是 html或body产生的
+    如果去除系统滚动条，则直接设置html和body的overflow为hidden */
+    //==>js生成内容,撑开文档
+    var con = document.querySelector('.con')//内容区
+    var box = document.querySelector('.box')//右边滑块
+    var scrollBar = document.querySelector('.scrollBar')//右边导航条
+    //for循环生成内容区
+    for (var i = 0; i <= 100; i++) {//
+      con.innerHTML += i + "<br>"
+    }
+    //-----------------------------------------
+    //1.求滑块高度
+    /* (窗口高度x/文档高度)===(滑块高度y/滑槽高度)
+    窗口高度x===滑块高度y*(文档高度/滑槽高度)
+    滑块高度y===窗口高度x/(文档高度/滑槽高度)
+    比例就是:(文档高度/滑槽高度) */
+
+    var scale = con.offsetHeight / scrollBar.offsetHeight//求出比例(文档高度/滑槽高度)
+    var boxHeight = document.documentElement.clientHeight / scale//滑槽高度=(窗口高度/比例)
+    box.style.height = boxHeight + 'px'//赋值
+
+    // -----------------------------------------
+    // 2.鼠标按下滑块
+    box.onmousedown = function (e) {
+      e.preventDefault()// 阻止默认事件
+      var mouseToBox = e.offsetY//鼠标到滑块边缘的距离
+      //------------------------------------
+      document.onmousemove = function (e) {//当鼠标移动的时候
+        e.preventDefault()//阻止默认事件
+
+        var boxLocation = e.clientY - mouseToBox//滑块位置=事件到窗口的距离-事件到滑块边的距离
+        // 判断临界值
+        if (boxLocation <= 0) {//如果滑块位置小于0
+          boxLocation = 0//令滑块=0//==>贴顶
+        } else if (boxLocation >= scrollBar.clientHeight - box.offsetHeight) {//如果滑块大于(滑槽高度-滑块高度)
+          boxLocation = scrollBar.clientHeight - box.offsetHeight//盒子位置就=(滑槽高度-滑块高度)//==>贴底
+        }
+        //比例计算(根据比例移动文档)
+        /* 文档移动距离x/文档高度===滑块移动距离y/滑槽高度
+        文档移动距离x=(滑块移动距离y/滑槽总高度)*文档高度
+        文档移动距离x=滑块移动距离y*文档高度/滑槽高度
+        文档移动距离x=滑块移动距离y*(文档高度/滑槽高度) */
+        // 即: 比例为(文档高度 / 滑槽高度)==>scale(同70行)
+        // 滑块移动距离y=上面的boxLocation
+        //----------------------------------
+        var docMove = boxLocation * scale//这里的scale就是上面的一样的
+        con.style.transform = 'translateY(' + (-docMove)+'px' + ')'
+        box.style.top = boxLocation + 'px'
+      }
+      //-------------------------------------
+      document.onmouseup = function () {// 鼠标抬起,停止事件追踪,不在移动
+        document.onmousemove = null;
+        document.onmouseup = null;
+      }
+    }
+  </script>
+</body>
+
+</html>

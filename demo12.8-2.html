@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .out {
+    width: 400px;
+    /* height: 400px; */
+    border: 1px solid rebeccapurple;
+    margin: 0 auto;
+  }
+
+  .out .tab {
+    height: 100%;
+  }
+
+  .out .tab .title {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .out .tab .title h2 {
+    flex-grow: 1;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid rebeccapurple;
+    cursor: pointer;
+  }
+
+  .out .tab .title h2.active {
+    background-color: seagreen;
+    color: seashell;
+  }
+
+  .out .tab .con section {
+    height: 300px;
+    text-align: center;
+    line-height: 300px;
+    font-size: 50px;
+    display: none;
+  }
+
+  .out .tab .con section.show {
+    display: block;
+  }
+</style>
+
+<body>
+  <div class="out">
+    <div class="tab">
+      <header class="title">
+        <h2 class="active">标题1</h2>
+        <h2>标题2</h2>
+        <h2>标题3</h2>
+      </header>
+      <article class="con">
+        <section class="show">内容一</section>
+        <section>内容二</section>
+        <section>内容三</section>
+      </article>
+    </div>
+  </div>
+  <!-- ```方法1 -->
+  <!-- <script>
+    var titles = document.querySelectorAll('.title h2')
+    var cons = document.querySelectorAll('.con section')
+    for (var i = 0; i < titles.length; i++) {
+      titles[i].onclick = function () {
+        for (var i = 0; i < cons.length; i++) {
+          console.log(this);//this是'外面的'titles[i]!!!
+          console.log(titles[i]);//这是里面的titles[i]
+          if (titles[i] === this) {//关键点,这里因为里外都是i混淆了我的思考,实际上这里this是外面的titles[i],而前面的titles[i]是里面的,判断里外是否相等(比如外面点击第2个,i为2,里面循环遍历找,也是当i=2的时候,就相等,添加)
+            titles[i].classList.add('active')
+            cons[i].classList.add('show')
+          } else {
+            titles[i].classList.remove('active')
+            cons[i].classList.remove('show')
+          }
+        }
+      }
+    }
+  </script> -->
+  <!-- ```方法2 -->
+ <!--  <script>
+    var titles = document.querySelectorAll('.title h2')
+    var cons = document.querySelectorAll('.con section')
+
+    for (var i = 0; i < titles.length; i++) {
+      titles[i].index = i//这里给titles里面的h2元素设置一个index属性保存其位置,遍历完成后,h2就有了自己的index
+      // console.log(titles[i].index);
+      titles[i].onclick = function () {
+        for (var i = 0; i < cons.length; i++) {
+          // 点击后移除所有的active和show
+          titles[i].classList.remove('active')
+          cons[i].classList.remove('show')
+        }
+        //重新添加active和show
+        this.classList.add('active')//this是对应的titles[i]==>i是外部的
+        cons[this.index].classList.add('show')//使用外部遍历完成后,this内部保存的index,因为this中i的不同,index也不同==>就是对于的外部i啊!!
+      }
+
+    }
+
+
+  </script> -->
+  <!-- ```事件的异步性 -->
+  <!-- <script>
+    var titles = document.querySelectorAll('.title h2')
+    var cons = document.querySelectorAll('.con section')
+    for (var i = 0; i < titles.length; i++) {
+      titles[i].onclick=function(){
+        console.log(i);//异步函数执行的时候,同步函数已经执行完成,所以是3(绑定事件时同步的,但是事件函数的执行是异步的)
+      }
+    }
+  </script> -->
+</body>
+
+</html>

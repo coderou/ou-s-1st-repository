@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  ```document对象
+  <!-- <script>
+    console.log(document);//整个文档
+    console.dir(document);//document对象,原型链为(document--HTMLDocument--Document--Node--EventTarget--Object)
+    console.log(typeof document);//object
+  </script> -->
+  ```节点
+  <button id="btn">添加一个</button>
+  <button id="btn2">看控制台</button>
+  <button id='changecolor1' style="color: red;">循环变色1</button>
+  <button id='changecolor2' style="color: red;">循环变色2</button>
+  <ul id="box">
+    <form action="javascript:;">
+      <input type="text" name="input1" id="input1" value="我是input1">
+      <input type="text" name="input2" id="input2" value="我是input2(键盘事件)(看log)">
+      <div id="box1" style="display: inline-block;height: 20px;width: 200px;background-color: aquamarine;">按下按键这个就会移动</div>
+    </form>
+    <li class="classli">1</li>
+    <li>1</li>
+    <!-- <li>1</li> -->
+    <li class="classli">1</li>
+    <li>1</li>
+  </ul>
+  <!-- <script>
+    //所有网页都是节点组成==>所有节点构成DOM树
+    var box = document.getElementById("box")
+    var nodes = box.childNodes
+    console.log(nodes);//11个,源代码中的空格,回车都是文本节点
+    //---document节点
+    console.log(document.nodeType);//9
+    console.log(document.nodeName);//#document
+    console.log(document.nodeValue);//null
+    //---元素节点
+    console.log(box.nodeType);//1
+    console.log(box.nodeName);//UL==>大写的,如果需要判断,用lowercase改成小写
+    console.log(box.nodeValue);//null
+    //---文本节点
+    console.log(nodes[0].nodeType) //3
+    console.log(nodes[0].nodeName) //#text
+    console.log(nodes[0].nodeValue) //文本内容(这里是空白)
+    //---注释节点
+    console.log(nodes[5].nodeType) //8
+    console.log(nodes[5].nodeName) //#comment
+    console.log(nodes[5].nodeValue) //注释的内容
+    //
+  </script> -->
+  ```获取元素
+  <!--  <script>
+    //==>ID方式
+    var box = document.getElementById('box')
+    console.log(box);
+    //==>tagName方式
+    var lis = box.getElementsByTagName('li')//这里可以获取box中的li标签
+    console.log(lis);
+    //利用循环遍历设置所有li的背景颜色
+    /* for (var i = 0; i < lis.length; i++) {
+      lis[i].style.backgroundColor = "red";
+    } */
+    //==>通过className方式获取元素
+    var classlis = document.getElementsByClassName('classli')
+    console.log(classlis);
+    //==>通过name获取元素(几乎不用)
+    var input1 = document.getElementsByName('input1')
+    console.log(input1);
+    //==>通过seletors API接口获取元素(querySelector/All方法)(可以使用css选择器)
+    var querylis = document.querySelector('li')
+    var queryAlis = document.querySelectorAll('li')
+    console.log('--------------');
+    console.log(querylis);//获取单个
+    console.log(queryAlis);//获取多个
+    //注意点==>querySelector无论有多少个,都只获取一个
+    //注意点==>querySelectorAll无论有多少个,结果都是集合(伪数组,自带forEach方法!!),改集合是一个NodeList对象
+  </script> -->
+  ```类数组转数组方式(面试难点)
+  <!-- <script>
+    // ES6方法:Array.from()
+    // ES5方法:Array.prototype.slice.call(类数组)
+    var box = document.getElementById('box')
+    var classlis = document.getElementsByClassName('classli')
+
+    console.log(classlis);//这里是个伪数组
+    var res = Array.prototype.slice.call(classlis)
+    console.log(res);//让Array.prototype这个实例调用slice方法(这里调用不传参数该实例本身完全没变化),在这个方法中指定this为该伪数组,这时候就将伪数组转换为了真数组
+    res.forEach(function(item,index){
+      item.style.backgroundColor='red'
+    })
+    /* 测试---
+      {
+        var arr=[1,2,3]
+      console.log(arr);
+      arr.slice()
+      console.log(arr);
+      //这里注意,slice之后数组本身没有任何变化,也就是说下面调用数组的slice方法仅仅是为了有个函数可以传递this,这里底层应该也是借用了symbol之类的接口(还是不怎么懂,有空看下视频)
+      } */
+    //ES5 简写方法==>直接在调用数组forEach的时候通过call方法指定this转换伪数组
+    Array.prototype.forEach.call(classlis,function(item){
+      item.style.backgroundColor='green'
+    });
+  </script> -->
+  ```新旧获取元素方法对比
+  <!-- <script>
+    //==>旧版本
+    var btn = document.getElementById('btn')
+    var box = document.getElementById('box')
+    /* var lis = document.getElementsByTagName('li')
+    btn.onclick = function () {//死循环了,因为旧版本方法是动态的,只要元素变化,获取的内容就变化,所以下面的lis.length是随着你添加的节点不断增加的
+      for (var i = 0; i < lis.length; i++) {
+        var newli = document.createElement('li')
+        newli.innerHTML = '这是新的li'
+        box.appendChild(newli)
+      }
+    } */
+
+    //==>新版本
+    //新版本(querySelector/All是静态的,一旦获取完成,就固定了,不会在受到元素修改后的任何影响)
+    /* var lis=document.querySelectorAll('li')
+    btn.onclick=function(){
+      for(var i=0;i<lis.length;i++){
+        var newli=document.createElement('li')
+        newli.innerHTML='新版本添加的li'
+        box.appendChild(newli)
+      }
+    } */
+  </script> -->
+  ```封装一个通过节点关系获取元素的函数
+  <!-- <script>
+    var box = document.getElementById('box')
+    var lis = box.getElementsByTagName('li')
+    console.log(lis[0].parentNode);//获取第一个li的父元素(全兼容)
+    console.log(box.children);//获取所有box的子节点(ID8可以获取注释节点,解决方法:不写注释)
+    //node.firstChild//==>获取第一个子节点(可以使空白文本节点),主流浏览器都支持但是IE8及以下获取的是第一个子元素节点
+    //node.firstElementChild//==>获取第一个子元素节点,但是IE8及以下不识别
+
+    //==>通过判断有没有firstElementChild这个属性,返回对应的方法调用,实现兼容Ie和主流浏览器,如果有这个属性则调用,如果没有,则调用firstChild,而只有IE8及以下没有,恰巧他获取的又是子元素节点,所以可以封装一个方法获取<子元素节点>
+    function getfirstchild(node) {
+      return node.firstElementChild ? node.firstElementChild : node.firstChild
+    }
+    console.log(getfirstchild(box));
+
+  </script> -->
+  ```获取body html head
+  <!-- <script>
+    var html = document.getElementsByTagName('html')[0]
+    var body = document.getElementsByTagName('body')[0]
+    var head = document.getElementsByTagName('head')[0]
+
+    console.log(html, body, head);
+    //JS提供的简便方法
+    console.log(html === document.documentElement);//true
+    console.log(body === document.body);//true
+    console.log(head === document.head);//true
+  </script> -->
+  ```获取焦点事件和失去焦点事件实现placeholder效果
+  <!-- <script>
+    var input1 = document.getElementById('input1')
+    input1.onfocus = function () {
+      if (input1.value === '我是input1') {
+        input1.value = ''
+      }
+    }
+    input1.onblur = function () {
+      if (input1.value === '') {
+        input1.value = '我是input1'
+      }
+    }
+  </script> -->
+  ```点击事件
+  <!-- <script>
+    //==>左键点击:onclick(按下再抬起,如果按下后移除元素再移入也算点击)
+    var btn = document.getElementById('btn2')
+    btn2.onclick = function () {
+      console.log('左键单击');
+    }
+    btn2.ondblclick = function () {
+      console.log('左键双击');
+    }
+    btn2.oncontextmenu = function () {
+      console.log('右键单击');
+      //右键单击有默认菜单,用return false阻止默认时间
+      return false
+    }
+  </script> -->
+  ```点击后循环变色方法1
+  <!-- <script>
+    var changecolor1 = document.getElementById('changecolor1')
+    var count = 0
+    changecolor1.onclick = function () {
+      if (count % 2 === 0) {
+        changecolor1.style.color = 'blue'
+      } else {
+        changecolor1.style.color = 'red'
+      }
+      count++
+    }
+  </script> -->
+  ```点击后循环变色方法2
+  <!-- <script>
+    var changecolor2 = document.getElementById('changecolor2')
+    var flag = true
+    changecolor2.onclick = function () {
+      flag = !flag
+      if (flag) {
+        changecolor2.style.color = 'red'
+      } else {
+        changecolor2.style.color = 'blue'
+      }
+    }
+  </script> -->
+  ```键盘事件
+  <!-- <script>
+    //==>可输入的元素可以绑定键盘事件
+    //可以直接绑定给document,然后事件触发之后,在控制某个元素(代理)
+    //keyup:键盘抬起/keydown:键盘按下
+    //目前事件都是小写,后面才有大写
+    var input2 = document.getElementById('input2')
+    input2.onkeydown = function () {
+      console.log('按下了键盘↓');
+    }
+    input2.onkeyup = function () {
+      console.log('抬起了键盘----↑');
+    }
+
+    var box1 = document.getElementById('box1')
+    var num = 0
+    document.onkeydown = function () {
+      num++
+      box1.style.marginLeft = num + 'px'
+    }
+  </script> -->
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  body {
+    height: 1500px;
+  }
+</style>
+<!-- ```window.onload -->
+<!-- <script>
+  //==> 等待页面中的DOM节点 以及 所有的资源（图片 音频 视频 程序等等）全部加载完毕以后 才触发事件
+  window.onload = function () {
+    var img1 = document.getElementById('img1')
+    //==>使用window.onload之后就可以获取到图片的属性了
+    console.log(img1.offsetWidth);
+    //==>window.onload因为使用的是DOM0级绑定方式，所以目前只能在一个页面中使用1次，否则会被覆盖
+  }
+</script> -->
+
+<body>
+  <div id="outer">
+    <textarea id="text"></textarea>
+    <p>还可以输入<span id="num">10</span>个字</p>
+  </div>
+  <input type="text" id="input1" value="这里更新后下面跟着更新">
+  <input type="text" id="input2">
+  <p id="input1pp"></p>
+  <div id="box1" style="height: 100px;width: 100px;background-color: salmon;">
+    点我变色
+    <div id="box2" style="height: 50px;width: 50px;background-color: skyblue;"></div>
+  </div>
+  <div>
+    <img id="img1" src="./ganguo.jpg" style="width: 200px;">
+  </div>
+  <div id="out2" style="width: 300px;height: 50px;border: 1px solid black;">
+    <div id="in2" style="height: 100%;width: 0%;background-color: tomato;"></div>
+  </div>
+  <p>当前加载了<span id="per">0</span>%</p>
+
+  <div id="out" style="height: 200px;width: 200px;background-color: slategrey;overflow: auto;">
+    <div id="in" style="height: 800px;width: 100px;background-color: violet;"></div>
+  </div>
+  <!-- ```监测剩余字数(不准确) -->
+  <!-- <script>
+    var text = document.getElementById('text')//获取输入框
+    var num = document.getElementById('num')//获取计数器
+    text.onkeyup = function () {
+      var textlength = text.value.length//获取输入框的长度
+      // var connum = num.innerHTML//oyx==>获取num的innerHTML
+      // num.innerHTML = 10 - textlength//oyx==>设置num的innerHTML
+      var connum = 10 - textlength//老师==>直接获取剩余字数
+      if (connum < 0) {//oyx==>如果num的innerHTML字数小于0//老师==>如果num的剩余字数小于0
+        text.value = text.value.substr(0, 10)//利用substr()方法删除多余的字符串
+      }
+      num.textContent = connum//将剩余的字数赋值给num(textContent方法)
+    }
+  </script> -->
+  <!-- ```表单改变事件 -->
+  <!-- <script>
+    var input1 = document.getElementById('input1')
+    var input2 = document.getElementById('input2')
+    input1.oninput = function () {
+      console.log('==>表单内容变化');
+    }
+    input2.onchange = function () {
+      console.log('==>表单内容变化并失去焦点');
+    }
+  </script> -->
+  <!-- ```模拟数据双向绑定 -->
+  <!-- <script>
+    var input1 = document.getElementById('input1')
+    var input1pp = document.getElementById('input1pp')
+    input1.oninput = function () {
+      // input1pp.innerHTML = input1.value//这里用this更好
+      // input1pp.innerHTML = this.value//这2个都可以,但是不知道有什么区别
+      input1pp.textContent = this.value//这2个都可以,但是不知道有什么区别
+    }
+  </script> -->
+  <!-- ```鼠标事件1&data的运用 -->
+  <!-- <script>
+    var box1 = document.getElementById('box1')
+    box1.onmousedown = function () {
+      box1.style.backgroundColor = 'seagreen'
+    }
+    box1.onmouseup = function () {
+      box1.style.backgroundColor = 'salmon'
+    }
+    //==>通过data.now()计算鼠标移动触发频率(后期节流防抖)
+    var pretime = 0
+    box1.onmousemove = function () {
+      var nowtime = Date.now()
+      var usetime = nowtime - pretime
+      console.log(usetime);
+      pretime = nowtime
+    }
+  </script> -->
+  <!-- ```鼠标事件2&冒泡(触发冒泡的都是o开头的) -->
+  <!-- <script>
+    //==>冒泡:在给外部绑定事件的同事,内部也会绑定事件,即,当移入元素内的元素,触发冒泡类型的移入移出
+    var box1 = document.getElementById('box1')
+    box1.onmouseenter = function () {
+      console.log('enter移入');
+    }
+    box1.onmouseover = function () {//触发冒泡
+      console.log('over移入触发冒泡');
+    }
+    box1.onmouseleave = function () {
+      console.log('leave移出');
+    }
+    box1.onmouseout = function () {//触发冒泡
+      console.log('out移出触发冒泡');
+    }
+  </script> -->
+  <!-- ```滚动条事件 -->
+  <!-- <script>
+    var outer = document.getElementById('out')
+    outer.onscroll = function () {
+      console.log('out滚动了');
+    }
+    window.onscroll = function () {
+      console.log('window滚动了');
+    }
+  </script> -->
+  <!-- ```window.onload -->
+  <!-- <script>
+    var img1 = document.getElementById('img1')
+    //==>如果图片本身没有设置任何css宽度高度等等,那么这里就是获取不到图片宽度的,如果设置了就可以
+    console.log(img1.offsetWidth);
+  </script> -->
+  <!-- ```图片的load事件 -->
+  <!-- <script>
+    var img1 = document.getElementById('img1')
+    console.log(img1.offsetWidth);//获取失败
+    img1.onload = function () {
+      console.log(img1.offsetWidth);//获取成功
+    }
+  </script> -->
+  <!-- ```图片预加载案例(有点复杂~!!!) -->
+  <!-- <script>
+    var inner = document.getElementById('in2')
+    var per = document.getElementById('per')
+    //图片列表(来自网络服务器)
+    var imgsrclist = ["https://s3.ax1x.com/2020/12/08/rSCogx.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCh59.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCI81.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCfUJ.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCWE4.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCHKK.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPCKf.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCqbD.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCbDO.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCTv6.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCOVe.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCXUH.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCj5d.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCxPA.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCz8I.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPPr8.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPS2t.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPpxP.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPiqS.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPkVg.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPE5j.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPZPs.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPMrT.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPeGn.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPm2q.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPnx0.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPQqU.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPKMV.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSP3a4.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSP1ZF.jpg"
+    ]
+
+    var num = 0//Counter,计算图片加载了几张
+    imgsrclist.forEach(function (item, index) {//遍历这个图片列表,每遍历一次,通过new Image()方法创建一个img标签
+      var newImg = new Image()//只有图片有的方法,可以创建img标签
+      newImg.src = item;//给img标签添加一个src(当图片有了src会自动加载,这行代码就是让图片自动加载)(item是遍历出来的路径)
+      newImg.onload = function () {
+        num++
+        // console.log(num / imgsrclist.length);//这里打印出来是0.1  0.2  0.23之类的数//imgsrclist.length是图片数组的长度,num随着图片的加载,逐渐增多,一直到和数组长度相同
+        var conper = parseInt((num / imgsrclist.length) * 100);//乘以一百准备设置百分数
+        inner.style.width = conper + '%'
+        per.textContent = conper
+      }
+    })
+  </script> -->
+  <!-- ```resize事件 -->
+  <!-- <script>
+    window.onresize=function(){
+      console.log('窗口大小发生改变');//只能针对窗口大小,对window绑定事件
+    }
+  </script> -->
+
+</body>
+
+</html>
