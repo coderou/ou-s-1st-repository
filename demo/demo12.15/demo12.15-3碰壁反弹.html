@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #outer {
+        width: 800px;
+        height: 600px;
+        border: 1px solid rgb(18, 160, 160);
+        margin: 10px auto;
+        position: relative;
+    }
+
+    #con {
+        position: absolute;
+        left: 40px;
+        top: 80px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        /* background-color: rgb(104, 39, 69); */
+        background-image: linear-gradient(rgb(80, 199, 226),rgb(224, 153, 159));
+        animation: zhuan 1s infinite linear ;
+    }
+
+    @keyframes zhuan {
+        0%{
+            transform: rotateZ(0deg);
+        }
+        100%{
+            transform: rotateZ(360deg);
+        }
+    }
+</style>
+
+<body>
+    <div id="outer">
+        <div id="con"></div>
+    </div>
+    <script>
+        var outer = document.getElementById('outer')
+        var con = document.getElementById('con')
+        var x = 40, y = 80
+        var i = 1, j = 1
+        setInterval(function () {
+            if (x < 0 || x >= outer.clientWidth - con.offsetWidth) { i *= -1 }
+            if (y < 0 || y >= outer.clientHeight - con.offsetHeight) { j *= -1 }
+            x += i
+            y += j
+            con.style.left = x + 'px'
+            con.style.top = y + 'px'
+        }, 1)
+    </script>
+</body>
+
+</html>
