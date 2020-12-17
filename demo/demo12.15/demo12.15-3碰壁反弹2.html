@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #outer {
+    width: 800px;
+    height: 600px;
+    border: 1px solid rgb(18, 160, 160);
+    margin: 10px auto;
+    position: relative;
+  }
+
+  #con {
+    position: absolute;
+    left: 40px;
+    top: 80px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    /* background-color: rgb(104, 39, 69); */
+    background-image: linear-gradient(rgb(24, 79, 92), rgb(224, 153, 159));
+    animation: zhuan 1s infinite linear;
+  }
+
+  @keyframes zhuan {
+    0% {
+      transform: rotateZ(0deg);
+    }
+
+    100% {
+      transform: rotateZ(360deg);
+    }
+  }
+</style>
+
+<body>
+  <div id="outer">
+    <div id="con"></div>
+  </div>
+  <script>
+    var outer = document.getElementById('outer');
+    var content = document.getElementById('con');
+
+    var x = 40,
+      y = 80;
+    var i = true,
+      j = true;
+    setInterval(function () {
+      //X轴变换,每次到点就令i取反
+      if (i) {
+        x++
+      } else {
+        x--;
+      }
+      if (x >= outer.clientWidth - content.offsetWidth) {
+        i = false;
+      } else if (x <= 0) {
+        i = true;
+      }
+      //Y轴,每次到点就令j取反
+      if (j) {
+        y++
+      } else {
+        y--;
+      }
+      if (y >= outer.clientHeight - content.offsetHeight) {
+        j = false;
+      } else if (y <= 0) {
+        j = true;
+      }
+      //赋值
+      content.style.left = x + "px";
+      content.style.top = y + "px";
+    }, 1)
+  </script>
+</body>
+
+</html>
