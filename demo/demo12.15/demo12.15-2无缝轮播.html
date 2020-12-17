@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  /* 重置样式 */
+  * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .outer {
+    width: 500px;
+    border: palevioletred 1px solid;
+    margin: 50px auto;
+    /* 设置左右切换相对outer定位 */
+    position: relative;
+  }
+
+  .inner {
+    overflow: auto;
+  }
+
+  .content {
+    width: 4000px;
+    display: flex;
+  }
+
+  .content img {
+    width: 500px;
+    height: 300px;
+  }
+
+  .btn .left,
+  .btn .right {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 40px;
+    border-radius: 50%;
+    position: absolute;
+    background-color: seagreen;
+    cursor: pointer;
+  }
+
+  .btn .left {
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .btn .right {
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .list {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+  }
+
+  .list li {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: sandybrown;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  .list li.active {
+    background-color: yellow;
+  }
+</style>
+
+<body>
+  <div class="outer">
+    <div class="inner">
+      <!-- 图片 -->
+      <div class="content">
+        <img src="./images/1.png" alt="">
+        <img src="./images/2.png" alt="">
+        <img src="./images/3.png" alt="">
+        <img src="./images/4.png" alt="">
+        <img src="./images/5.png" alt="">
+        <img src="./images/1.png" alt="">
+      </div>
+      <!-- 左右切换按钮 -->
+      <div class="btn">
+        <p class="left">&lt;</p>
+        <p class="right">&gt;</p>
+      </div>
+      <!-- 小圆点 -->
+      <ul class="list">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    var inner = document.querySelector('.inner')
+    var imgs = document.querySelectorAll('.inner .content img')
+    // var lastImg = imgs[0].cloneNode(true)//复制一个图片1
+    // var content = document.querySelector('.content')//
+    // content.appendChild(lastImg)//为content添加一个图片1
+    // var imgs = document.querySelectorAll('.inner .content img')
+    var right = document.querySelector('.right')
+    var left = document.querySelector('.left')
+    var lis = document.querySelectorAll('.list li')//获取所有li下标
+    var changeTimer = null//给变换计时器名字
+    var moveTimer = null//给移动计时器名字
+    var v = 0//定义变量保存图片下标,以便所有js代码都能找到当前执行到了第几张
+
+    function move() {//图片移动动画
+      var startLoaction = inner.scrollLeft
+      var endLocation = v * imgs[0].offsetWidth
+      var startStep = 0
+      var endStep = 40
+      var everyStep = (endLocation - startLoaction) / (endStep - startStep)
+
+      moveTimer = setInterval(function () {
+        startLoaction += everyStep
+        startStep++
+        if (startStep >= endStep) {
+          clearInterval(moveTimer)
+        }
+        inner.scrollLeft = startLoaction
+      }, 10)
+    }
+
+    // 下标点亮含糊是
+    /* function listlight() {
+      lis.forEach(function (i, j) {//遍历所有下标
+        if (v >= imgs.length-1) {//当v在最后一张的时候,就把v变成0,(imgs.length-1=5)
+          v = 0
+          i.classList.add('active')//
+          setTimeout(function(){
+            inner.scrollLeft = 0
+          },400)//当移动到最后一张,延迟执行400ms,再切换到图片0
+        } else if (j === v) {//判断,index是否等于v,等于就点点亮,不等于就熄火
+          i.classList.add('active')
+        } else {
+          i.classList.remove('active')
+        }
+      })
+    } */
+    //下标点亮新写法
+    function listlight() {
+      // 先清空所有的
+      console.log(1);
+      lis.forEach(function (i, j) {
+        i.classList.remove('active')
+      })
+      //在给自己加上
+      lis[v === 5 ? 0 : v].classList.add('active')
+    }
+
+    //自动走:外层切换函数
+    function autoMove() {
+      changeTimer = setInterval(function () {
+        clearInterval(moveTimer)
+        v++
+        // console.log(imgs.length);
+        // console.log(v);
+        if (v >= imgs.length) {
+          inner.scrollLeft = 0
+          v = 1//当到顶点的时候,延迟执行完成直接变成第1张,然后下面的move就是第2张的移动动画,无缝衔接
+        }
+        // console.log(v);
+        move()//每次切换调用移动函数
+        listlight()//每次切换点亮对应下标
+      }, 2000)
+    }
+
+    autoMove()
+    //右移点击事件
+    right.onclick = function () {
+      clearInterval(changeTimer)//每次点击定时器全清
+      clearInterval(moveTimer)//每次点击定时器全清
+      v++//图片+1
+      /* if (v >= imgs.length) {//判断是否走到最后一张
+        v = 0
+      } */
+      if (v >= imgs.length) {//当触底,瞬间变化inner容器位置,并且切换v为1的动画
+        inner.scrollLeft = 0
+        v = 1
+      }
+      move()
+      listlight()
+      autoMove()
+    }
+
+    // 左移点击事件
+    left.onclick = function () {
+      clearInterval(changeTimer)//每次点击定时器全清
+      clearInterval(moveTimer)//每次点击定时器全清
+      v--//图片-1
+      /* if (v < 0) {//判断是否走到最后一张
+        v = imgs.length - 1
+      } */
+
+      if (v <0) {
+        inner.scrollLeft = (imgs.length -1) * imgs[0].offsetWidth//当左触底,瞬间变化为最后一张图片的位置
+        v = imgs.length - 2//设置动画为倒数一张位置
+      }
+      move()
+      listlight()
+      autoMove()
+    }
+
+    // 下标点击事件
+    lis.forEach(function (i, j) {//遍历下标
+      i.onclick = function () {//添加点击事件
+        clearInterval(changeTimer)//清楚定时器
+        clearInterval(moveTimer)//清楚定时器
+        lis.forEach(function (i, j) {//再次遍历,移除所有active
+          i.classList.remove('active')//移除active
+        })
+        i.classList.add('active')//只给自己添加active
+
+        v = j//令图片轮播切换到自己的index对应的v
+        // console.log(v);
+        // console.log(j);
+        move()
+        listlight()
+        autoMove()
+      }
+    })
+
+
+
+
+
+    /* changeTimer = setInterval(function () {
+      clearInterval(moveTimer)//为防止执行内部计时器的时候,上一个内部计时器还没有完成,每次执行changetimer清除一次movetimer
+      v++//没执行一次change,下标增加
+      if (v >= imgs.length) {
+        v = 0//当v等于图片数量了,说明执行一圈,重置v
+      }
+      // inner.scrollLeft = v * imgs[0].offsetWidth;
+
+      var startLoaction = inner.scrollLeft//开始位置为inner的滚动条当前位置
+      var endLocation = v * imgs[0].offsetWidth//结束位置为v张图片*任意一张图片的宽度
+      var startStep = 0
+      var endStep = 40
+      var everyStep = (endLocation - startLoaction) / (endStep - startStep)//每一步需要移动的位置
+      moveTimer = setInterval(function () {//移动动画定时器
+        startLoaction += everyStep//每次定时器执行,步数增加
+        startStep++//每次让步数增加,一直到endStep,动画自行完成,不然就是死循环了
+        if (startStep >= endStep) {
+          clearInterval(moveTimer)
+        }
+        inner.scrollLeft = startLoaction//将每一次运动之后的位置赋值给inner
+      }, 10)
+    }, 2000) */
+  </script>
+</body>
+
+</html>
