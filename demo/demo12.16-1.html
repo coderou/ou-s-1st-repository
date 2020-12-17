@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- ```数据类型 -->
+  <!-- <script>
+    /* 数据类型:
+      # 基本数据类型
+        - null
+        - undefined
+        - number
+          整型(整数)
+          浮点(小数)
+          八进制(0o10)(十进制的8)
+          二进制(0b10)(十进制的2)
+          十六进制(Oxff)(十进制的255)
+          Infinity
+          科学计数法 1.89E8  1.89 * 10 ^ 8
+          NaN
+        - string字符串方法
+          split\slice\substr\substring\replace\trim\toLowerCase\concat\indexOf\repeat\valueOf\charAt
+          boolean
+          symbol(ES6)
+          bigint(ES6)
+      # 对象数据类型 Object
+        Function
+        Object
+        Array
+        Math
+        Date
+        RegExp
+        Set(Es6)
+        Map(Es6) */
+  </script> -->
+  <!-- ```面试题 -->
+  <!-- <script>
+    /* forEach: 没有返回值, 只是遍历数组, 可加工
+    map: 映射数组, 返回一个和原数组同长度的数组, 数组的内容 是原数组每个值 每次进入回调函数的返回值 */
+
+    var arr = [1, 2, 3]
+    var res = arr.map(function (item, index) {
+      //...
+      //return item+1
+    })//res:[undefined,undefined,undefined]
+
+    /* parseInt(a, b)
+    把b进制的a转换为10进制
+    如果a书写的不是10进制, 会先转换10进制 */
+
+    var re = [1, 2, 'a', 'b', 1, 1, 1, 1].map(parseInt)
+    console.log(re);//[1,Nan,Nan]
+    parseInt(1, 0)//默认10进制
+    parseInt(2, 1)//没有1进制
+    parseInt('a', 2)//有2进制但是没有a
+
+  </script> -->
+  <!-- ```生成10位数字随机数 -->
+  <!-- <script>
+    /* 生成10位数字字母随机数
+    1.生成一个[0 - 35]的随机数
+    2.转换成36进制
+    3.把10次的结果拼接字符串 */
+    var str = ''
+    for (var i = 0; i < 10; i++) {
+      var re = Math.floor(Math.random() * 36)//生成一个0-35的随机数,因为是包头不包尾,所以要取值36
+      re = re.toString(36)//转换为36进制
+      str += re//拼接到str字符串
+    }
+    console.log(str);
+    /* 生成一个永不重复的id */
+    console.log(Date.now());//D必须大写
+    console.log(Date.now().toString(36));//将改时间戳转换为36进制
+  </script> -->
+  <!-- ```判断数据类型 -->
+  <!-- <script>
+    /* # 方法1 typeof
+      - typeof得到的所有值:
+        number
+        boolean
+        string
+        undefined
+        object
+        function
+        symbol(ES6)
+        bigint(ES6)
+      - typeof能检测出来的类型
+        number\boolean\string\undefined\function\symbol(ES6)\bigint(ES6)
+      - 不能检测的类型
+        null,object */
+    function fn() { }
+    console.log(typeof fn);//function
+    var a
+    console.log(typeof a);//undefined
+    console.log(typeof null);//object
+
+    //---------------------------------------------
+    /* # 方法2 ===
+        - null和undefined只有一个唯一的值,所以可以使用全等判断null和undefined
+        A instanceof B */
+    console.log(a === undefined);//如果返回true,则一定是undefined
+    var b = null
+    console.log(b === null);//如果返回true,则一定是null
+    //-------------------------------------------
+    /* 方法3 A instanceof B
+    判断B在不在A的原型链上 只要在就都会返回true */
+    console.log([1, 2, 3] instanceof Array)//true
+    console.log({} instanceof Object);//true
+    console.log([1] instanceof Object);//true
+    console.log(new Date() instanceof Object);//true
+    //--------------------------------------------
+    /* 方法4 Object.prototype.toString()
+      完美检测任意数据类型(结果是[object 数据类型]) */
+    console.log(Object.prototype.toString.call([]));
+    console.log(Object.prototype.toString.call({}));
+    console.log(Object.prototype.toString.call('123'));
+    console.log(Object.prototype.toString.call(1));
+    console.log(Object.prototype.toString.call(true));
+    console.log(Object.prototype.toString.call(null));
+    console.log(Object.prototype.toString.call(undefined));
+    console.log(Object.prototype.toString.call(new Date()));
+    console.log(Object.prototype.toString.call(fn));
+    console.log(Object.prototype.toString.call(new RegExp()));
+
+    // 提取单独的数据类型字符串
+    console.log(Object.prototype.toString.call([]).slice(8, -1).toLowerCase());
+
+    //封装一个函数专门判断数据类型
+    function checkType(value) {
+      return Object.prototype.toString.call(value).slice(8, -1).toLowerCase()
+    }
+    console.log(checkType([]))
+    console.log(checkType({}))
+    console.log(checkType(""))
+    console.log(checkType(1))
+    console.log(checkType(true))
+  </script> -->
+  <!-- ```区分变量和数据类型 -->
+  <!-- <script>
+    /* 严格区分 变量类型和数据类型
+    var a=1
+    var b={}
+    变量类型:
+      指的是a 和 b 两个变量的数据类型
+      a变量保存的是一个基本类型值,所以a是一个 基本数据类型
+      b变量保存的是一个引用地址,所以b是一个 引用类型
+    数据类型:
+      指的是 1 和 {}
+      1 基本数据类型
+      {} 对象类型值 */
+  </script> -->
+  <!-- ```内存释放和垃圾回收 -->
+  <!-- <script>
+    /* 内存释放:
+      局部变量:
+        当函数调用执行完成,变量会被销毁,变量所代表的值没有被引用,则变量消失,对象变成垃圾对象,内存释放
+
+        全部作用域变量不会自动销毁:需要把一个变量设置为null,变量所代表的值就没有引用了,则变成了垃圾对象,内存释放
+
+      内存\数据\变量三者之间的关系
+        内存是用来存放数据的,通过变量才能访问内存 */
+  </script> -->
+  <!-- ```练习1 -->
+  <!-- <script>
+    // var a=xxx, a内存中到底保存的是什么?
+    var a
+    a = 'abc'//基本类型值
+    a = function () { }//一个对象的地址值
+    var b = true//基本类型值
+    a = b//基本类型值
+    b = []//地址值
+    a = b//地址值
+  </script> -->
+  <!-- ```练习2 -->
+  <script>
+    
+  </script>
+</body>
+
+</html>
