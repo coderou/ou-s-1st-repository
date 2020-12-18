@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #box {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: red;
+  }
+</style>
+
+<body>
+  <div id="box"></div>
+  <script>
+    var box = document.getElementById('box')
+    var x = 0,
+      y = 0,
+      leftMove = false,
+      rightMove = false,
+      topMove = false,
+      bottomMove = false;
+    //定义多个开关,打开则走,关闭则停止
+    setInterval(() => {
+      if (leftMove) {
+        x -= 10;
+      }
+      if (rightMove) {
+        x += 10;
+      }
+      if (topMove) {
+        y -= 10;
+      }
+      if (bottomMove) {
+        y += 10;
+      }
+      box.style.left = x + 'px'
+      box.style.top = y + 'px'
+    }, 1);
+    //按键按下,判断是否打开开关
+    document.onkeydown = function (e) {
+      switch (e.keyCode) {
+        case 37://左
+          leftMove = true
+          break
+        case 38://上
+          topMove = true;
+          break;
+        case 39://右
+          rightMove = true;
+          break;
+        case 40://下
+          bottomMove = true;
+          break;
+      }
+    }
+    //按键抬起,关闭对应开关
+    document.onkeyup = function (e) {
+      switch (e.keyCode) {
+        case 37://左
+          leftMove = false
+          break
+        case 38://上
+          topMove = false;
+          break;
+        case 39://右
+          rightMove = false;
+          break;
+        case 40://下
+          bottomMove = false;
+          break;
+      }
+    }
+
+  </script>
+</body>
+
+</html>
