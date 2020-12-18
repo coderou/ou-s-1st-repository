@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    #box1 {
+      height: 100px;
+      width: 100px;
+      background-color: red;
+      position: absolute;
+      left: 20px;
+      top: 0;
+    }
+  </style>
+  <div id="box1"></div>
+  <!-- ```方法1 -->
+  <script>
+    var box1 = document.getElementById('box1')
+    //==>鼠标在元素上按下绑定事件
+    box1.onmousedown = function (e) {
+      //按下后获取鼠标到box1边缘的值
+
+      //offsetX在某些条件下获取到的是不确定的值  所以可以自己计算offset的值
+      /*  var mouseToEle = {
+           x: e.clientX - oBox.offsetLeft,
+           y: e.clientY - oBox.offsetTop
+       } */
+
+      var mouseToEle = {
+        x: e.offsetX,
+        y: e.offsetY
+      }
+      //==>按下以后,绑定移动事件  
+      //因为鼠标移动比元素渲染快，所以当鼠标移出box的时候，拖拽就会停止，所以可以把移动事件绑定在document上(移动太快盒子跟不上,一旦脱离盒子,就GG)
+      document.onmousemove = function (e) {
+        /* clientX: 事件发生位置 到 浏览器视口边缘的距离
+        offsetX: 事件发生位置 到 目标元素边缘的距离
+        pageX: 事件发生位置 到 文档边缘的距离(ie8不兼容)
+        screenX：事件发生位置 到 电脑屏幕边缘的距离 */
+        //当前元素的位置等于=鼠标的clientX(鼠标到浏览器视口边缘的距离)-offsetX(鼠标到元素边缘的距离)
+        var eleLocation = {
+          x: e.clientX - mouseToEle.x,
+          y: e.clientY - mouseToEle.y
+        }
+
+        //赋值
+        /* box1.style.left = eleLocation.x + 'px'
+        box1.style.top = eleLocation.y + 'px' */
+
+
+        //获取窗口宽高
+        var windowWH = {//获取窗口宽高
+          width: document.documentElement.clientWidth,
+          height: document.documentElement.clientHeight
+        }
+        //判断临界值,到窗口就不再移动
+        if (eleLocation.x <= 0) {//如果贴左边
+          eleLocation.x = 0
+        } else if (eleLocation.x >= windowWH.width - box1.offsetWidth) {//如果贴右边
+          eleLocation.x = windowWH.width - box1.offsetWidth
+        }
+        if (eleLocation.y <= 0) {//如果贴左边
+          eleLocation.y = 0
+        } else if (eleLocation.y >= windowWH.height - box1.offsetHeight) {//如果贴右边
+          eleLocation.y = windowWH.height - box1.offsetHeight
+        }
+        //赋值
+        box1.style.left = eleLocation.x + 'px'
+        box1.style.top = eleLocation.y + 'px'
+      }
+
+      //==>绑定松开事件 
+      //可能不在box上松开(在浏览器窗口外)，那么就需要把事件绑定在document上
+      document.onmouseup = function () {
+        document.onmousemove = null//取消move,停止移动
+        document.onmouseup = null//自杀,下次按下重新绑定
+      }
+    }
+  </script>
+  <!-- ```方法2 -->
+  <!-- <script>
+    var box1 = document.getElementById('box1')
+    //鼠标打win窗口的距离
+    box1.onmousedown = function (e) {
+      var mouseToWin = {
+        x: e.clientX,
+        y: e.clientY
+      }
+      //获取元素当前的位置
+      var boxStartLocation = {
+        x: box1.offsetLeft,
+        y: box1.offsetTop
+      }
+      document.onmousemove = function (e) {
+        // 元素最新位置
+        //移动的时候clientX在改变,获取新旧clientX的差值 并添加box的初始位置 就是box最新的位置
+        var eleLocation = {
+          x: e.clientX - mouseToWin.x + boxStartLocation.x,
+          y: e.clientY - mouseToWin.y + boxStartLocation.y
+        }
+        // console.log(eleLocation.x);
+        // console.log(eleLocation.y);
+
+        //视口宽高
+        var winWH = {
+          width: document.documentElement.clientWidth,
+          height: document.documentElement.clientHeight,
+        }
+
+        //触底不动
+        if (eleLocation.x <= 0) {
+          eleLocation.x = 0;
+        } else if (eleLocation.x >= winWH.width - box1.offsetWidth) {
+          eleLocation.x = winWH.width - box1.offsetWidth
+        }
+        if (eleLocation.y <= 0) {
+          eleLocation.y = 0;
+        } else if (eleLocation.y >= winWH.height - box1.offsetHeight) {
+          eleLocation.y = winWH.height - box1.offsetHeight
+        }
+
+        //赋值
+        box1.style.left = eleLocation.x + "px";
+        box1.style.top = eleLocation.y + "px";
+      }
+      //自杀
+      document.onmouseup = function () {
+        document.onmousemove = null;
+        document.onmouseup = null;
+      }
+    }
+  </script> -->
+</body>
+
+</html>

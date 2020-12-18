@@ -38,110 +38,58 @@
 </style>
 
 <body>
-  <!-- 外层容器 -->
   <div class="outer">
-    <!-- 内容区撑开文档 -->
     <div class="con"></div>
-    <!-- 自定义滚动条 -->
     <div class="scrollBar">
       <div class="box">box</div>
     </div>
   </div>
-  <!-- ```自定义滚动条(基础版\不定高\无法滚轮) -->
+  <!-- ```自定义滚动条(定高\无法滚轮) -->
   <script>
-    //--------------------------------
-    //系统滚动条怎么来的
-    /* 系统的滚动条其实是 html或body产生的
-    如果去除系统滚动条，则直接设置html和body的overflow为hidden */
-    //js生成内容,撑开文档
-    //---------------------------------
-    //0.获取节点并通过js生成内容
+
     var con = document.querySelector('.con')
     var box = document.querySelector('.box')
     var scrollBar = document.querySelector('.scrollBar')
+    //创建文本内容
     for (var i = 0; i <= 100; i++) {
       con.innerHTML += i + "<br>"
     }
-    // -----------------------------------------
-    // 1.鼠标按下滑块移动,文档移动
+
+    //鼠标按下开始事件
     box.onmousedown = function (e) {
+      //阻止拖动鼠标的时候选择文本
       e.preventDefault()
-      var mouseToBox = e.offsetY//鼠标到滑块边缘的距离
-      //------------------------------------
-      document.onmousemove = function (e) {//当鼠标移动的时候
+      // 鼠标到元素边缘的距离
+      var mouseToBox = e.offsetY
+      document.onmousemove = function (e) {
+        //阻止拖动鼠标的时候选择文本
         e.preventDefault()
 
-        var boxLocation = e.clientY - mouseToBox//滑块位置=事件到窗口的距离-事件到滑块边的距离
+        // 盒子的位置为触发点到浏览器窗口的位置-触发点到元素边缘的位置
+        var boxLocation = e.clientY - mouseToBox
+
         // 判断临界值
-        if (boxLocation <= 0) {//如果滑块位置小于0
-          boxLocation = 0//令滑块=0//==>贴顶
-        } else if (boxLocation >= scrollBar.clientHeight - box.offsetHeight) {//如果滑块大于(滑槽高度-滑块高度)
-          boxLocation = scrollBar.clientHeight - box.offsetHeight//盒子位置就=(滑槽高度-滑块高度)//==>贴底
-        }
-
+        /* if (boxLocation <= 0) {
+          boxLocation = 0
+        } else if (boxLocation >= scrollBar.clientHeight - box.offsetHeight) {
+          boxLocation = scrollBar.clientHeight - box.offsetHeight
+        } */
+        //为滑块赋值
         box.style.top = boxLocation + 'px'
-        //比例计算(根据比例移动文档)
-        /* 文档移动距离x/文档高度===滑块移动距离y/滑槽高度
-        文档移动距离x=(滑块移动距离y/滑槽总高度)*文档高度
-        文档移动距离x=滑块移动距离y*文档高度/滑槽高度
-        文档移动距离x=滑块移动距离y*(文档高度/滑槽高度) */
-        // 即: 比例为(文档高度 / 滑槽高度)==>scale(同70行)
-        // 滑块移动距离y=上面的boxLocation
-        //----------------------------------
-        var scale = (con.offsetHeight - document.documentElement.clientHeight) / (scrollBar.offsetHeight - box.offsetHeight)//这里比例变成了(文档高度-视口高度)/(滑槽高度-滑块高度)
-        //求出比例(文档高度/滑槽高度)//因为上面不需要求滑块高度了,所以上面的scale不需要了.但是计算文档位置的时候需要scale,就重新计算
-        var docMove = boxLocation * scale//这里的scale就是上面的一样的
-        con.style.transform = 'translateY(' + (-docMove) + 'px' + ')'
+
+        //计算文档移动距离
+        var scale = (con.offsetHeight - document.documentElement.clientHeight) / (scrollBar.clientHeight - box.offsetHeight)//这里是重新计算滑块高度比例
+        var docMove = boxLocation * scale
+        //为文档移动赋值
+        con.style.transform='translateY('+-docMove+'px)'
+
       }
-      //-------------------------------------
-      document.onmouseup = function () {// 鼠标抬起,停止事件追踪,不在移动
-        document.onmousemove = null;
-        document.onmouseup = null;
+      document.onmouseup = function () {
+        document.onmousedown = null
+        document.onmousemove = null
       }
     }
 
-    //-------------------------------------------
-    // 2.在保证能够鼠标移动滑块的基础上,写滚轮移动滑块
-    document.onmousewheel = fn
-    document.addEventListener('DOMMouseScroll', fn)
-
-    function fn(e) {
-      // 获取当前滑块位置
-      var boxLocation = box.offsetTop
-      //判断谷歌火狐
-      if (e.wheelDelta) {
-        //谷歌的wheelDelta事件
-        if (e.wheelDelta < 0) {
-          boxLocation += 10
-        } else {
-          boxLocation -= 10
-        }
-      } else {
-        //火狐的DOMMouseScroll事件
-        if (e.detail < 0) {
-          oBoxLocation -= 10;
-        } else {
-          oBoxLocation += 10;
-        }
-      }
-
-
-      // 判断临界值
-      if (boxLocation <= 0) {
-        boxLocation = 0//令滑块=0//==>贴顶
-      } else if (boxLocation >= scrollBar.clientHeight - box.offsetHeight) {
-        boxLocation = scrollBar.clientHeight - box.offsetHeight//盒子位置就=(滑槽高度-滑块高度)//==>贴底
-      }
-      //移动box
-      box.style.top = boxLocation + 'px'
-      //移动文档
-      //文档的总高度(con的高度) / 滑槽的总高度
-      //比例在计算滑块的高度的时候 已经计算完成 所以直接使用即可
-      var scale = (con.offsetHeight - document.documentElement.clientHeight) / (scrollBar.clientHeight - box.offsetHeight)//比例为(文档高度-视口高度)/(滑槽高度-滑块高度)[[即可滑动区域之比]]
-      var docMove = boxLocation * scale
-      con.style.transform = 'translateY(' + -docMove + 'px)'
-      
-    }
 
   </script>
 </body>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #city {
+    width: 400px;
+    text-align: center;
+  }
+
+  .content {
+    position: relative;
+  }
+
+  .content p {
+    cursor: pointer;
+    width: 400px;
+    height: 40px;
+    background-color: palevioletred;
+    color: snow;
+    text-align: center;
+  }
+
+  .content #list {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: teal;
+    display: none;
+  }
+
+  .content #list li {
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+  }
+</style>
+
+<body>
+  <h2 id="city">成都</h2>
+  <div class="content">
+    <p id="choose">请选择你喜欢你的城市</p>
+    <ul id="list">
+      <li>成都</li>
+      <li>重庆</li>
+      <li>伦敦</li>
+      <li>悉尼</li>
+      <li>华盛顿</li>
+      <li>剑桥</li>
+      <li>厦门</li>
+      <li>海南</li>
+      <li>北海道</li>
+      <li>东京</li>
+      <li>首尔</li>
+      <li>新加坡</li>
+      <li>天空之城</li>
+    </ul>
+  </div>
+  <script>
+    var list = document.getElementById('list')
+    var city = document.getElementById('city')
+    document.onclick = function (e) {//事件委托给document
+      if (e.target.id === 'choose') {//如果点击的是选择
+        list.style.display = 'flex'//展开列表
+      }
+      if (e.target.nodeName === 'LI' && e.target.parentNode.id === 'list') {//判断点的是不是list里面的li
+        city.textContent = e.target.textContent//将li里面的文本赋值给city展示
+        list.style.display = 'none'//赋值完成就隐藏列表
+      }
+      if (e.target.id !== 'choose') {//如果点击的不是choose,则隐藏
+        list.style.display = 'none'
+      }
+    }
+  </script>
+</body>
+
+</html>
