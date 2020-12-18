@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .outer {
+      width: 500px;
+      height: 400px;
+      border: 1px solid salmon;
+      margin: 50px auto;
+      display: flex;
+    }
+
+    .left {
+      width: 200px;
+      background-color: seagreen;
+      color: whitesmoke;
+      font-size: 20px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .center {
+      width: 200px;
+      text-align: center;
+    }
+
+    .right {
+      width: 200px;
+      background-color: mediumturquoise;
+      color: whitesmoke;
+      font-size: 20px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .active {
+      background-color: paleturquoise;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="outer">
+    <ul class="left">
+      <li>左侧1</li>
+      <li>左侧2</li>
+      <li>左侧3</li>
+      <li>左侧4</li>
+      <li>左侧5</li>
+    </ul>
+    <div class="center">
+      <button class="toRight">&gt;&gt;&gt;&gt;&gt;&gt;</button>
+      <br>
+      <button class="toLeft">&lt;&lt;&lt;&lt;&lt;&lt;</button>
+      <br>
+      <button class="clear">清空选择</button>
+    </div>
+    <ul class="right">
+      <li>右侧1</li>
+      <li>右侧2</li>
+      <li>右侧3</li>
+      <li>右侧4</li>
+      <li>右侧5</li>
+    </ul>
+  </div>
+  <script>
+    var left = document.querySelector('.left')
+    var right = document.querySelector('.right')
+    var toRight = document.querySelector('.toRight')
+    var toLeft = document.querySelector('.toLeft')
+    var clear = document.querySelector('.clear')
+    //点击变色
+    left.onclick = function (e) {
+      if (e.target.nodeName === "LI") {
+        e.target.style.background = 'red'//变色
+        e.target.dataset.choose = 'true'//标记
+      }
+    }
+    right.onclick = function (e) {
+      if (e.target.nodeName === "LI") {
+        e.target.style.background = 'red'//变色
+        e.target.dataset.choose = 'true'//标记
+      }
+    }
+
+    toRight.onclick = function (e) {
+      // 重新获取左侧li
+      var lis = document.querySelectorAll('.left li')
+      lis.forEach(function (i, j) {
+        if (i.dataset.choose) {
+          right.appendChild(i)//移动到右侧(appendChild可以直接移动这个i到右边)
+          i.style.background = 'transparent'//清除颜色
+          delete i.dataset.choose//删除标记
+        }
+      })
+    }
+
+    toLeft.onclick = function (e) {
+      // 重新获取左侧li
+      var lis = document.querySelectorAll('.right li')
+      lis.forEach(function (i, j) {
+        if (i.dataset.choose) {
+          left.appendChild(i)//移动到左侧(appendChild可以直接移动这个i到右边)
+          i.style.background = 'transparent'//清除颜色
+          delete i.dataset.choose//删除标记
+        }
+      })
+    }
+    //清空选择
+    clear.onclick = function () {
+      // console.log(1);
+      var lis = document.querySelectorAll('li')
+      // console.log(lis);
+      lis.forEach(function (i, j) {
+        i.style.background = 'transparent'//清除颜色
+        delete i.dataset.choose//删除标记
+      }
+      )
+    }
+  </script>
+</body>
+
+</html>
