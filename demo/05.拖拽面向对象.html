@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #box1 {
+            background-color: aqua;
+        }
+
+        #box2 {
+            background-color: rgb(0, 255, 98);
+        }
+
+        #box3 {
+            background-color: rgb(153, 0, 255);
+        }
+
+        #box4 {
+            background-color: rgb(255, 196, 0);
+        }
+
+        #box5 {
+            background-color: rgb(255, 0, 85);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1" class="box"></div>
+    <div id="box2" class="box"></div>
+    <div id="box3" class="box"></div>
+    <div id="box4" class="box"></div>
+    <div id="box5" class="box"></div>
+    <script>
+        function Drag(ID) {
+            //构造函数的this指向实例化对象
+            // console.log(this);
+            this.oBox = document.getElementById(ID);//这里的this是Drag实例化对象,每个对象都赋值了一个oBox属性保存要操作的对象
+            var that = this;//缓存一个this,因为.mousedown这个函数的this指向的是改函数的调用者(DOM盒子this.oBox),而不是Drag的实例化对象(要找到Drag的实例化对象才能把e传递给down函数)
+            this.oBox.onmousedown = function (e) {
+                that.down(e);
+                // console.log(this);//div
+                // console.log(that);//Drag的实例化对象
+            }
+        }
+        //(在Drag构造函数的原型对象上创建3个方法,这样所有实例化对象都可以访问到并且在鼠标按下的时候调用对应方法)
+        Drag.prototype.down = function (e) {
+            //原型对象中的方法的this指向实例化对象
+            this.mouseToBox = {
+                x: e.offsetX,
+                y: e.offsetY
+            }
+            var that = this;//同样的道理,下面代码的this不是Drag的实例化对象,无法继续调用move函数,要缓存一份this
+            document.onmousemove = function (e) {
+                that.move(e);
+                // console.log(this);//这里的this是document而不是Drag的实例化对象
+            }
+        }
+        Drag.prototype.move = function (e) {
+            // this执行实例化对象,注意上面,是this的缓存that调用的move方法
+            var boxLoaction = {
+                x: e.clientX - this.mouseToBox.x,
+                y: e.clientY - this.mouseToBox.y,
+            }
+            this.oBox.style.left = boxLoaction.x + "px";
+            this.oBox.style.top = boxLoaction.y + "px";
+            var that = this;
+            document.onmouseup = function () {
+                that.up();
+            }
+        }
+        Drag.prototype.up = function () {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+
+        new Drag("box1");
+        new Drag("box2");
+        new Drag("box3");
+        new Drag("box4");
+        new Drag("box5");
+    </script>
+</body>
+
+</html>
