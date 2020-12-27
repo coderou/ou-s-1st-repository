@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+<body>
+  <!-- 盒子1 -->
+  <div class="box">
+    <p>p0.1</p>
+    <p class="a">p1</p>
+    <p>p2</p>
+    <p>p2</p>
+  </div>
+  <!-- 盒子2 -->
+  <div class="box">
+    <span class="a">span1</span>
+    <span>span2</span>
+  </div>
+  <span>111</span>
+  <!-- ```jq类数组操作,children,parent,sibling,find,prev,end,next-->
+
+  <script>
+    console.log($(".box").children(".a"))
+    //找到box的子元素a
+    console.log($("body").find(".a"))
+    //找到body下面的 .a
+    console.log($("body").find(".box .a"))
+    //找到body下面的 .box 的子元素 .a
+    console.log($('.a').parent());
+    //找到 .a的父元素
+    console.log($('.a').siblings());
+    //找到 .a的兄弟元素
+    console.log($('.a').end());
+    //end()回到最近的一个"破坏性"操作之前。即，将匹配的元素列表变为前一次的状态。
+    console.log($('.a').prev());
+    //找到.a的前一个元素
+    console.log($('.a').next());
+    //找到.a的下一个元素
+    //------------------------------------------------
+    $("body").css("color", "#333").find(".box").css("background", "seagreen").find(".a").css("color", "#fff").end().css("font-size", "50px").end().css("background", "#ccc")
+    //找到body==>设置颜色==>找到body下面的.box==>设置颜色==>找到.box下面的 .a==>设置颜色
+  </script>
+</body>
+
+</html>
