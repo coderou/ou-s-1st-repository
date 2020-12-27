@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 数组去重:自己写(只能去重可以转数值的)(不能判断NaN)(不能判断{}) -->
+  <script>
+    // var arr = [1, 0, 5, 12, 4, 2, 7, 5, 16, 2, 3, 2, 4, 12, 3, 9, 4, 2, 8, 12, 5, 6, 6]
+    var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
+    console.log(arr);
+
+    function quchon(arr) {//定义一个函数,用于去重
+      var newArr = []//随便来个空数组或者把arr[0]放到数组里
+      arr.forEach(function (item) {//遍历原arr
+        var ff = true//每次遍历定义一个flag
+        newArr.forEach(function (i) {//遍历创建的新数组newArr
+          if (item === i) { ff = false }//判断(如果上面的item等于新数组的任意i)==>(flag为false)
+        })
+        if (ff) { newArr.push(item) }//如果经过newArr的遍历,flag还是为true,放item进newArr
+      })
+      return newArr//返回newArr
+    }
+    console.log(quchon(arr))
+  </script>
+  <!-- 数组去重:网络方法:利用indexOf查找新数组有没有原数组的元素,如果没有也就是-1则push(不能判断NaN)(不能判断{}) -->
+  <script>
+    // var arr = [1, 0, 5, 12, 4, 2, 7, 5, 16, 2, 3, 2, 4, 12, 3, 9, 4, 2, 8, 12, 5, 6, 6]
+    var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
+    // console.log(arr);
+    function indexofQuChon(arr) {
+      var newArr = []//随便来个数组
+      for (var i = 0; i < arr.length; i++) {//遍历老数组
+        if (newArr.indexOf(arr[i]) === -1) {//如果(在新数组中查找老数组的元素===-1)就push
+          newArr.push(arr[i])
+        }
+      }
+      return newArr//返回新数组
+    }
+    console.log(indexofQuChon(arr))
+
+  </script>
+  <!-- 数组去重:类似indexOf,利用数组的方法includs(可以判断NaN)(不能判断{}) -->
+  <script>
+    var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
+    function includesQuChon(arr) {
+      var newArr = []//随便来个数组
+      arr.forEach(function (i, j) {//forEach或者for遍历传入的数组
+        if (!newArr.includes(i)) {//如果新数组'没有'arr的元素,进入判断
+          newArr.push(i)
+        }
+      })
+      return newArr
+    }
+    console.log(includesQuChon(arr))
+  </script>
+  <!-- 数组去重:最简便方法:set(不能判断{}) -->
+  <script>
+    var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
+    console.log([...new Set(arr)]);
+  </script>
+  <!-- 数组去重:完美去重方法(可以去重{}和NaN)(没看懂)(???????) -->
+  <script>
+    function unique2(arr) {//定义一个函数用于去重
+      var obj = {};//搞一个对象
+      return arr.filter(function (item, index, arr) {//返回arr的filter之后的数组,filter传入(数组元素,下标,arr自己)
+        return obj.hasOwnProperty(typeof item + item) ? false : (obj[typeof item + item] = true)//过滤的条件为(数组)(/?????)
+      })
+    }
+    var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
+    console.log(unique2(arr))
+  </script>
+
+</body>
+
+</html>
