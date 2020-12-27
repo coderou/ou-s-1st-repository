@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+<body>
+  <!-- ul1 -->
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>
+      <h1>h111</h1>
+      <h1>h222</h1>
+    </li>
+    <li>4</li>
+  </ul>
+  <!-- ul2 -->
+  <ul>
+    <li>575</li>
+    <li class="li1">6</li>
+    <li>758</li>
+    <li>8</li>
+  </ul>
+  <!-- 表单 -->
+  <form action="">
+    <input type="text">
+    <input type="checkbox">
+    <select name="" id="haha">
+      <option value="">1</option>
+      <option value="">2</option>
+    </select>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+  </form>
+  <h2>h222</h2>
+  <!-- ------------------------------- -->
+  <script>
+    console.log($("ul li:eq(1)"))
+    console.log($("ul li").eq(1))
+    //找到ul的li中下标为1的li
+    console.log($("ul li:first"))
+    //找到ul的li中第一个li
+    console.log($("ul li:not(.li1)"))
+    //找到ul中li的不是.li1的li
+    console.log($("ul li:even"))
+    //找到ul中的li的偶数的li
+    console.log($("ul>:even"))
+    //找到ul的'下标为偶数'的子元素
+    console.log($("ul :header"))
+    //找到ul 的后代 的h标签(注意,这里用空格就是找后代,没有就是找自己)
+    $("ul :header").css('background-color', 'red')
+    console.log($(":header"))
+    //找到页面所有h系列标签
+    console.log($("ul li:contains(7)"))
+    //找到ul 的 li  里面内容为7的
+    console.log($("ul:has(h1)"))
+    //找到ul中有 h1的ul
+    console.log($(":input"))
+    //找到所有表单元素(只要是表单里面的都行)
+  </script>
+</body>
+
+</html>
