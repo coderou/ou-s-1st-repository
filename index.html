@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>oyx</title>
+</head>
+<link rel="stylesheet" href="./css/reset.css" />
+<link rel="stylesheet" href="./css/oyx.css" />
+<script src="./js/data.js"></script>
+
+<body>
+  <!-- 外层容器 -->
+  <div class="outer">
+
+
+    <div class="toolBar">
+      <!-- 侧边栏内容区域 -->
+      <div class="content"></div>
+      <!-- 拉出导航 -->
+      <div class="menu"></div>
+      <!-- 中间导航区域 -->
+      <ul class="navList">
+        <li>
+          <i></i>
+          <p>商品会员</p>
+        </li>
+        <li>
+          <i></i>
+          <p>购物车</p>
+        </li>
+        <li>
+          <i></i>
+          <p>我的关注</p>
+        </li>
+        <li>
+          <i></i>
+          <p>我的足迹</p>
+        </li>
+        <li>
+          <i></i>
+          <p>我的消息</p>
+        </li>
+        <li>
+          <i></i>
+          <p>咨询静哥</p>
+        </li>
+      </ul>
+      <!-- 回到顶部区域 -->
+      <div class="back"></div>
+    </div>
+    <!-- 头部区域 -->
+    <header>
+      <!-- 头部区域_外层容器 -->
+      <div class="header_top_out">
+        <!-- 头部区域_内层容器 -->
+        <div class="header_top_in">
+          <!-- 头部区域_左半部分 -->
+          <div class="header_top_left">
+            <p>尚品汇欢迎您</p>
+            <p>
+              请
+              <a href="javascript:;">登录</a>
+              <a href="javascript:;">免费注册</a>
+            </p>
+          </div>
+          <!-- 头部区域_右半部分 -->
+          <div class="header_top_right">
+            <a href="javascript:;">我的订单</a>
+            <a href="javascript:;">我的购物车</a>
+            <a href="javascript:;">我的尚品汇</a>
+            <a href="javascript:;">尚品汇会员</a>
+            <a href="javascript:;">企业采购</a>
+            <a href="javascript:;">关注尚品汇</a>
+            <a href="javascript:;">合作招聘</a>
+            <a href="javascript:;">商家后台</a>
+          </div>
+        </div>
+      </div>
+      <!-- 头部区域_下面的logo和搜索框 -->
+      <div class="header_bottom_in">
+        <!-- logo -->
+        <h1>
+          <a href="javascript:;">
+            <img src="./images/Logo.png" alt="" />
+          </a>
+        </h1>
+        <!-- 搜索框 -->
+        <div class="header_bottom_search">
+          <input type="text" />
+          <button>搜索</button>
+        </div>
+      </div>
+    </header>
+    <!-- 导航区域 -->
+    <div class="allnav_outer">
+      <div class="allnav">
+        <h2>所有商品分类</h2>
+        <nav>
+          <a href="javascript:;">服装城</a>
+          <a href="javascript:;">美妆馆</a>
+          <a href="javascript:;">尚品汇超市</a>
+          <a href="javascript:;">全球购</a>
+          <a href="javascript:;">闪购</a>
+          <a href="javascript:;">团购</a>
+          <a href="javascript:;">有趣</a>
+          <a href="javascript:;">秒杀</a>
+        </nav>
+      </div>
+    </div>
+    <!-- 放大镜和购物车 -->
+    <section class="con">
+      <!-- 放大镜和购物车_顶部导航 -->
+      <div class="conPoint">
+        <a href="javascript:;">手机、数码、通讯手机</a>
+        <a href="javascript:;">Apple苹果</a>
+        <a href="javascript:;">iphone 6S系类</a>
+      </div>
+      <div class="mainCon">
+        <!-- 放大镜和购物车_放大镜 -->
+        <div class="previewArea">
+          <!-- 放大镜本体 -->
+          <div class="preview">
+            <!-- 小图 -->
+            <div class="smallArea">
+              <img src="./images/s1.png" alt="" />
+              <!-- 蒙版 -->
+              <div class="mask"></div>
+            </div>
+            <!-- 大图 -->
+            <div class="bigArea">
+              <img src="./images/b1.png" alt="" />
+            </div>
+          </div>
+          <!-- 放大镜下面的滚动条 -->
+          <div class="prescroll">
+            <p class="left">&lt;</p>
+            <div class="listOut">
+              <ul class="list">
+                <!-- <li><img src="./images/s1.png" alt="" /></li>
+                <li><img src="./images/s2.png" alt="" /></li>
+                <li><img src="./images/s3.png" alt="" /></li>
+                <li><img src="./images/s1.png" alt="" /></li>
+                <li><img src="./images/s2.png" alt="" /></li>
+                <li><img src="./images/s3.png" alt="" /></li>
+                <li><img src="./images/s1.png" alt="" /></li>
+                <li><img src="./images/s2.png" alt="" /></li>
+                <li><img src="./images/s3.png" alt="" /></li>
+                <li><img src="./images/s1.png" alt="" /></li>
+                <li><img src="./images/s2.png" alt="" /></li>
+                <li><img src="./images/s3.png" alt="" /></li> -->
+              </ul>
+            </div>
+            <p class="right">&gt;</p>
+          </div>
+        </div>
+        <!-- 放大镜和购物车_购物车 -->
+        <div class="detailArea">
+          <div class="priceArea">
+            <!-- <h3 class="title">
+              Apple iPhone 6s（A1700）64G玫瑰金色 移动通信电信4G手机
+            </h3>
+            <p class="con1">
+              推荐选择下方[移动优惠购],手机套餐齐搞定,不用换号,每月还有花费返
+            </p>
+            <div class="price">
+              <div class="priceDetail">
+                <p>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格</p>
+                <p>
+                  ￥
+                  <span>8999</span>
+                  元
+                </p>
+              </div>
+              <div class="buy">
+                <p>促&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销</p>
+                <p>
+                  <span>减价购</span>
+                  满999.00另加20.00元，或满1999.00另加30.00元，或满2999.00另加40.00元，即可在购物车换购热销商品
+                </p>
+              </div>
+            </div>
+            <div class="support">
+              <div class="supportDetail">
+                <p>支&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;持</p>
+                <p>以旧换新，闲置手机回收 4G套餐超值抢 礼品购</p>
+              </div>
+              <div class="address">
+                <p>配&nbsp;送&nbsp;至</p>
+                <p>广东省 深圳市 宝安区</p>
+              </div>
+            </div> -->
+          </div>
+
+          <div class="chooseInsert"></div>
+          <div class="chooseArea">
+            <!-- <dl>
+              <dt>选择颜色</dt>
+              <dd data-change-price="0">金色</dd>
+              <dd data-change-price="40">银色</dd>
+              <dd data-change-price="90">黑色</dd>
+            </dl>
+            <dl>
+              <dt>内存容量</dt>
+              <dd data-change-price="0">16G</dd>
+              <dd data-change-price="300">128G</dd>
+              <dd data-change-price="900">128G</dd>
+              <dd data-change-price="1300">256G</dd>
+            </dl>
+            <dl>
+              <dt>选择版本</dt>
+              <dd data-change-price="0">公开版</dd>
+              <dd data-change-price="-1000">移动版</dd>
+            </dl>
+            <dl>
+              <dt>购买方式</dt>
+              <dd data-change-price="0">官方标配</dd>
+              <dd data-change-price="-240">优惠移动版</dd>
+              <dd data-change-price="-390">电信优惠版</dd>
+            </dl> -->
+          </div>
+          <div class="goodsNum">
+            <div class="num">
+              <input type="text" value="1" readonly />
+              <button class="plus">+</button>
+              <button class="mins">-</button>
+            </div>
+            <div class="addCart">加入购物车</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 商品详情 -->
+    <div class="productDetail">
+      <!-- 侧边栏 -->
+      <div class="aside">
+        <!-- 侧边栏_标题 -->
+        <div class="tabTitle">
+          <h4 class="active">相关分类</h4>
+          <h4>推荐品牌</h4>
+        </div>
+        <!-- 侧边栏_内容 -->
+        <div class="tabContent">
+          <div class="tab-pane active">
+            <ul class="partList">
+              <li><a href="javascript:;">手机</a></li>
+              <li><a href="javascript:;">手机壳</a></li>
+              <li><a href="javascript:;">内存卡</a></li>
+              <li><a href="javascript:;">iPhone配件</a></li>
+              <li><a href="javascript:;">贴膜</a></li>
+              <li><a href="javascript:;">手机耳机</a></li>
+              <li><a href="javascript:;">移动电源</a></li>
+              <li><a href="javascript:;">平板电脑</a></li>
+            </ul>
+            <ul class="goodList">
+              <li>
+                <div class="detailImg"><img src="./images/part01.png" alt=""></div>
+                <h4>Apple苹果iPhone 6s (A1699)</h4>
+                <p>¥6088.00</p>
+                <div class="addCart"><a href="javascript:;">加入购物车</a></div>
+              </li>
+              <li>
+                <div class="detailImg"><img src="./images/part01.png" alt=""></div>
+                <h4>Apple苹果iPhone 6s (A1699)</h4>
+                <p>¥6088.00</p>
+                <div class="addCart"><a href="javascript:;">加入购物车</a></div>
+              </li>
+              <li>
+                <div class="detailImg"><img src="./images/part01.png" alt=""></div>
+                <h4>Apple苹果iPhone 6s (A1699)</h4>
+                <p>¥6088.00</p>
+                <div class="addCart"><a href="javascript:;">加入购物车</a></div>
+              </li>
+              <li>
+                <div class="detailImg"><img src="./images/part01.png" alt=""></div>
+                <h4>Apple苹果iPhone 6s (A1699)</h4>
+                <p>¥6088.00</p>
+                <div class="addCart"><a href="javascript:;">加入购物车</a></div>
+              </li>
+              <li>
+                <div class="detailImg"><img src="./images/part01.png" alt=""></div>
+                <h4>Apple苹果iPhone 6s (A1699)</h4>
+                <p>¥6088.00</p>
+                <div class="addCart"><a href="javascript:;">加入购物车</a></div>
+              </li>
+              <li>
+                <div class="detailImg"><img src="./images/part01.png" alt=""></div>
+                <h4>Apple苹果iPhone 6s (A1699)</h4>
+                <p>¥6088.00</p>
+                <div class="addCart"><a href="javascript:;">加入购物车</a></div>
+              </li>
+              <li>
+                <div class="detailImg"><img src="./images/part01.png" alt=""></div>
+                <h4>Apple苹果iPhone 6s (A1699)</h4>
+                <p>¥6088.00</p>
+                <div class="addCart"><a href="javascript:;">加入购物车</a></div>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-pane">
+            推荐品牌
+          </div>
+        </div>
+      </div>
+      <!-- 展示页 -->
+      <div class="detail">
+        <!-- 滑动推荐 -->
+        <div class="fitting">
+          <h4 class="kt">选择搭配</h4>
+          <!-- 滑动推荐列表 -->
+          <div class="good-suits">
+            <!-- 主商品 -->
+            <div class="master">
+              <img src="./images/l-m01.png" alt="">
+              <p>￥5399</p>
+              <i>+</i>
+            </div>
+            <!-- 搭配 -->
+            <ul class="suits">
+              <li class="suitsItem">
+                <img src="./images/dp01.png" alt="">
+                <p>Feless费勒斯VR</p>
+                <label>
+                  <input type="checkbox" value='39'>
+                  <span>39</span>
+                </label>
+              </li>
+              <li class="suitsItem">
+                <img src="./images/dp02.png" alt="">
+                <p>Feless费勒斯VR</p>
+                <label>
+                  <input type="checkbox" value='50'>
+                  <span>50</span>
+                </label>
+              </li>
+              <li class="suitsItem">
+                <img src="./images/dp03.png" alt="">
+                <p>Feless费勒斯VR</p>
+                <label>
+                  <input type="checkbox" value='59'>
+                  <span>59</span>
+                </label>
+              </li>
+              <li class="suitsItem">
+                <img src="./images/dp04.png" alt="">
+                <p>Feless费勒斯VR</p>
+                <label>
+                  <input type="checkbox" value='99'>
+                  <span>99</span>
+                </label>
+              </li>
+            </ul>
+            <!-- 加入结果 -->
+            <div class="result">
+              <div class="num">已选购0件商品</div>
+              <p class="price-tit">套餐价</p>
+              <p class="price">￥5399</p>
+              <button class="addShopcar">加入购物车</button>
+            </div>
+          </div>
+        </div>
+        <!-- 商品介绍 -->
+        <div class="intro">
+          <!-- 商品介绍的tab栏 -->
+          <ul class="tab-wraped">
+            <li class="active"><a href="javascript:;">商品介绍</a></li>
+            <li><a href="javascript:;">规格与包装</a></li>
+            <li><a href="javascript:;">售后保障</a></li>
+            <li><a href="javascript:;">商品评价</a></li>
+            <li><a href="javascript:;">手机社区</a></li>
+          </ul>
+          <!-- 商品介绍的主要内容区 -->
+          <div class="tab-content">
+            <!-- one -->
+            <div id='one' class="tab-pane active">
+              <!-- 商品详细信息(文字) -->
+              <ul class="goods-intro">
+                <li>分辨率：1920*1080(FHD)</li>
+                <li>后置摄像头：1200万像素</li>
+                <li>前置摄像头：500万像素</li>
+                <li>核 数：其他</li>
+                <li>频 率：以官网信息为准</li>
+                <li>品牌： Apple</li>
+                <li>商品名称：APPLEiPhone 6s Plus</li>
+                <li>商品编号：1861098</li>
+                <li>商品产地：中国大陆</li>
+                <li>商品毛重：0.51kg</li>
+                <li>热点：指纹识别，Apple Pay，金属机身，拍照神器</li>
+                <li>系统：苹果（IOS）</li>
+                <li>像素：1000-1600万品毛重：0.51kg</li>
+                <li>机身内存：64GB</li>
+              </ul>
+              <!-- 商品内容介绍(图片) -->
+              <div class="intro-detail">
+                <img src="./images/intro01.png" alt="">
+                <img src="./images/intro02.png" alt="">
+                <img src="./images/intro03.png" alt="">
+              </div>
+            </div>
+            <!-- two -->
+            <div id='two' class="tab-pane">规格与包装</div>
+            <!-- three -->
+            <div id='three' class="tab-pane">售后保障</div>
+            <!-- four -->
+            <div id='four' class="tab-pane">商品评价</div>
+            <!-- five -->
+            <div id='five' class="tab-pane">手机社区</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      preview()//放大镜
+      function preview() {
+        var smallArea = document.querySelector('.preview .smallArea')//小图区域
+        var bigArea = document.querySelector('.preview .bigArea')//大图区域
+        var mask = document.querySelector('.preview .smallArea .mask')//小图区的mask
+        var bigAreaImg = document.querySelector('.preview .bigArea img')//大图区的img
+        //----------------------------------------------------
+        smallArea.onmousemove = function (e) {
+          mask.style.display = 'block'
+          bigArea.style.display = 'block'
+          //------------------------------------------------
+          var maskWH = {//获取mask遮罩的宽高
+            w: mask.offsetWidth,
+            h: mask.offsetHeight
+          }
+
+          var smallWH = {
+            w: smallArea.offsetWidth,
+            h: smallArea.offsetHeight
+          }
+
+          var eToWin = {//获取鼠标点距离(文档可视区域)的距离
+            x: e.clientX,
+            y: e.clientY
+          }
+
+          var smallToWin = {//获取小图区到(文档可视区域)的距离
+            left: smallArea.getBoundingClientRect().left,
+            top: smallArea.getBoundingClientRect().top
+          }
+
+          var maskLocation = {//获取mask到小图区的距离
+            x: eToWin.x - smallToWin.left - maskWH.w / 2,
+            y: eToWin.y - smallToWin.top - maskWH.h / 2
+          }
+
+          //------------------------------------------------
+          if (maskLocation.x < 0) {//判断临界值x
+            maskLocation.x = 0
+          } else if (maskLocation.x > smallWH.w - maskWH.w) {
+            maskLocation.x = smallWH.w - maskWH.w
+          }
+
+          if (maskLocation.y < 0) {//判断临界值y
+            maskLocation.y = 0
+          } else if (maskLocation.y > smallWH.h - maskWH.h) {
+            maskLocation.y = smallWH.h - maskWH.h
+          }
+          //------------------------------------------------
+          //设置mask的位置
+          mask.style.left = maskLocation.x + 'px'
+          mask.style.top = maskLocation.y + 'px'
+          //------------------------------------------------
+          var scale = bigArea.offsetWidth / mask.offsetWidth//获取大小图的显示区域之比
+          bigAreaImg.style.left = -maskLocation.x * scale + 'px'
+          bigAreaImg.style.top = -maskLocation.y * scale + 'px'
+          //------------------------------------------------
+          mask.onmouseleave = function () {
+            mask.style.display = 'none'
+            bigArea.style.display = 'none'
+          }
+        }
+      }
+
+      thumbnail()//缩略图
+      function thumbnail() {
+        var smallAreaImg = document.querySelector('.preview .smallArea img')//小图区的img
+        var bigAreaImg = document.querySelector('.preview .bigArea img')//大图区的img
+        var ul = document.querySelector('ul.list')//获取小图区域ul列表
+        var leftButton = document.querySelector('.prescroll .left')//获取左按钮
+        var rightButton = document.querySelector('.prescroll .right')//获取右按钮
+        //----------------------------------------------------
+        var imgData = goodData.imgsrc//从goodData获取数据
+        imgData.forEach(function (i, j) {//遍历数据插入li
+          var newLi = document.createElement('li')
+          var newImg = new Image()
+          newImg.src = i.s
+          newLi.appendChild(newImg)
+          ul.appendChild(newLi)
+        })
+        //----------------------------------------------------
+        var lis = document.querySelectorAll('.list li')//拿到所有li
+        var imgs = document.querySelectorAll('.list img')//拿到所有图片
+        //----------------------------------------------------
+        var startLocation = 0//开始位置
+        var shows = 5//当前显示5张
+        var step = 2//每次走2步
+        var oneMove = lis[0].offsetWidth//一个li的距离
+        var canMove = lis.length * oneMove - oneMove * shows//可以走的最大距离
+        //----------------------------------------------------
+        rightButton.onclick = function () {//右点击按钮
+          startLocation += step * oneMove//每次移动步数*每步距离
+          if (startLocation > canMove) {//当位移量大于可移动最大量
+            startLocation = canMove//就等于
+          }
+          ul.style.transform = 'translateX(' + -startLocation + 'px)'//变形
+        }
+        leftButton.onclick = function () {//左点击按钮
+          startLocation -= step * oneMove
+          if (startLocation < 0) {
+            startLocation = 0
+          }
+          ul.style.transform = 'translateX(' + -startLocation + 'px)'
+        }
+        //----------------------------------------------------
+        imgs.forEach(function (i, j) {//遍历添加的图片 绑定事件
+          i.onclick = function () {//点击缩略图,更换小图区域和大图区域的图片
+            smallAreaImg.src = imgData[j].s
+            bigAreaImg.src = imgData[j].b
+          }
+        })
+      }
+
+      goodDetail()//商品详情数据
+      function goodDetail() {
+        var priceArea = document.querySelector('.priceArea')
+        var data = goodData.goodsDetail
+
+        var str = '\
+         <h3 class="title">\
+              '+ data.title + '\
+            </h3>\
+            <p class="con1">\
+              '+ data.recommend + '\
+            </p>\
+            <div class="price">\
+              <div class="priceDetail">\
+                <p>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格</p>\
+                <p>\
+                  ￥\
+                  <span>'+ data.price + '</span>\
+                  元\
+                </p>\
+              </div>\
+              <div class="buy">\
+                <p>促&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销</p>\
+                <p>\
+                  <span>'+ data.promoteSales.type + '</span>\
+                  '+ data.promoteSales.content + '\
+                </p>\
+              </div>\
+            </div>\
+            <div class="support">\
+              <div class="supportDetail">\
+                <p>支&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;持</p>\
+                <p>'+ data.support + '</p>\
+              </div>\
+              <div class="address">\
+                <p>配&nbsp;送&nbsp;至</p>\
+                <p>'+ data.address + '</p>\
+              </div>\
+            </div>\
+        '
+        priceArea.innerHTML = str
+
+
+
+      }
+    })
+  </script>
+
+
+  <!-- <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      //滑块mask部分
+      preview()
+      function preview(e) {
+        var preview1 = document.querySelector('.preview')//获取preview区域
+        var mask = document.querySelector('.mask')//获取mask遮罩区域,鼠标移入display:block
+        var smallArea = document.querySelector('.smallArea')//获取小图区域
+        var smallAreaImg = document.querySelector('.preview .smallArea img')//获取小图区域的图片,准备替换
+        var bigArea1 = document.querySelector('.bigArea')//获取大图区域,鼠标移入小图区域display:block
+        var bigAreaImg = document.querySelector('.bigArea img')//获取大图区域的图片,准备移动
+
+        //----------------------------------------------------------------------------
+        // 获取数据
+        var previewData = goodData.imgsrc
+        // 设置路径
+        smallAreaImg.src = previewData[0].s//设置小图路径
+        bigAreaImg.src = previewData[0].b//设置大图路径
+        //----------------------------------------------------------------------------
+
+        preview1.onmousemove = function (e) {//绑定preview区域的鼠标事件
+          mask.style.display = 'block'//鼠标移入隐藏元素出现
+          bigArea1.style.display = 'block'//鼠标移入隐藏元素出现
+          //----------------------------------------------------------------------------
+          var maskWH = {//获取mask遮罩的宽高
+            width: mask.offsetWidth,
+            height: mask.offsetHeight
+          }
+          var preToWin = {//获取priview放大镜小图区域距离 文档可视区域的距离
+            left: preview1.getBoundingClientRect().left,
+            top: preview1.getBoundingClientRect().top
+          }
+          var mouseToWin = {//获取鼠标e距离 文档可视区域的距离
+            x: e.clientX,
+            y: e.clientY
+          }
+          var maskPosition = {//获取mask遮罩距离preview小图区应该是多少距离
+            x: mouseToWin.x - preToWin.left - maskWH.width / 2,
+            y: mouseToWin.y - preToWin.top - maskWH.height / 2
+          }
+          var previewWH = {//获取preview小图区没有边框的宽度
+            width: preview1.clientWidth,
+            height: preview1.clientHeight
+          }
+          //-----------------------------------------------------------------------
+          if (maskPosition.x <= 0) {//判断临界值x
+            maskPosition.x = 0
+          } else if (maskPosition.x >= previewWH.width - maskWH.width) {
+            maskPosition.x = previewWH.width - maskWH.width
+          }
+
+          if (maskPosition.y <= 0) {//判断临界值y
+            maskPosition.y = 0
+          } else if (maskPosition.y >= previewWH.height - maskWH.height) {
+            maskPosition.y = previewWH.height - maskWH.height
+          }
+          //----------------------------------------------------------------------
+          var scale = bigArea1.offsetWidth / maskWH.width//比例
+
+          bigAreaImg.style.left = -maskPosition.x * scale + 'px'
+          bigAreaImg.style.top = -maskPosition.y * scale + 'px'
+
+
+          mask.style.left = maskPosition.x + 'px'//设置位置
+          mask.style.top = maskPosition.y + 'px'//设置位置
+          // console.log(maskPosition.x);
+          //-----------------------------------------------------------------------
+          preview1.onmouseleave = function () {
+            mask.style.display = 'none'//鼠标移出隐藏元素消失
+            bigArea1.style.display = 'none'//鼠标移出隐藏元素消失
+          }
+        }
+      }
+      //缩略图跟着动部分
+      thumbnail()
+      function thumbnail() {
+        var leftButton = document.querySelector('.prescroll .left')//获取左移动按钮
+        var rightButton = document.querySelector('.prescroll .right')//获取右移动按钮
+        var ul = document.querySelector('.prescroll .list')//获取ul
+
+        //-----------------------------------------------------------------------------------------------
+        //拿到数据并且放入对应ul
+        var previewData = goodData.imgsrc
+        // 生成对应图片
+        previewData.forEach(function (i, j) {
+          var newLi = document.createElement('li')
+          var newImg = new Image()
+          newImg.src = i.s
+          newLi.appendChild(newImg)
+          ul.appendChild(newLi)
+        })
+
+
+
+        //-----------------------------------------------------------------------------------------------
+        var lis = document.querySelectorAll('.prescroll .list li')//获取ul里面的li
+
+        //-----------------------------------------------------------------------------------------------
+        var startLocation = 0//开始位置
+        var everyStep = 2//每次走2步
+        var everyStepMove = lis[0].offsetWidth//每次移动一个li的距离
+        var nowShow = 5//当前显示5张
+        var restStep = lis.length - nowShow//剩余可走步数
+        var restStepMove = everyStepMove * lis.length - everyStepMove * everyStep//剩余可走距离
+        var maxMove = restStep * everyStepMove//最大移动距离
+        //-----------------------------------------------------------------------------------------------
+        rightButton.onclick = function () {//右点击移动
+          startLocation += everyStepMove * everyStep//每次点击初始位移量增加
+          if (maxMove - startLocation < everyStepMove * everyStep) {//判断,如果最大移动距离-当前距离<一次可移动距离
+            startLocation = maxMove
+          }
+          ul.style.transform = 'translateX(' + -startLocation + 'px)'//移动ul
+        }
+        leftButton.onclick = function () {//左点击移动
+          startLocation -= everyStepMove * everyStep
+          if (startLocation < 0) {//如果位置小于开始位置了,重置位置
+            startLocation = 0
+          }
+          ul.style.transform = 'translateX(' + -startLocation + 'px)'//移动ul
+        }
+        //-----------------------------------------------------------------------------------------------
+      }
+      //缩略图点击和数据
+      thumbnailClick()
+      function thumbnailClick() {//封装点击缩略图函数
+        var imgs = document.querySelectorAll('.prescroll .list>li>img')//拿到所有点击图片
+        var smallAreaImg = document.querySelector('.preview .smallArea img')//拿到小图IMG标签
+        var bigAreaImg = document.querySelector('.bigArea img')//拿到大图IMG标签
+
+        var previewData = goodData.imgsrc//拿到数据
+
+        imgs.forEach(function (i, j) {
+          i.onclick = function () {
+            smallAreaImg.src = i.src//改变小图的src
+            bigAreaImg.src = previewData[j].b//改变大图的src
+            // bigAreaImg.src = i.src//这种也可以,但是实际不行
+          }
+        })
+      }
+      //商品详情数据
+      goodDetail()
+      function goodDetail() {
+        var priceArea = document.querySelector('.priceArea')//选中需要替换内容的标签
+        var goodsDetail = goodData.goodsDetail//拿到数据
+        var str='<h3 class="title">\
+          '+goodsDetail.title+'\
+            </h3>\
+            <p class="con1">\
+              '+goodsDetail.recommend+'\
+            </p>\
+            <div class="price">\
+              <div class="priceDetail">\
+                <p>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格</p>\
+                <p>\
+                  ￥\
+                  <span>'+goodsDetail.price+'</span>\
+                  元\
+                </p>\
+              </div>\
+              <div class="buy">\
+                <p>促&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销</p>\
+                <p>\
+                  <span>'+goodsDetail.promoteSales.type+'</span>\
+                  '+goodsDetail.promoteSales.content+'\
+                </p>\
+              </div>\
+            </div>\
+            <div class="support">\
+              <div class="supportDetail">\
+                <p>支&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;持</p>\
+                <p>'+goodsDetail.support+'</p>\
+              </div>\
+              <div class="address">\
+                <p>配&nbsp;送&nbsp;至</p>\
+                <p>'+goodsDetail.address+'</p>\
+              </div>\
+            </div>'//定义一个字符串保存需要的标签和数据
+
+            priceArea.innerHTML = str//link start
+      }
+    })
+  </script> -->
+  <!-- <script>
+    window.addEventListener("DOMContentLoade", function () {
+      //滑块
+      preview();
+      function preview() {
+        var oPreview = document.querySelector(".previewArea .preview") //拿到preview整体,绑定鼠标移入
+        var oMask = document.querySelector(".preview .smallArea .mask") //拿到mask蒙版
+        var oSmallArea = document.querySelector(".smallArea") //拿到整个小图区域
+        var oBigArea = document.querySelector(".bigArea") //拿到整个大图区域
+        var oBigAreaImg = document.querySelector(".bigArea img") //拿到大图区域里面的图片
+        //给preview绑定鼠标移入事件
+        oPreview.onmousemove = function (e) {
+          //让mask显示
+          oMask.style.display = "block"; //鼠标移入后,变为块元素,取消隐藏
+          oBigArea.style.display = "block"; //鼠标移入后,变为块元素,取消隐藏
+
+          //--------------------------------------------------------------------------------------------------------
+          var oMaskWH = {//获取mask宽度
+            width: oMask.offsetWidth,//200
+            height: oMask.offsetHeight,//200
+          }
+          //获取放大镜 小图区域 到 屏幕边缘的距离
+          //getBoundingClientRect():获取元素到文档可视区域的距离
+          var oPreToWin = {
+            x: oSmallArea.getBoundingClientRect().left,
+            y: oSmallArea.getBoundingClientRect().top,
+          }
+          // console.log(oPreToWin.x);
+
+          //clientX:获取鼠标触发事件点距离文档可视区域的距离
+          var oMaskLocation = {//蒙版的定位就是 鼠标的client 减去mask宽度的一半（保证鼠标在正中心）  减去外层到屏幕的距离
+            x: e.clientX - oMaskWH.width / 2 - oPreToWin.x,
+            y: e.clientY - oMaskWH.height / 2 - oPreToWin.y,
+          }
+          // console.log(e.clientX);
+          // (注意:如果鼠标触发的地点为小图边缘,则是相等的)
+          //--------------------------------------------------------------------------------------------------------
+
+          //--------------------------------------------------------------------------------------------------------
+          //判断临界值 x
+          if (oMaskLocation.x <= 0) {//当mask的x位置<=0的时候
+            oMaskLocation.x = 0//赋值为0
+          } else if (oMaskLocation.x >= oSmallArea.clientWidth - oMask.offsetWidth) {//当mask的x位置大于了 小图区除边框宽度-mask自己的宽度的时候
+            oMaskLocation.x = oSmallArea.clientWidth - oMask.offsetWidth;//赋值为该值
+          }
+          //判断临界值 y
+          if (oMaskLocation.y <= 0) {
+            oMaskLocation.y = 0
+          } else if (oMaskLocation.y >= oSmallArea.clientHeight - oMask.offsetHeight) {
+            oMaskLocation.y = oSmallArea.clientHeight - oMask.offsetHeight;
+          }
+          //--------------------------------------------------------------------------------------------------------
+          //赋值
+          oMask.style.left = oMaskLocation.x + "px"
+          oMask.style.top = oMaskLocation.y + "px"
+
+          //--------------------------------------------------------------------------------------------------------
+          // 求比例：大能走/小能走(因为是正方形的，所以比例可以求一个)//(这里直接用bigArea/mask)可以么?边框相同可以,但是不同,就不能
+          var scale =
+            (oBigAreaImg.offsetWidth - oBigArea.clientWidth) /
+            (oSmallArea.clientWidth - oMask.offsetWidth)
+
+          //计算大图走的值：-蒙版走的值 * 比例
+          oBigAreaImg.style.top = -oMaskLocation.y * scale + "px";
+          oBigAreaImg.style.left = -oMaskLocation.x * scale + "px";
+        }
+        //给preview绑定鼠标移出事件
+        oPreview.onmouseleave = function () {
+          //让蒙版隐藏
+          oMask.style.display = "none";
+          oBigArea.style.display = "none";
+        }
+      }
+
+      //缩略图
+      thumbnail();
+      function thumbnail() {
+        var oLeft = document.querySelector(".previewArea .prescroll .left")//获取左移动标签
+        var oRight = document.querySelector(".previewArea .prescroll .right")//获取右移动标签
+        var oList = document.querySelector(".previewArea .prescroll .listOut .list")//获取ul
+        var oListLis = document.querySelectorAll(".previewArea .prescroll .listOut .list li")//获取每个li
+
+        var startLocation = 0//初始位置
+        var everyStep = 2//每次走的图片数量
+        var viewLength = 5//当前页面显示的图片数量
+        var everyMove = everyStep * oListLis[0].offsetWidth//每一次移动的距离
+        var allMove = (oListLis.length - viewLength) * oListLis[0].offsetWidth//总共可以走的距离
+
+        //-----------------------------------------------------------------------------------------
+
+        oRight.onclick = function () {
+          //判断还剩下距离是不是两张的距离
+          if (allMove - startLocation < everyMove) {
+            startLocation = allMove;
+          } else {
+            startLocation += everyMove;
+          }
+          oList.style.transform = "translateX(" + -startLocation + "px)";
+        }
+
+        oLeft.onclick = function () {
+          if (startLocation < everyMove) {
+            startLocation = 0;
+          } else {
+            startLocation -= everyMove;
+          }
+          oList.style.transform = "translateX(" + -startLocation + "px)";
+        }
+      }
+    });
+  </script> -->
+
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      chooseData()//选择择商品信息区域
+      //自己练习:
+      /* function chooseData(){
+        var chooseArea=document.querySelector('.chooseArea')
+        var crumbData=goodData.goodsDetail.crumbData
+        crumbData.forEach(function(i,j){
+          var dl=document.createElement('dl')
+          var dt=document.createElement('dt')
+          dt.textContent=i.title
+          dl.appendChild(dt)
+          i.data.forEach(function(i,j){
+            var dd=document.createElement('dd')
+            dd.textContent=i.type
+            dl.appendChild(dd)
+          })
+          chooseArea.appendChild(dl)
+        })
+      } */
+      /* function chooseData() {
+        var chooseArea = document.querySelector('.chooseArea')
+        var crumbData = goodData.goodsDetail.crumbData
+        crumbData.forEach(function (i, j) {
+          var dl = document.createElement('dl')
+          var dt = document.createElement('dt')
+          dt.innerHTML = i.title
+          dl.appendChild(dt)
+
+          i.data.forEach(function (i, j) {
+            var dd = document.createElement('dd')
+            dd.innerHTML = i.type
+            dl.appendChild(dd)
+          })
+          chooseArea.appendChild(dl)
+        })
+      } */
+      function chooseData() {
+        var chooseArea = document.querySelector('.chooseArea')//获取商品选择区域
+        var crumbData = goodData.goodsDetail.crumbData//获取数据
+        crumbData.forEach(function (i, j) {//遍历数据生成D1
+          var dl = document.createElement('dl')//创建dl节点
+          var dt = document.createElement('dt')//创建dt节点
+          dt.textContent = i.title//根据每一个dl中的数据生成dt(title)
+          dl.appendChild(dt)//插入进dl
+          i.data.forEach(function (i, j) {//遍历每一个dl数据中的值 生成ID
+            var dd = document.createElement('dd')//创建dd节点
+            dd.textContent = i.type//dd节点的内容
+            //---------------------------------
+            dd.dataset.price = i.changePrice//从数据获取改项价格并添加到自定义属性
+            //---------------------------------
+            dl.appendChild(dd)//插入dd节点
+          })
+          chooseArea.appendChild(dl)//插入页面
+        })
+      }
+
+
+      //商品选择点击
+      chooseClick()
+      //练习
+
+      /* function chooseClick() {
+        var dls = document.querySelectorAll('.chooseArea dl')
+        var chooseInsert = document.querySelector('.chooseInsert')
+        var arr = new Array(dls.length)
+        arr.fill(false)
+
+        dls.forEach(function (i, j) {//遍历所有的dl
+          var dds = i.querySelectorAll('dd')
+          dds.forEach(function (i) {//遍历所有dd
+            //-------------------------------
+            i.onclick = function () {//点击dd
+              dds.forEach(function (i, j) {
+                i.style.color = '#333'
+              })
+              i.style.color = 'red'
+
+              arr[j] = i//这里的j下标为dls的j下标
+
+              chooseInsert.innerHTML = '';
+              arr.forEach(function (i, j) {//遍历arr,放入chooseInsert
+                if (!i) {
+                  return
+                }
+                var mark = document.createElement('mark')
+                mark.textContent = i.textContent//将i的内容放进mark
+                var dele = document.createElement('a')
+                dele.innerHTML = "X"//弄一个删除标签
+                // console.log(jj);//使用
+                dele.dataset.j = j//直接使用其在arr里面的j(也就是这个删除标签在arr里面是第几个,下面要用)
+                mark.appendChild(dele)
+                chooseInsert.appendChild(mark)
+              })
+
+              var deleDD = chooseInsert.querySelectorAll('a')//获取所有chooseInsert 里面的a标签
+              deleDD.forEach(function (i, j) {//遍历a
+                i.onclick = function () {//添加点击事件
+                  i.parentNode.parentNode.removeChild(i.parentNode)//点击后自杀
+                  arr[i.dataset.j] = false//自杀其在数组中的对应位置
+                  //-------------------------------
+                  // console.log(i.dataset.j);
+                  var deleDD = dls[i.dataset.j].querySelectorAll('dd')//这里选择dd的时候,要先选择需要删除的哪行dl,再选择哪一行dl里面的所有dd
+                  // console.log(deleDD);
+                  deleDD.forEach(function (i, j) {
+                    i.style.color = '#333'
+                  })
+                  deleDD[0].style.color = 'red'
+                  //-------------------------------
+                }
+              })
+            }
+            //-------------------------------
+          })
+        })
+      } */
+      /* function chooseClick() {
+        var dls = document.querySelectorAll('dl')
+        var arr = new Array(dls.length)
+        arr.fill(false)
+        var chooseInsert = document.querySelector('chooseInsert')
+
+        dls.forEach(function (i, j) {
+          var dds = i.querySelectorAll('dd')
+          dds.forEach(function (i, j) {
+            var jjj = j
+            i.onclick = function () {
+              dds.forEach(function (i, j) {
+                i.style.color = '#333'
+              })
+              i.style.color = 'red'
+
+              
+              arr[jjj] = this
+              console.log(arr);
+              // chooseInsert.innerHTML = ''
+              // arr.forEach(function (i, j) {
+              //   var mark = document.createElement('mark')
+              //   mark.innerHTML = i.innerHTML
+              //   chooseInsert.appendChild(mark)
+              // })
+
+
+
+            }
+          })
+        })
+      } */
+      /* function chooseClick() {
+        var dls = document.querySelectorAll('dl')
+        var arr = new Array(dls.length)
+        var chooseInsert=document.querySelector('.chooseInsert')
+        arr.fill(false)
+        dls.forEach(function (i, j) {
+          var dds = i.querySelectorAll('dd')
+          dds.forEach(function (i) {
+            i.onclick = function () {
+              dds.forEach(function (i, j) {
+                i.style.color = '#333'
+              })
+              i.style.color = 'red'
+              arr[j]=this//this指向i(i.onclick)
+              // arr[j] = i
+              chooseInsert.innerHTML=''
+              arr.forEach(function(i,j){
+                if(!i){
+                  return
+                }
+                var mark=document.createElement('mark')
+                // mark.innerHTML=i.innerHTML
+                mark.textContent=i.textContent
+                chooseInsert.appendChild(mark)
+              })
+            }
+          })
+        })
+      } */
+      //点击商品的函数封装(点击对应商品,添加一个对应的盒子到上面的chooseInsert区域,并且每次点击都重新计算价格)
+      function chooseClick() {
+        var dls = document.querySelectorAll('.chooseArea dl')//获取所有dl标签
+        var chooseInsert = document.querySelector('.chooseInsert')//获取滑插入区域
+        var arr = new Array(dls.length)//定义一个数组,用来保存每一个dl中的选中项,默认为false
+        arr.fill(false)//填充数组每一项为false
+        dls.forEach(function (i, j) {//遍历dl,每一行都是独立的函数作用域
+          var jjj = j
+          var dds = i.querySelectorAll('dd')//每次遍历dl时候获取<i的>dd,这样每一行dd都是独立的
+          dds.forEach(function (i, j) {//遍历dd
+            i.onclick = function () {//给dd绑定点击事件
+              dds.forEach(function (i, j) {//清空所有的dd的样式
+                // console.log(i);
+                i.style.color = "#666"
+              })
+              i.style.color = 'red'//给当前点击的i添加样式
+              arr[jjj] = this//每次点击完成,改变对象数组项的内容,this指向外层dd遍历的i(也就是你点击的dd)
+              // console.log(arr);
+              chooseInsert.innerHTML = ''//每次插入mark之前,清空mark所在容器
+              arr.forEach(function (i, j) {
+                if (!i) {//如果不存在,推出,作用类似看门狗
+                  return
+                }
+                var mark = document.createElement('mark')//创建mark标签
+                var del = document.createElement('a')//创建删除按钮
+                del.innerHTML = 'X'//删除按钮
+                del.dataset.j = j//删除按钮自定义属性,携带当前对应dl的下包//这里的j是arr的下标,也就是改删除按钮是第几个arr元素
+                mark.textContent = i.textContent
+                mark.appendChild(del)
+                chooseInsert.appendChild(mark)
+              })
+
+
+              //-------------------------
+              var deles = document.querySelectorAll('mark a')//获取所有的删除按钮,
+              deles.forEach(function (i, j) {//遍历所有删除按钮并且绑定事件
+                i.onclick = function () {//当点击删除的时候
+                  this.parentNode.parentNode.removeChild(this.parentNode)//删除自己的爸爸mark(自杀)
+                  arr[i.dataset.j] = false//删除数组中的值(因为自杀只是删除了自己的Node节点,但是数组中保存的数据并没有删除)
+                  // console.log(arr);
+                  var deleDD = dls[i.dataset.j].querySelectorAll('dd')//根据删除按钮上携带的下标(在数组中是第几个就是第几个dl),选中对应的dl,清空dl并且给第一个元素默认红色
+                  deleDD.forEach(function (i) {//遍历拿到的dl哪一行的dd
+                    i.style.color = '#666'//删除所有的颜色
+                  })
+                  deleDD[0].style.color = 'red'//将第一个元素变为红色
+                  priceCount(arr)//为什么要封装为一个函数?因为下面的计算价格的时候,每次点击都要重新计算价格
+                }
+              })
+              priceCount(arr)//为什么要封装为一个函数?因为下面的计算价格的时候,每次点击都要重新计算价格
+            }
+          })
+        })
+      }
+
+      //单独定义一个计算价格的函数
+      //步骤1(在chooseData里面创建dd的时候,将其dataset.price也设置上)
+      //步骤2(定义一个自定义的函数封装计算价格的代码)
+      //步骤3(当点击dd和点击删除a的时候,都重新计算一次代码)
+      /* function priceCount(arr) {
+        //获取input里面的数量
+        var input = document.querySelector('.goodsNum .num  input')
+        // console.log(input);
+        //初始价钱改变为单价*数量
+        var goodprice = goodData.goodsDetail.price * input.value;//获取信息中的价格
+        console.log(goodprice);
+        var opriceDetail = document.querySelector('.priceDetail span')//获取HTML中的价格标签
+
+        arr.forEach(function (i) {//遍历arr
+          if (!i) {//如果没有价格,跳过
+            return
+          }
+          //计算价格的时候也要乘以数量
+          goodprice += +i.dataset.price * input.value//有价格则添加其自定义属性标签的price进商品总价格
+        })
+        opriceDetail.innerHTML = goodprice//改变HTML的价格
+      } */
+      //设置价格input为只读
+      //获取+-按钮,input标签
+      //绑定点击事件
+      //动态获取当前价格
+
+      //练习:
+      /* --------------------------------------------------------------------- */
+      function priceCount(arr) {//定义一个函数专门用于计算价格
+        var input = document.querySelector('.goodsNum .num input')//获取input输入框的值作为商品数量
+        // var price = goodData.goodsDetail.price * input.value//获取来自初始信息的价格(要乘以input的值)
+        var price = goodData.goodsDetail.price //获取来自初始信息的价格(要乘以input的值)
+        var priceHT = document.querySelector('.priceDetail span')//获取页面红色价格
+        arr.forEach(function (i, j) {//遍历insert数组,添加对应的dataset进初始价格
+          if (!i) {//如果inser数组中没有i,直接返回
+            return
+          }
+          // price += +i.dataset.price* input.value //令初始价格增加(增加的同时也要乘以input的值,不然input改变就不准了)
+          price += +i.dataset.price //令初始价格增加(增加的同时也要乘以input的值,不然input改变就不准了)
+        })
+        // console.log(input.value * nowPrice)
+        priceHT.textContent = price * input.value//赋值页面红色价格为(input.value*初始价格)
+      }
+
+      num()
+      function num() {
+        var plus = document.querySelector('.goodsNum .num .plus');//获取加号
+        var mins = document.querySelector('.goodsNum .num .mins');//获取减号
+        var input = document.querySelector('.goodsNum .num input');//获取输入框input
+        var count = 1;//初始值为1
+        var priceHT = document.querySelector('.priceDetail span');//获取页面红色价格
+        plus.onclick = function () {//点击加号
+          var nowPrice = +priceHT.textContent//获取页面红色价格
+          count++//计数器增加
+          input.value = count//input显示的计数器增加
+          priceHT.textContent = nowPrice / (count - 1) * count//改变页面红色价格为'原价格'*count//(count--)是后--//这里不能用count--,为什么????窝巢
+        }
+        mins.onclick = function () {
+          var nowPrice = +priceHT.textContent
+          count--
+          if (count < 1) {
+            count = 1
+            return//必须return,不然下面的始终会执行
+          }
+          input.value = count
+          priceHT.textContent = nowPrice / (count + 1) * count
+        }
+      }
+
+      /* puls.onclick = function () {//点击加号
+          var nowPrice = +priceDetail.textContent//每次点击加号都获取一次当前的单价(但是获取的单价是上次乘以了数量之后的单价,所以下面要除以上一次的数量后,再乘以'单价')
+          count++//让数量增加
+          input.value = count//让输入框的值等于增加后的数量
+          priceDetail.textContent = nowPrice / (count - 1) * count//每次的当前价格为(上一次的当前价格/上一次的count)*当前count
+        }
+        mins.onclick = function () {
+          var nowPrice = +priceDetail.textContent
+          count--
+          if (count < 1) {
+            count = 1
+            return
+          }
+          input.value = count
+          priceDetail.textContent = nowPrice / (count + 1) * count
+        }
+      } */
+
+
+
+
+
+
+
+      /* num()//封装一个计算数量的函数
+      function num() {
+        var puls = document.querySelector('.goodsNum .num .plus')//获取加按钮
+        var mins = document.querySelector('.goodsNum .num .mins')//获取减按钮
+        var input = document.querySelector('.goodsNum .num input')//获取输入框
+        var priceDetail = document.querySelector('.priceDetail span')//获取显示区域的价格
+
+        var count = 1//初始数量
+        puls.onclick = function () {//点击加号
+          var nowPrice = +priceDetail.textContent//每次点击加号都获取一次当前的单价(但是获取的单价是上次乘以了数量之后的单价,所以下面要除以上一次的数量后,再乘以'单价')
+          count++//让数量增加
+          input.value = count//让输入框的值等于增加后的数量
+          priceDetail.textContent = nowPrice / (count - 1) * count//每次的当前价格为(上一次的当前价格/上一次的count)*当前count
+        }
+        mins.onclick = function () {
+          var nowPrice = +priceDetail.textContent
+          count--
+          if (count < 1) {
+            count = 1
+            return
+          }
+          input.value = count
+          priceDetail.textContent = nowPrice / (count + 1) * count
+        }
+      } */
+
+      //-----------------------------------------
+      // 面相对象
+      //公有属性:实例化对象和原型对象都能用的属性,构造函数的this和原型对象的this都指向实例化对象
+      //搞一个构造函数,每次想要让某个东西能用tab切换的时候,就实例化并且传入参数
+      /* function Tfab(titles, cons) {
+        this.titles = titles//给实例化对象添加titiles
+        this.cons = cons//给实例化对象添加cons
+        var that = this//缓存this,因为forEach的this指向window
+        this.titles.forEach(function (i, j) {//遍历实例对象的titles
+          i.onclick = function () {//绑定titles点击事件
+            that.click(this, j)//让对应的title的点击触发构造函数中的click方法
+          }
+        })
+      }
+      Tfab.prototype.click = function (target, i) {//定义一个原型方法(实例化可用)
+        var that = this//这里的this指向原型对象click函数的调用者(实例对象)
+        this.titles.forEach(function (i, j) {//实例对象遍历titles
+          i.classList.remove('active')//移除titles的active
+          that.cons[j].classList.remove('active')//移除实例对象的cons[j]的active
+        })
+        target.classList.add('active')//点击事件对应的titles添加active
+        this.cons[i].classList.add('active')//点击事件对应的cons添加active
+      }
+
+
+      function Tdab(titles, cons) {
+        this.titles = titles
+        this.cons = cons
+        var that = this
+        this.titles.forEach(function (i, j) {
+          i.onclick = function () {
+            // that.click(titles, j)//传递titles和对应的j
+            that.click(this, j)
+          }
+        })
+      }
+      Tdab.prototype.click = function (titles, j) {
+        var that = this
+        this.titles.forEach(function (i, j) {
+          i.classList.remove('active')
+          that.cons[j].classList.remove('active')
+        })
+        // titles.classList.add('active')//这里为什么华哥的可以我的不行?ca
+        // this.titles[j].classList.add('active')
+        this.cons[j].classList.add('active')
+
+
+      }
+       */
+      //-------------------------------------
+      //帮助理解版本
+      function Tab(titles, cons) {//构造函数封装Tab,需要你传入的titles和cons(这里只是形参)
+        this.titles = titles//为实例化对象添加传入了值的形参
+        this.cons = cons//为实例化对象添加传入了值的形参
+        var that = this//缓存this,下面forEach用
+        this.titles.forEach(function (i, j) {//遍历this的titles
+          i.onclick = function () {//绑定点击事件,点击的时候调用ptoto里面的click
+            that.click(j)//传入j(这里只需要点击titles的j序号即可)
+          }
+        })
+      }
+
+      Tab.prototype.click = function (j) {//原型方法
+        var that = this//缓存改方法的调用者(实例对象)this
+        this.titles.forEach(function (i, j) {//遍历实例对象的titles,并且删除所有的active
+          i.classList.remove('active')
+          // that.titles[j].classList.remove('active')
+          that.cons[j].classList.remove('active')
+        })
+        //添加对应的j的东东为active
+        this.titles[j].classList.add('active')
+        this.cons[j].classList.add('active')
+      }
+      //---------------------------------------
+
+      navTab()//左侧导航tab切换
+      function navTab() {//封装一个函数实现侧边栏tab切换(不封装也行,但是封装更清晰)
+        var titles = document.querySelectorAll('.tabTitle h4')//获取侧边栏的titles
+        var cons = document.querySelectorAll('.tabContent .tab-pane')//获取侧边栏的cons
+        new Tab(titles, cons)//实例化一个对象,并且传入参数titles和cons
+      }
+
+      conTab()//中间内容导航tab切换
+      function conTab() {
+        var titles = document.querySelectorAll('.tab-wraped li')
+        var cons = document.querySelectorAll('.tab-content .tab-pane')
+        new Tab(titles, cons)
+      }
+
+      //侧边栏
+      asideClick()
+      /* function asideClick() {
+        var toolBar = document.querySelector(".toolBar")//获取侧边栏整体
+        var menu = document.querySelector('.menu')//获取点击的头部按钮
+        var flag = false//定义一个flag作为开关
+        menu.onclick = function () {//当点击头部按钮的时候
+          if (flag) {//判断开关flag
+            toolBar.style.right = "-294px";//移动侧边栏整体
+          } else {
+            toolBar.style.right = "0px";
+          }
+          flag = !flag//每次打开关闭开关,取反
+        }
+      } */
+      // 练习
+      function asideClick() {
+        var toolBar = document.querySelector('.toolBar')
+        var menu = document.querySelector('.menu')
+        var flag = false;
+        menu.onclick = function () {
+          if (flag) {
+            toolBar.style.right = "-294px";
+          } else {
+            toolBar.style.right = "0px";
+          }
+          flag = !flag;
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
