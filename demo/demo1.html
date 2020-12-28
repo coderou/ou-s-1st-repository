@@ -1,136 +1,38 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="ch">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=d, initial-scale=1.0">
   <title>Document</title>
-  <!-- 通过cdn引入jq -->
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.js"></script>
-  <!-- 引入css -->
-  <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
-  <div class="box">classbox</div>
-  <div id="box">idbox</div>
-  <div class="outer">
-    <!-- tab切换 -->
-    <div class="tab">
-      <!-- 标题 -->
-      <header class="title">
-        <h2 class="active">标题1</h2>
-        <h2>标题2</h2>
-        <h2>标题3</h2>
-        <h2>标题4</h2>
-      </header>
-      <!-- 内容 -->
-      <div class="con">
-        <section class="active">内容一</section>
-        <section>内容二</section>
-        <section>内容三</section>
-        <section>
-          <div class="haha">
-            <p><a href="javascript:;">超链接1</a></p>
-            <p><a href="javascript:;">超链接2</a></p>
-            <p><a href="javascript:;">超链接3</a></p>
-            <p><a href="javascript:;">超链接4</a></p>
-            <p><a href="javascript:;">超链接5</a></p>
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-  <!-- ```1.jQuery的基本使用 -->
+  <!-- <script>
+    //==>拿到对象的keys数组的方法
+    var obj={
+      name:'小王',
+      age:19
+    }
+    console.log(Object.keys(obj));
+  </script> -->
   <script>
-    // console.log($);//引入成功就可以打印$
-    $(document).ready(function () {
-      //内部就是用的DOMContentLoaded,所以优先级相同(可以简写)
-      $('.title h2')
-      //可以直接写css选择器,jQuery最强大的功能就是选择器
-      $('.title h2').click(function () {
-        //$找到的是一个jq对象,这个对象可以使用jq原型中的方法,其中click就是绑定点击函数
-        // console.log(this);
-        // console.log($(this));
-        //this必须要用$(this)才行,因为this是js的this,而$(this)才是jq的this,才能用jq的方法
-        $(this).addClass('active').siblings().removeClass('active')
-        //给jq的this添加class,siblings是$(this)的兄弟元素
-        $('.con section').eq($(this).index()).addClass('active').siblings().removeClass('active')
-        //eq是选择下标为对应值的元素(常用于获取多个节点后的操作,js默认会隐式遍历)
-        //这里是找到下标等于$(this).index()的section,进行操作
-        $(this).addClass('active').siblings().removeClass('active').parent().siblings('.con').children('section').eq($(this).index()).addClass('active').siblings().removeClass('active')
-        //链式编程写法,面相过程的实现,每一次.都是一个步骤,这里面的parent()是找到父节点,children()是找到下一级子元素
-      })
-    })
-  </script>
-  <!-- ```2.jQuery的原理 -->
-  <script>
-    //使用jQuery选择器获取的元素或者jQ方法返回的元素，属于jQuery实例化对象
-    //实例化对象可以调用jQuery的原型方法  
-    //jQuery构造函数对象可以调用自己的静态方法
-    //只有jquery实例化对象和jQuery对象 才能使用jQ提供的各种方法
-    $(function () {//ready的简写方式(一般都用这个)
-      console.log($('.haha').children());
+    //==>es6的类的使用方法
+    class Person{
+      //类的构造方法
+      constructor(name, age){
+        console.log('----constructor被调用-----')
+        this.name = name;
+        this.age = age;
+      }
+      //类的一般方法,和construstor统一放在实例对象的原型上了(__proto__)
+      showInfo(){
+        console.log(this.name,this.age)
+      }
+    }
+    let person1 = new Person('kobe', 32)
+    console.log(person1);
 
-    })
-    function jQuery() {
-      //jq其实就是个构造函数
-    }
-    jQuery.prototype.css = function () {
-      //jq的原型对象上有很多方法
-    }
-    jQuery.prototype.each = function () {
-    }
-    jQuery.ajax = function () {
-    }
-
-    // window.jQuery = window.$ = jQuery;//jq内部有这个函数,jq并不是返回出去,而是绑定在window全局对象上
-  </script>
-  <!-- ```3.jQuery的简写方式 -->
-  <script>
-    /*
-      $(document)是选中文档节点 返回一个jQ对象的文档节点
-      ready()方法是一个事件的简写，代表加载完成  里边是一个回调函数
-      当DOM节点加载完成以后就会执行回调函数
-      被称作为包裹，一般用在代码外层
-      有简写，一般书写简写
-      可以书写多次
-    */
-    $(document).ready(function () { })
-    //简写==>
-    $(function () { })
-    /* window.onload是js的事件，代表资源和节点全部加载完成才触发
-    DOMContentLoaded和ready事件一致 */
-  </script>
-  <!-- ```4.jQuery获取对象的方式和js代码的互相转换 -->
-  <script>
-    /* 代码风格：
-    - 隐式迭代
-    一般情况下 如果执行的内容一致，则直接隐式迭代，不需要我们遍历(也就是)
-    - 链式调用
-    jQuery的每一个方法都会返回一个jQuery对象，返回的是前边离他最近的jQuery元素获取
-    也就是可以将代码都写成一行,面相过程的思想
-    极客学院:jQuery和js
-    */
-    $("body").css("background", "seagreen")
-    //获取body-设置背景颜色
-    console.log($("body").css("background", "green"))
-    //打印这个jq对象
-    $("body").css("background", "green").find(".box").css("background-color", "#ccc")
-    //打印对象
-    console.log($("body").css("background", "green").find(".box").css("background-color", "seablue"))
-    //-----------------------------------------------
-    /* jQ转js
-      - 给下标的方式
-      - jquery提供了get方法() 里边书写下标 */
-    // $(".box").style.color = "red";//不行,因为获取到的box是一个数组
-    $(".box")[0].style.color = "red";//jq选择box方法1
-    $(".box").get(0).style.color = "red";//jq选择box方法2
-
-    /* js转jq:
-    在js对象外边 包裹一层 $() 即可把js对象转jq */
-    var box = document.querySelector('.box');//js选择box
-    $(box).css("color", "red");//jq改变box
   </script>
 </body>
 
