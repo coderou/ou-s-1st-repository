@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn1">按钮1</button>
+  <button id="btn2">按钮2</button>
+  <div id="outer" style="height: 200px;width: 200px;background-color: bisque;">
+    <div id="inner" style="height: 100px;width: 100px;background-color: salmon;"></div>
+  </div>
+  <script>
+    var btn1=document.getElementById('btn1')
+    var outer=document.getElementById('outer')
+    var inner=document.getElementById('inner')
+    btn1.onclick=function(){
+      inner.outerHTML='哈哈'
+    }
+  </script>
+  1.三大法宝:1,多声明一个变量2,flag3,自定义属性
+  2.谷歌浏览器机制:切换页面计时器会减慢速度,里外2个计时器就冲突了
+  自研是跟新的,更好,外包就是搬运工,但是工资可能比高
+</body>
+
+</html>
