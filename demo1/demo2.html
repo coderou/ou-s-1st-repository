@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 手写生成[10,80)的随机数
+    /* for (var i = 0; i < 100; i++) {
+        var a = Math.floor(Math.random() * 70+10)
+        console.log(a);
+    } */
+
+
+    // 生成一个7天以后的现在的时间
+    // 比如现在是2020年12月15日16点33分20秒  则得到一个2020年12月22日16点33分20秒
+    var newdate = new Date()
+    newdate.setDate(newdate.getDate() + 7)
+    console.log(newdate);
+    
+    var threeDatLast = new Date();
+    threeDatLast.setDate(new Date().getDate()+7);
+    console.log(threeDatLast.toLocaleString());
+
+
+  </script>
+</body>
+
+</html>
