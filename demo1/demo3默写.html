@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 手写防抖函数 -->
+  <!-- <script>
+    function show1() {//实际逻辑代码
+      console.log(this)
+      console.log(1);
+    }
+    /* var timer = null//定义下面的定时器的句柄
+    function debounce(fn, delay) {//防抖函数本体
+      clearTimeout(timer)//每次执行防抖函数,清楚定时器
+      timer = setTimeout(function () {
+        fn()//在防抖函数中调用实际逻辑代码
+      }, delay)
+    } 
+    问题:改防抖的timer是定义在debounce的上一级中的,无法复用,所以用下面的
+    */
+
+    function debounce(fn, time) {
+      var timer = null
+      return function () {
+        clearTimeout(timer)
+        var that = this
+        var arg = arguments[0]
+        timer = setTimeout(function () {
+          console.log(1)
+          fn.call(that, arg)
+        }, time)
+      }
+    }
+    document.onmousemove = debounce(show1, 1000)//鼠标带document中移动即可不断触发防抖函数,只要防抖函数一直触发,就一直清楚定时器,节约性能
+  </script> -->
+  <!-- 手写节流函数 -->
+  <!-- <script>
+    function show1() {
+      console.log('1')
+    }
+    function throttle(fn, time) {
+      var lastTime = 0
+      return function () {
+        var nowTime = Date.now()
+        if (nowTime - lastTime < time) {
+          return
+        }
+        lastTime = nowTime
+        fn.call(this,arguments[0])
+      }
+    }
+    document.onclick = throttle(show1, 1000)
+
+  </script> -->
+  <!-- 手写bind -->
+  <!-- <script>
+    Function.prototype.myBind = function (context) {
+      var _this = this
+      var arg = Array.from(arguments).slice(1)
+      arg ? arg : []//apply特有
+      return function () {//返回一个呗改变this执行的函数,注意,因为下面还有return,后面的函数是调用了的
+        return _this.apply(context,arg)
+      }
+    }
+
+  </script> -->
+  <!-- 手写call -->
+  <!-- <script>
+    Function.prototype.myCall = function (context) {
+      // var type = checkType(context)//checkType要用到call,这里用typeof
+      var type=typeof context
+      if (context === undefined || context === null) {
+        context = window
+      }
+
+      switch (type) {
+        case 'number':
+          context = new Number(context)
+          break
+        case 'string':
+          context = new String(context)
+          break
+        case 'boolean':
+          context = new Boolean(context)
+          break
+      }
+      var _this = this
+      context.fn = _this//这,,,和this有区别??(o(╥﹏╥)o)
+      var arg = Array.from(arguments).slice(1)//转数组并拿到第2个开始的参数
+      var result = eval('context.fn(' + arg.toString() + ')')
+      delete context.fn
+      return result
+    }
+
+    function checkType(obj) {
+      return Object.prototype.toString.call(obj).slice(8. - 1).toLowerCase()
+    }
+  </script> -->
+  <!-- 手写apply -->
+  <!-- <script>
+    Function.prototype.myApply = function () {
+      var type = checkType(context)
+      if (context === undefined || context === nunll) {
+        context = window
+      }
+
+      switch (type) {
+        case 'number':
+          context = new Number(context)
+          break
+        case 'string':
+          context = new String(context)
+          break
+        case 'boolean':
+          context = new Boolean(context)
+          break
+      }
+
+      context.fn = this
+      var arg = arguments[1]
+      arg ? arg : []
+      var result = eval('context.fn(' + arg.toString() + ')')
+      delete context.fn
+      return result
+    }
+    var checkType = function (obj) {
+      return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()
+    }
+  </script> -->
+  <!-- 手写深拷贝 -->
+  <!-- <script>
+    function deepCopy(obj) {
+      if (checkType(obj) === 'object') {
+        var newObj = {}
+      } else if (checkType(obj) === 'array') {
+        var newObj = []
+      } else {
+        return obj
+      }
+
+      for (var key in obj) {
+        newObj[key] = deepCopy(obj[key])
+      }
+      return newObj
+    }
+
+    function checkType(obj) {
+      return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()
+    }
+  </script> -->
+  <!-- 手写防抖 -->
+  <!-- <script>
+    function debounce(fn, time) {
+      var timer = null
+      return function () {
+        clearTimeout(timer)
+        var _this = this
+        var arg = arguments
+        timer = setTimeout(function () {
+          fn.call(_this, arg[0])
+        }, time)
+      }
+    }
+  </script> -->
+  <!-- 手写节流 -->
+  <!-- <script>
+    function throttle(fn, time) {
+      var lastTime = 0
+      return function () {
+        var nowTime = Date.now()
+        if (nowTime - lastTime < time) {
+          return
+        }
+        lastTime = nowTime
+        fn.call(this, arguments[0])
+      }
+    }
+  </script> -->
+  <!-- 手写call -->
+  <!-- <script>
+    Function.prototype.myCall = function (context) {
+      var type = typeof context
+      if (context === null || context === undefined) {
+        context = window
+      }
+      switch (type) {
+        case 'number':
+          context = new Number(context)
+          break
+        case 'string':
+          context = new String(context)
+          break
+        case 'boolean':
+          context = new Boolean(context)
+          break
+      }
+
+      var arg = Array.from(arguments).slice(1)
+      context.fn = this//改变this执行最核心代码
+      var result = eval('context.fn(' + arg.toString() + ')')
+      delete context.fn
+      return result
+      // apply不同点
+      // var arg=arguments[0]
+      // arg?arg:[]
+    }
+  </script> -->
+  <!-- 手写bind -->
+  <!-- <script>
+    Function.prototype.myBind = function (context) {
+      var _this = this
+      var arg=Array.from(arguments).slice(1)
+      arg ? arg : []
+      return function () {
+        return _this.apply(context, arg)
+      }
+    }
+  </script> -->
+  <!-- 手写new -->
+  <!-- new做了什么?
+  1.返回一个对象
+  2.改变Fn的this指向fn
+  3.链接原型对象
+  4.
+  - 构造函数没有返回值||返回值是基本类型值==>正常返回实例化对象
+  - 构造函数返回值是对象类型==>不返回实例化对象==>返回该对象类型 -->
+  <!-- new -->
+  <!-- <script>
+    function myNew(FN) {
+      var obj = {}
+      var result = FN.apply(obj, Array.from(arguments).slice(1))
+      obj.__proto__ = FN.prototype
+      if (typeof result === 'object' && typeof result != "null") {
+        return result
+      } else if (typeof result === 'function') {
+        return result
+      }
+      return obj
+    }
+  </script> -->
+  <!-- new手写 -->
+  <!--  <script>
+    function myNew(FN) {
+      var obj = {}
+      var result = FN.call(obj, Array.from(arguments).slice(1))
+      obj.__proto__ = FN.prototype
+      if (typeof result === 'object' && typeof result != 'null') {
+        return result
+      }
+      if (typeof result === 'function') {
+        return result
+      }
+      return obj
+    }
+  </script> -->
+  <!-- 手写call -->
+  <!-- <script>
+    Function.prototype.myCall = function (context) {
+      var type = typeof context
+      if (context === undefined || context === null) {
+        context = window
+      }
+      switch (type) {
+        case 'number':
+          context = new Number(context)
+          break
+        case 'string':
+          context = new String(context)
+          break
+        case 'boolean':
+          context = new Boolean(context)
+          break
+      }
+
+      var arg = Array.from(arguments).slice(1)
+      context.fn = this
+      var result = eval('context.fn(' + arg.toString() + ')')
+      delete context.fn
+      return result
+    }
+  </script> -->
+  <!-- new -->
+  <!-- <script>
+    function myNew(FN) {
+      var obj = {}
+      var result = FN.apply(obj, Array.from(arguments).slice(1))
+      obj.__proto__ = FN.prototype
+      if (typeof result === 'Object' && typeof result != 'null') {
+        return result
+      }
+      if (typeof result === 'Function') {
+        return result
+      }
+      return obj
+    }
+  </script> -->
+  <!-- Bind -->
+  <!-- <script>
+    Function.prototype.myBind = function (context) {
+      var _this = this
+      var arg = Array.from(arguments).slice(1)
+      arg ? arg : []
+      return function () {
+        return _this.apply(context, arg)
+      }
+    }
+  </script> -->
+  <!-- 节流 -->
+  <!-- <script>
+    function throttle(fn, time) {//传入真执行函数和节流触发时间
+      var lastTime = 0
+      return function () {
+        var nowTime = Date.now()
+        if (nowTime - lastTime < time) {
+          return
+        }
+        lastTime = nowTime
+        fn.call(this, arguments[0])
+      }
+    }
+  </script> -->
+  <!-- 防抖 -->
+  <!-- <script>
+    function debounce(fn, time) {
+      var timer = null
+      return function () {
+        clearTimeout(timer)
+        var _this = this
+        var arg = arguments
+        timer = setTimeout(function () {
+          fn.call(_this, arg[0])
+        }, time)
+      }
+    }
+  </script> -->
+  <!-- 深拷贝 -->
+  <!-- <script>
+
+
+    function deepClone(obj) {
+      if (checkType(obj) === 'object') {
+        var newObj = {}
+      } else if (checkType(obj) === 'array') {
+        var newObj = []
+      } else {
+        return obj
+      }
+      for (var key in obj) {
+        newObj[key] = deepClone(obj[key])
+      }
+      return newObj
+
+    }
+
+    function checkType(obj) {
+      return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()
+    }
+  </script> -->
+  <!-- 快排 -->
+  <!-- <script>
+    function quickSort(arr) {
+      if (arr.length <= 1) {
+        return arr
+      }
+      var left = []
+      var right = []
+      var center = arr.splice([Math.floor(arr.length / 2)], 1)
+      console.log(center)
+      arr.forEach(function (i, j) {
+        if (i <= center) {
+          left.push(i)
+        } else if (i > center) {//直接写else一样
+          right.push(i)
+        }
+      })
+      // var result = []
+      // return result.concat(quickSort(left), center, quickSort(right))
+      var newArr = quickSort(left).concat(center, quickSort(right))
+      return newArr
+    }
+    var rr = quickSort([1, 4, 8, 9, 2, 3, 6, 5, 7])
+    console.log(rr);
+  </script> -->
+  <!-- 快排2 -->
+  <!-- <script>
+    function qs(arr) {
+      if (arr.length <= 1) {
+        return arr
+      }
+      var left = []
+      var right = []
+      var center = arr.splice([Math.floor(arr.length / 2)], 1)//splice,从指定位置截取指定数量的元素,并返回(被截取的元素).会改变原数组
+      // console.log(arr[Math.floor(arr.length / 2)])//没有改变原数组!!!!!!!!!!
+      arr.forEach(function (i, j) {
+        if (i <= center) {
+          left.push(i)
+        } else {
+          right.push(i)
+        }
+      })
+      return qs(left).concat(center, qs(right))
+    }
+    console.log(qs([1, 9, 8, 7, 6, 5, 3, 2, 1]))
+
+  </script> -->
+  <!-- 快排3 -->
+  <!-- <script>
+    function qs(arr) {
+      if (arr.length <= 1) {
+        return arr
+      }
+      var left = []
+      var right = []
+      var center = arr.splice(Math.floor(arr.length / 2), 1)
+      arr.forEach(function (i, j) {
+        if (i <= center) {
+          left.push(i)
+        } else {
+          right.push(i)
+        }
+      })
+      return qs(left).concat(center, qs(right))
+    }
+    console.log(qs([, 6, 5, 4, 3, 2, 1]))
+
+  </script> -->
+  <!-- 手写instanceof -->
+  <!-- <script>
+    function myInstanceof(a, b) {
+      var startA = A.__proto__
+      while (startA) {
+        if (startA === B.prototpe) {
+          return true
+        }
+        startA = startA.__proto__
+      }
+      return false
+    }
+  </script> -->
+  <!-- 手写组合继承 -->
+  <!-- <script>
+    function animal(name, sex) {
+      this.name = name,
+        this.sex = sex
+    }
+    animal.prototype.jiao = function () {
+      console.log('hello');
+    }
+    function cat(type, name, sex) {
+      animal.call(this, name, sex)
+      this.type = type
+    }
+    cat.prototype=new animal()
+    cat.prototype.constructor=cat
+    var ss=new cat('泰迪','小花','公公')
+    ss.jiao()
+  </script> -->
+  <!-- 手写节流(每次向下执行lastTime更新,节流防抖都只需要arguments[0]) -->
+  <!-- <script>
+    function throttle(fn, time) {
+      var lastTime = 0
+      return function () {
+        var nowTime = Date.now()
+        if (nowTime - lastTime < time) {
+          return
+        }
+        lastTime = nowTime
+        fn.call(this, arguments[0])
+      }
+    }
+    function fn1() {
+      console.log(1);
+    }
+    document.onmousemove = throttle(fn1, 500)
+  </script> -->
+  <!-- 手写防抖(每次进入返回的函数要清楚定时器!,这里arg不需要截取了,直接传入就行) -->
+  <!-- <script>
+    function debounce(fn, time) {
+      var timer = null
+      return function () {
+        clearTimeout(timer)
+        var _this = this
+        // var arg = Array.from(arguments).slice(1)
+        var arg=arguments
+        timer = setTimeout(function () {
+          fn.call(_this, arg[0])
+        }, time)
+      }
+    }
+  </script> -->
+  <!-- 手写call -->
+  <!-- <script>
+    Function.prototype.myCall = function (context) {
+      var type = typeof context
+      if (context === undefined || context === null) {
+        context = window
+      }
+      switch (type) {
+        case 'number':
+          context = new Number(context)
+          break
+        case 'string':
+          context = new String(context)
+          break
+        case 'boolean':
+          context = new Boolean(context)
+          break
+      }
+
+      var arg = Array.from(arguments).slice(1)
+      context.fn = this
+      var result = eval('context.fn(' + arg.toString() + ')')
+      delete context.fn
+      return result
+
+    }
+  </script> -->
+  <!-- 手写Bind -->
+  <!-- <script>
+    Function.prototype.myBind = function (context) {
+      var _this = this
+      var arg = Array.from(arguments).slice(1)
+      arg ? arg : []
+      return function () {
+        return _this.apply(context, arg)
+      }
+    }
+  </script> -->
+  <!-- 手写new(传入的是构造函数而不是obj,原型链链接) -->
+  <!-- <script>
+    function myNew(FN) {
+      var obj = {}
+      var arg = Array.from(arguments).slice(1)
+      var result = FN.call(obj, arg)
+      obj.__proto = FN.prototype
+      if (typeof result === 'object' && typeof result != 'null') {
+        return result
+      }
+      if (typeof result === 'function') {
+        return result
+      }
+      return obj
+    }
+  </script> -->
+  <!-- 手写快排 -->
+  <!-- <script>
+    function qs(arr) {
+      if (arr.length <= 1) {
+        return arr
+      }
+      var left = []
+      var right = []
+      var center = arr.splice(Math.floor(arr.length / 2), 1)
+      arr.forEach(function (i, j) {
+        if (i <= center) {
+          left.push(i)
+        } else {
+          right.push(i)
+        }
+      })
+      return qs(left).concat(center, qs(right))
+    }
+
+    console.log(qs([1, 3, 2, 2, 3, 6, 3]))
+  </script> -->
+  
+</body>
+
+</html>
