@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .outer {
+    height: 200px;
+    width: 200px;
+    /* background-color: sandybrown; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    right: 0;
+    top: 100px;
+  }
+
+  .out {
+    height: 50px;
+    width: 1px;
+    /* background-color: red; */
+  }
+
+  .out2 {
+    height: 50px;
+    width: 200px;
+    /* background-color: seagreen; */
+  }
+
+  .out3 {
+    height: 50px;
+    width: 200px;
+    /* background-color: seagreen; */
+  }
+
+  .box1 {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    background-color: skyblue;
+    z-index: 1;
+  }
+
+  .box2 {
+    height: 50px;
+    width: 200px;
+    position: absolute;
+    right: -150px;
+    /* text-align: center; */
+    text-indent: 2em;
+    line-height: 50px;
+    font-size: 20px;
+    background-color: plum;
+  }
+</style>
+
+<body>
+  <div class="outer">
+    <div class="out">
+      <div class="box1">反馈</div>
+      <div class="box2">我的反馈</div>
+    </div>
+    <div class="out">
+      <div class="box1">反馈</div>
+      <div class="box2">我的反馈</div>
+    </div>
+    <div class="out">
+      <div class="box1">反馈</div>
+      <div class="box2">我的反馈</div>
+    </div>
+  </div>
+  <script>
+    var box1s = document.querySelectorAll('.outer>div>.box1')
+    var box2s = document.querySelectorAll('.outer>div>.box2')
+    box1s.forEach(function (i, j) {
+      var num = 0
+      var move = null
+      i.onmouseenter = function () {
+        clearInterval(move)
+        // console.log(1);
+        // box2s[j].style.right = '0px'
+        move = setInterval(function () {
+          num += 2;
+          box2s[j].style.right = num + 'px'
+          if (num == 0) {
+            clearInterval(move)
+          }
+        }, 1)
+      }
+      i.onmouseleave = function () {
+        clearInterval(move)
+        // console.log(1);
+        // box2s[j].style.right = '-150px'
+        move = setInterval(function () {
+          num -= 2;
+          box2s[j].style.right = num + 'px'
+          if (num == -150) {
+            clearInterval(move)
+          }
+        }, 1)
+      }
+    })
+
+    function movefn(i, j, num) {
+
+    }
+  </script>
+</body>
+
+</html>
