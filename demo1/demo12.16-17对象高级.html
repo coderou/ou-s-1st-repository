@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- ```数据类型 -->
+  <!-- <script>
+    /* 数据类型:
+      # 基本数据类型
+        - null
+        - undefined
+        - number
+          整型(整数)
+          浮点(小数)
+          八进制(0o10)(十进制的8)
+          二进制(0b10)(十进制的2)
+          十六进制(Oxff)(十进制的255)
+          Infinity
+          科学计数法 1.89E8  1.89 * 10 ^ 8
+          NaN
+        - string字符串方法
+          split\slice\substr\substring\replace\trim\toLowerCase\concat\indexOf\repeat\valueOf\charAt
+          boolean
+          symbol(ES6)
+          bigint(ES6)
+      # 对象数据类型 Object
+        Function
+        Object
+        Array
+        Math
+        Date
+        RegExp
+        Set(Es6)
+        Map(Es6) */
+  </script> -->
+  <!-- ```面试题 -->
+  <!-- <script>
+    /* forEach: 没有返回值, 只是遍历数组, 可加工
+    map: 映射数组, 返回一个和原数组同长度的数组, 数组的内容 是原数组每个值 每次进入回调函数的返回值 */
+
+    var arr = [1, 2, 3]
+    var res = arr.map(function (item, index) {
+      //...
+      //return item+1
+    })//res:[undefined,undefined,undefined]
+
+    /* parseInt(a, b)
+    把b进制的a转换为10进制
+    如果a书写的不是10进制, 会先转换10进制 */
+
+    var re = [1, 2, 'a', 'b', 1, 1, 1, 1].map(parseInt)
+    console.log(re);//[1,Nan,Nan]
+    parseInt(1, 0)//默认10进制
+    parseInt(2, 1)//没有1进制
+    parseInt('a', 2)//有2进制但是没有a
+
+  </script> -->
+  <!-- ```生成10位数字随机数 -->
+  <!-- <script>
+    /* 生成10位数字字母随机数
+    1.生成一个[0 - 35]的随机数
+    2.转换成36进制
+    3.把10次的结果拼接字符串 */
+    var str = ''
+    for (var i = 0; i < 10; i++) {
+      var re = Math.floor(Math.random() * 36)//生成一个0-35的随机数,因为是包头不包尾,所以要取值36
+      re = re.toString(36)//转换为36进制
+      str += re//拼接到str字符串
+    }
+    console.log(str);
+    /* 生成一个永不重复的id */
+    console.log(Date.now());//D必须大写
+    console.log(Date.now().toString(36));//将改时间戳转换为36进制
+  </script> -->
+  <!-- ```判断数据类型 -->
+  <!-- <script>
+    /* # 方法1 typeof
+      - typeof得到的所有值:
+        number
+        boolean
+        string
+        undefined
+        object
+        function
+        symbol(ES6)
+        bigint(ES6)
+      - typeof能检测出来的类型
+        number\boolean\string\undefined\function\symbol(ES6)\bigint(ES6)
+      - 不能检测的类型
+        null,object */
+    function fn() { }
+    console.log(typeof fn);//function
+    var a
+    console.log(typeof a);//undefined
+    console.log(typeof null);//object
+
+    //---------------------------------------------
+    /* # 方法2 ===
+        - null和undefined只有一个唯一的值,所以可以使用全等判断null和undefined
+        A instanceof B */
+    console.log(a === undefined);//如果返回true,则一定是undefined
+    var b = null
+    console.log(b === null);//如果返回true,则一定是null
+    //-------------------------------------------
+    /* 方法3 A instanceof B
+    判断B在不在A的原型链上 只要在就都会返回true */
+    console.log([1, 2, 3] instanceof Array)//true
+    console.log({} instanceof Object);//true
+    console.log([1] instanceof Object);//true
+    console.log(new Date() instanceof Object);//true
+    //--------------------------------------------
+    /* 方法4 Object.prototype.toString()
+      完美检测任意数据类型(结果是[object 数据类型]) */
+    console.log(Object.prototype.toString.call([]));
+    console.log(Object.prototype.toString.call({}));
+    console.log(Object.prototype.toString.call('123'));
+    console.log(Object.prototype.toString.call(1));
+    console.log(Object.prototype.toString.call(true));
+    console.log(Object.prototype.toString.call(null));
+    console.log(Object.prototype.toString.call(undefined));
+    console.log(Object.prototype.toString.call(new Date()));
+    console.log(Object.prototype.toString.call(fn));
+    console.log(Object.prototype.toString.call(new RegExp()));
+
+    // 提取单独的数据类型字符串
+    console.log(Object.prototype.toString.call([]).slice(8, -1).toLowerCase());
+
+    //封装一个函数专门判断数据类型
+    function checkType(value) {
+      return Object.prototype.toString.call(value).slice(8, -1).toLowerCase()
+    }
+    console.log(checkType([]))
+    console.log(checkType({}))
+    console.log(checkType(""))
+    console.log(checkType(1))
+    console.log(checkType(true))
+  </script> -->
+  <!-- ```区分变量和数据类型 -->
+  <!-- <script>
+    /* 严格区分 变量类型和数据类型
+    var a=1
+    var b={}
+    变量类型:
+      指的是a 和 b 两个变量的数据类型
+      a变量保存的是一个基本类型值,所以a是一个 基本数据类型
+      b变量保存的是一个引用地址,所以b是一个 引用类型
+    数据类型:
+      指的是 1 和 {}
+      1 基本数据类型
+      {} 对象类型值 */
+  </script> -->
+  <!-- ```内存释放和垃圾回收 -->
+  <!-- <script>
+    /* 内存释放:
+      局部变量:
+        当函数调用执行完成,变量会被销毁,变量所代表的值没有被引用,则变量消失,对象变成垃圾对象,内存释放
+
+        全部作用域变量不会自动销毁:需要把一个变量设置为null,变量所代表的值就没有引用了,则变成了垃圾对象,内存释放
+
+      内存\数据\变量三者之间的关系
+        内存是用来存放数据的,通过变量才能访问内存 */
+  </script> -->
+  <!-- ```练习1 -->
+  <!-- <script>
+    // var a=xxx, a内存中到底保存的是什么?
+    var a
+    a = 'abc'//基本类型值
+    a = function () { }//一个对象的地址值
+    var b = true//基本类型值
+    a = b//基本类型值
+    b = []//地址值
+    a = b//地址值
+  </script> -->
+  <!-- ```练习2 -->
+  <!-- <script>
+    // 2个引用变量指向同一个变量,通过一个引用变量修改对象内部数据,另一个变量也能看见
+    var o1 = { m: 1 }
+    var o2 = o1//地址值的赋值
+    o2.m = 2//o2和o1都是同一个地址 代表同一个对象
+    console.log(o1.m, o1 === o2) //2  true
+    //2个引用变量指向同一个对象,让一个引用变量指向另一个对象, 另一个引用变量还是指向原来的对象(只是改引用变量指向原对象的指针断了,重新建立了新的联系)
+    var o3 = { m: 3 }
+    var o4 = o3
+    o3 = { m: 4 }
+    console.log(o4.m, o4 === o3) //3 false
+  </script> -->
+  <!-- ```练习3 -->
+  <!-- <script>
+    //问:js调用函数时传递变量参数时,是值传递还是引用传递?
+    //答:只有值传递 没有引用传递 只不过传递的值可能是 地址  也可能是其他基本类型
+    //-----------------------------------------------
+    var o5 = { m: 2 }
+    var o6 = o5
+    //传参是 '地址值' 的赋值
+    function fn(obj) {
+      //var obj=o5//将o5的 '地址' 给了形参obj*********
+      //把obj的值赋值了一个新的地址 '不会影响外边的o5\o6'
+      obj = {
+        m: 5
+      }
+    }
+    fn(o5)
+    console.log(o5.m, o6.m, o6 === o5); //2 2 true
+    //------------------------------------------------
+    var o5 = { m: 5 }
+    var o6 = o5;
+    function fn(obj) { obj.m = 2 }//形参obj指向o5\o6指向的对象,修改成功
+    fn(o5)
+    console.log(o5.m, o6.m, o6 === o5) //2 2 true
+  </script> -->
+  <!-- ```对象 -->
+  <!-- <script>
+    /* 对象：
+      1 对象的key 最终解析出来一定是一个字符串类型，不可能是其他类型
+
+      2 .操作符: 叫做成员访问，访问或者设置一个对象的属性或方法，但是点操作符后跟的都是字符串
+
+      3 []操作符对于对象来说：访问或者设置一个对象的属性或方法，中括号中可以书写变量（最终会把变量解析为字符串），也可以书写字符串，但是必须添加引号
+
+      4 []操作符是万能的，里边可以书写变量或字符串，但是点操作符只能书写字符串（不用添加引号）
+
+      5 使用[]的场景：1.属性是用变量来表示的  2.key命名不规范 需要添加引号 */
+    //-----------------------------------------
+    var o1 = {};
+    var o2 = {};
+    var obj = {};
+    //o1和o2最终都解析为变量 '[object Object]'
+    obj[o1] = 1;
+    obj[o2] = 2;
+    console.log(obj)//2
+    //---------------------------------------------
+    obj.o1 = 1;
+    obj.o2 = 2;
+    console.log(obj.o1); //1
+    console.log(obj["o1"]); //1
+  </script> -->
+  <!-- ```函数(基本函数\回调函数\立即执行函数) -->
+  <!-- <script>
+    /* 1 什么是函数?
+      - 函数是n条语句的封装体，可以执行
+    2 函数作用?
+      - 代码复用
+      - 便于阅读和维护
+    3 函数的定义方法?
+      - 函数声明
+      - 函数表达式
+      - 实例化Function构造函数
+    4 函数的身份?
+      - 作为n条语句的封装体，在需要的位置调用
+      - 对象, 被称作为 函数对象
+    5 函数的调用?
+      - 默认调用  fn()
+      - 上下文对象调用  
+        obj.fn()
+        div.onclick = function () { }
+      - 实例化调用 new fn()
+      - call\apply调用 fn.call() */
+    function fn() { }
+    //可以吧函数当做对象 可以扩展属性和方法
+    fn.a = 1
+    console.log(fn.a);
+    //------------------------------------------
+    /* 什么是回调函数?
+      1 你定义的
+      2 你没有调用该函数
+      3 这个函数执行了 */
+    [1, 2].forEach(function () { })
+    document.onclick = function () { }
+    setTimeout(function () { }, 1000)
+    /* 常见回调函数
+      1 DOM事件函数
+      2 定时器函数
+      3 ajax回调函数(后面学)
+      4 生命周期回调函数(后面学)
+      5 array.forEach(element => {});//数组遍历 */
+    //-------------------------------------------
+    /* 立即执行函数(匿名函数自调用) IIFE
+      - 隐藏内部的实现
+      - 构成局部作用域 不会污染全局变量
+      - 模块化开发 */
+    // 注意点:如果使用匿名函数开发模块,最好在前面写上;,否则()与()之间没有;的话会报错,而且很难排查
+    for (var i = 0; i < 3; i++) {
+      setTimeout(function () {
+        console.log(i);//3
+      }, 1000)
+    }
+
+    //虽然用IIFE解决了333问题,但是这个会立即执行,也就是说延迟失效了,所以如果是延迟时间类的异步函数,最好不要用这个方法,因为会导致延迟执行失效(改用let)
+    for (var i = 0; i < 3; i++) {
+      setTimeout((function () {
+        console.log(i);//3
+      })(i), 1000);//这个;至关重要,如果不写,报错298行,所以在模块化开发中,最好在一开始前面写上;
+      /* 
+
+       */
+      (function () { })()
+    }
+
+    for (let i = 0; i < 3; i++) {//es6解决法
+      setTimeout(function () {
+        console.log(i);//3
+      }, 1000)
+    }
+  </script> -->
+  <!-- ```匿名函数与插入模块化js代码 -->
+  <!-- <script src="./module.js"></script> -->
+  <!-- ```this -->
+  <!-- <script>
+    /* 1 this是什么？
+      - 一个关键字，一个引用变量
+      - this在函数中可以直接使用
+      - this指向其所在函数的调用者，如果没有则指向window
+      - this在函数执行的时候才确定指向
+
+    2 this的指向和函数的调用方式相关：
+      # 函数默认调用（独立函数调用）
+        - 指向window
+      # 上下文对象调用
+        - 指向上下文对象
+        - 可能会出现隐式丢失现象（注意隐式丢失以后，this的指向）
+      # 实例化调用
+        - this指向实例化对象
+
+      # call apply bind 强制绑定
+        - 指向call、apply、bind的第一个参数
+
+    3 怎么确定this指向呢？
+      - 先看有没有强制绑定
+      - 再看是不是实例化调用
+      - 看是否有上下文对象调用
+      - 默认绑定 */
+    //-----------------------------------------
+    function fn() {
+      this.a = 1;
+      console.log(this);
+    }
+    fn(); //window
+    //------------------------------------------
+    var obj = {
+      name: "laowang",
+      do: function () {
+        console.log(this)
+        fn(); //window//351行调用do,但是这里的fn虽然在obj中,却是'独立调用的',所以window
+      }
+    }
+    obj.do(); //obj
+    //--------------------------------------------
+    var fn2 = obj.do;//将obj.do里面的函数地址拿出来,赋值给fn2,也叫隐式丢失
+    fn2(); //window
+    document.onclick = obj.do; //document//隐式丢失(我只要你的函数)
+    //-------------------------------------------
+    document.onclick = function () {
+      console.log(this) //document
+      fn(); //window
+    }
+    var o1 = new fn(); //o1
+    fn.call(obj); //obj
+  </script> -->
+  <!-- ```this练习 -->
+  <!-- <script>
+    function show() {
+      console.log(this);
+    }
+    var arr = [1, 2, 3];
+    arr.a = show;//arr
+    setTimeout(arr.a, 100)//window//setTimeout除非强制改变,否则都是window
+    arr.a();//arr
+    var fn1 = arr.a;
+    div1.onclick = function () {
+      arr.a();//arr
+      fn1();//window
+      console.log(this)//div1
+    }
+  </script> -->
+  <!-- ```call\apply\bind -->
+  <!-- <script>
+    /* 
+    1 是什么?
+      call, apply, bind是Function对象原型对象上自带的三个方法，所有的函数都能调用(console.dir(Function))
+    2 有什么用?
+      改变函数执行时的上下文，或者改变函数调用时的this指向
+      
+    3 call方法
+      - 执行调用call方法的函数
+      - 改变调用call方法的函数中的this指向 指向call方法的第一个参数
+
+    4 call方法参数
+      # this被改变的指向的对象
+        - 如果第一个参数是 null或者undefined  则改变this指向window
+        - 如果是基本包装类型，指向其的包装对象
+        - 如果是对象类型，则直接指向当前对象
+      # 后边的参数都是 被调用函数的实参  逗号间隔开
+
+    5 apply方法
+      apply和call基本一样,但是传参的时候有些不同
+        - call给函数传参的时候,是作为call的第二个参数以后所有的参数 逗号隔开
+        - apply 给函数传参的时候,函数的参数全部放在数组中，作为apply的第二个参数
+
+    6 bind方法
+      和call的功能基本类似,传参方式也一样
+      区别：
+      call和apply作用是改变this指向,并直接调用函数
+      bind作用是改变this指向,并返回一个改变this指向以后的函数（不会调用） 
+    */
+    //----------------------------------------------
+    var obj={name:'xiaowang'}
+    function add(a,b){
+      console.log(this);
+      console.log(a+b);
+    }
+    add(1,2)//window 3
+    add.call(obj,1,2)//obj 3
+    add.call(1)//number{1} NaN
+    add.call(true) //Boolean(true) NaN
+    add.call("a") //String('a') NaN
+    add.call(function fn() { }) //fn NaN
+    add.call(null) //window NaN
+    add.call(undefined) //window NaN
+    add.call([1, 2, 3]) //arr NaN
+    //apply只是传参但是的不同
+    add.apply(obj,[1,2])//obj 3
+    //----------------------------------------------
+    var re=add.bind(obj,1,2)
+    console.log(re);//返回add的函数体(可以调用)
+    re()//obj  3
+    console.log(re===add);//false  返回的是一个新函数,并且该函数有429传递进去的参数
+    //----------------------------------------------
+    //异步函数改变this的方法*********************
+
+    /* document.onclick=(function(){
+      console.log(this);
+    }).bind(window)//bind方法绑定window */
+
+    /* document.onclick=function(){
+      console.log(this);
+      var _this=this//缓存this
+      setTimeout(function(){
+        console.log(this);//window
+        console.log(_this);//document
+      }, 1000);
+
+    } */
+
+    document.onclick=function(){
+      setTimeout((function(){
+        console.log(this);
+      }).bind(this),1000)//这里写document也可以,但是this更加通用,因为这里的this是指向onclick的调用者的**
+    }
+  </script> -->
+  <!-- ```面试题** -->
+  <!-- <script>
+    function fn1() {
+      console.log(1);
+      console.log(this);
+    }
+    function fn2() {
+      console.log(2);
+      console.log(this);
+    }
+    fn1.call(fn2)//1
+    fn1.call.call(fn2)//2
+    // fn2.call.call.call.call(fn1)//1
+
+    /* 解析:
+      第一个,call并没有调用fn1,在后面(的时候才调用),就像[].forEach.call.....只是想拿forEach这个方法
+
+      第二个,通过fn1拿到了call方法,==>call2改变了call的this指向为fn2==>执行==>2
+
+      注意点:先执行call2改变了this才能执行call1,因为小括号在后面
+
+
+      即:
+        第1个:就是fn1(),只是改变了fn1的this指向
+          function fn1(){
+            console.log(1);
+            console.log(this);//fn2
+          }
+          fn1.call(fn2)//1
+        第2个:和fn1没太大关系了,考察的是call的内部实现(call1就是通过fn1拿到的call方法,call2是改变了call1的this指向)
+          执行顺序:
+            0,通过fn1拿到call方法(只拿方法!)
+            1.先执行call2(()在后面!)
+            2.改变了call1的this为fn2
+            3.call1执行,内部this被改变为fn2
+            4.打印2
+       */
+
+
+    /* 手写call方法思想:
+      Function.prototype.call=function(){
+        //1.改变this指向
+        //...
+
+        //2.调用函数
+        this()
+      } */
+  </script> -->
+</body>
+
+</html>
