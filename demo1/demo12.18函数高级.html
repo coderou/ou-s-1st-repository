@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  ```prototype
+  <script>
+    /* prototype:
+      - 每一个函数都有一个prototype属性，prototype是一个指针，指向当前函数的原型对象
+      - 只有函数的实例化对象可以使用到当前函数的prototype属性
+      - 一般用在构造函数上，每一个内置的构造函数也都有自带的prototype属性
+      - 我们可以给添加或修改内置的构造函数的prototype
+    constructor:
+      - 每一个实例化对象 都可以通过constructor属性 访问到他的构造器
+      - 因为每一个实例化对象都有constructor，所以为了共享，会把constructor属性放在构造函数的原型对象上
+      - 原型对象的constructor属性指向其构造函数 */
+    //-------------------------------------------
+    function fn() { }
+    fn.prototype.doThing = function () { }//在fn的原型对象上扩展方法
+    fn.prototype = {}//直接修改prototype的指向,原默认原型会丢失
+    console.dir(Array);
+    console.log(Array.prototype);//内置对象的prototype属性做了限制,不能直接被重新赋值
+    Array.prototype = {}
+    Array.prototype.slice = function () { return '傻了吧' }
+    var arr = [1, 3, 2]
+    var re = arr.slice()
+    console.log(re, arr);//'傻了吧' [1,3,2]
+    //------------------------------------------
+    // 数组排序并且去重的方法
+    Array.prototype.szpxqc = function () {
+      this.sort(function (a, b) { return a - b })
+      var newArr = []
+      //方法1
+      /* this.forEach((function (i, j) {
+        // console.log(this);//forEach的内部函数this默认指向window
+        if (i === this[j + 1]) {//如果i与后面一位相同,当前次函数return
+          return
+        }
+        newArr.push(i)
+      }).bind(this))//forEach里面的this指向window,用bind将this数组绑定给他 */
+      //方法2
+      for (var i; i < this.length; i++) {
+        if (this[i] === this[i + 1]) {
+          continue
+        }
+        newArr.push(this[i])
+      }
+
+      return newArr
+    }
+    var arr1 = [1, 4, 4, 3, 2, 5, 5, 3, 4, 6, 2, 3];
+    console.log(arr1.szpxqc())
+    //--------------------------------------------
+    //构造器
+    console.log([].constructor)//Array()
+  </script>
+  ```隐式原型和显式原型\基础原型链
+  <script>
+    /* 显式原型和隐式原型：
+    # 每一个函数都有一个prototype属性，即显式原型
+      - 函数的prototype在创建函数的时候自动添加上，在访问实例化对象的属性的时候可能使用
+    # 每一个对象都有一个__proto__属性，即隐式原型
+      - __proto__在实例化对象的时候添加，指向构造函数的prototype，当获取对象上的属性或方法找不到的时候，会自动调用__proto__
+    # 对象的隐式原型指向其所在构造函数的显式原型 */
+    //-----------------------------------------------
+    function Fn() { }
+    Fn.prototype.do = function () { }
+    var fn1 = new Fn();
+    console.log(fn1.__proto__ === Fn.prototype);//true
+    //----------------------------------------------
+    // 基础原型链
+    /* 什么是原型链：
+      1 所有的实例对象都有__proto__属性,它指向的就是其构造函数的原型对象
+      2 这样通过__proto__属性就形成了一个链的结构，我们把这个结构称作为原型链
+      3 当查找对象内部的属性/方法时,js引擎自动沿着这个原型链依次查找,直到查找到为止
+      4 当给对象属性赋值时不会使用原型链,而只是在当前对象中进行操作  */
+    function Fn() {
+      this.test1 = function () { console.log('test1') }
+    }//定义一个函数,this指向其实例化的对象
+    Fn.prototype.test2 = function () { console.log('test2') }//将test2放在Fn()的原型对象上
+
+    var fn1 = new Fn()
+    fn1.test1();//'test1'
+    fn1.test2();//'test2'
+    fn1.toString();//有
+    fn1.test3();//报错
+  </script>
+  ```instanceof
+  <script>
+    // A instanceof B
+    // B的显式原型是否在A的原型链上
+    function Foo() { }
+    var f1 = new Foo()
+    console.log(f1 instanceof Foo); //true
+    console.log(f1 instanceof Object); //true
+    //----------------------------------------------
+    //案例2
+    console.log(Object instanceof Function) //true
+    console.log(Object instanceof Object) //true
+    console.log(Function instanceof Object) //true
+    console.log(Function instanceof Function) //true
+    console.log(Object instanceof Foo); //false
+  </script>
+  ```面试题
+  <script>
+    //考察原型链和变量的重新指向
+    var A = function () { }//函数表达式
+    A.prototype.n = 1;
+    var b = new A()//b实例化的时候已经确定好了原型链上的内容了(n=1)
+    //把A的原型对象换了，但是不影响之前已经实例化的对象
+    A.prototype = { n: 2, m: 3 }
+    var c = new A()//后来实例化的 使用新的原型对象
+    console.log(b.n, b.m, c.n, c.m)//1 undefined  2 3
+    //--------------------------------------------
+    // 考察Function和Object的关系
+    var F = function () { };
+    Object.prototype.a = function () {
+      console.log('a()')
+    };
+    Function.prototype.b = function () {
+      console.log('b()')
+    };
+    var f = new F();
+    f.a() //a()
+    // f.b() //报错
+    F.a() //"a()"
+    F.b() //b()
+  </script>
+  ```手写instanceof
+  <script>
+    function myInstanceof(A, B) {//判断B在不在A的原型链上
+      aptx = A.__proto__//定义变量保存A.__proto__
+      while (aptx) {//当aptx为null的时候,结束循环,return false
+        if (aptx === B.prototype) {//如果B在A的原型链上,返回true
+          return true
+        }
+        aptx = aptx.__proto__//每次while原型链向上一级查找
+      }
+      return false
+    }
+    //--------------------------------------------
+    // 测试
+    function Foo() { }
+    var f1 = new Foo();
+
+    console.log(myInstanceof(f1, Foo))
+    console.log(myInstanceof(f1, Object))
+    console.log(myInstanceof(Object, Function))
+    console.log(myInstanceof(Object, Object))
+    console.log(myInstanceof(Function, Object))
+    console.log(myInstanceof(Function, Function))
+    console.log(myInstanceof(Object, Foo))
+
+  </script>
+  ```执行上下文
+  <script>
+    /* 执行上下文：
+    1.JS引擎并非逐行解析，而是一段段的分析和执行。这个分析，就是执行一段代码之前的准备工作, 这个准备工作被称作为'执行上下文'，执行上下文其实也在内存中开辟了一块空间。
+
+    2.JS可执行的代码段分为3种类型：1.全局 2.局部（函数） 3.eval()(不用)
+
+    3.每执行一段代码，都会创建相对应的执行上下文，全局被称为全局执行上下文，局部被称为局部执行上下文
+
+    4.因为执行上下文很多，所以还有一个执行上下文栈来负责管理所有的执行上下文
+
+    5.代码最开始运行，首先执行的是全局执行上下文，所以会在栈中压入一个全局执行上下文，等待页面运行结束，才会弹出
+
+    6.只要执行一个函数，会创建一个局部执行上下文并压栈，当函数执行完成以后，就会把局部执行上下文从栈里弹出
+
+    7.准备工作：1.变量对象  2.作用域链  3.this */
+    //----------------------------------------------
+    // 例子1
+    function fun3() { console.log("fun3"); }
+    function fun2() { fun3(); }
+    function fun1() { fun2(); }
+    fun1();
+
+    /* // 用伪代码来模拟执行上下文栈操作(仅仅是理解,假代码)
+    var stack = [];
+    //刚执行js 首先由一个全局执行上下文，压入栈中
+    stack.push([globalContext])
+    //执行fun1 把fun1的局部执行上下文压入栈中
+    stack.push([fun1Context])
+    //执行fun2 把fun2的局部执行上下文压入栈中
+    stack.push([fun2Context])
+    //执行fun3 把fun3的局部执行上下文压入栈中
+    stack.push([fun3Context])
+    //fun3执行完成 把fun3的执行上下文弹出
+    stack.pop();
+    //fun2执行完成 把fun2的执行上下文弹出
+    stack.pop();
+    //fun1执行完成 把fun1的执行上下文弹出
+    stack.pop();
+    //页面执行完成关闭 把全局弹出
+    stack.pop(); */
+    //----------------------------------------
+    // 例子2
+    var scope = "hello";//全局变量
+    function checkscope() {
+      var scope = "world";//局部变量
+      function f() {
+        return scope;
+      }
+      return f();
+    }
+    // checkscope();//调用函数
+    console.log(checkscope());//world
+    //-----------------------------------------
+    /* // 用伪代码来模拟执行上下文栈操作(仅仅是理解,假代码)
+    var stack = [];
+    //刚执行js 首先由一个全局执行上下文，压入栈中
+    stack.push([globalContext])
+    //进入函数，生成局部执行上下文
+    stack.push([checkscopeContext])
+    //执行f函数 生成局部执行上下文
+    stack.push([fContext])
+    stack.pop()
+    stack.pop()
+    stack.pop() */
+    //----------------------------------------
+    //练习题
+    //1. 依次输出什么?
+    //2. 整个过程中产生了几个执行上下文?
+    console.log('global begin: ' + i)
+    var i = 1
+    foo(1);
+    function foo(i) {
+      if (i == 4) {
+        return;
+      }
+      console.log('foo() begin:' + i);
+      foo(i + 1);
+      console.log('foo() end:' + i);
+    }
+    console.log('global end: ' + i)
+    //undefined 1 2 3 3 2 1 1
+    //---------------------------------------
+    //解析
+    /* var stack = [];
+    stack.push([globalContext]); //global begin : undefined
+    stack.push([foo1Context]) //foo() begin:1
+    stack.push([foo2Context]) //foo() begin:2
+    stack.push([foo3Context]) //foo() begin:3
+    stack.push([foo4Context])
+    stack.pop(foo4)
+    stack.pop(foo3) //foo() end:3
+    stack.pop(foo2) //foo() end:2
+    stack.pop(foo1) //foo() end:1
+    stack.pop(global) //global end:1 */
+  </script>
+  ```变量对象
+  <script>
+    /* 变量对象：
+    1.当执行上下文开启的时候，变量对象就会被激活，激活以后，作用域才能使用变量
+    2.变量对象和执行上下文相关，所以分为了 全局的变量对象和局部的变量对象
+    3.全局的变量是都window的属性和方法，所以全局的变量对象就是window
+    4.进入局部执行上下文，首先要生成一个变量对象，保存当前局部作用域中所有的变量（形参、声明的变量、声明的函数）
+    5.变量对象第一步先确定形参和实参
+    6.然后确定执行上下文中声明的函数, 如果和形参同名，则完全覆盖
+    7.确定执行上下文中声明的变量, 如果变量和形参或函数同名，则变量在赋值之前不会干扰同名形参和函数
+    8.以后在执行上下文中，如果使用变量 则直接去变量对象中查找即可 */
+    //-----------------------------------------------
+    // 模拟变量对象,里面保存所有的形参(arguments),变量,函数
+    function fn(a, b) {
+      /* //模拟变量对象
+      var VO = {
+        arguments: {
+          0: 1,
+          1: 2,
+          2: 3,
+          length: 3
+        },
+        a: 1, //被覆盖
+        b: 2,
+        a: function () {
+        },
+        c: 3,
+      } */
+      /* function a() {
+      } */
+      c = 3;
+      a = 4;
+      console.log(a);//4
+    }
+    fn(1, 2, 3)
+  </script>
+  ```变量对象练习
+  <script>
+    // 练习1
+    /* function fn1(a) {
+      //下边声明的a不影响形参a的值**********
+      console.log(a)//1
+      var a = 2
+      //变量a赋值之后，就覆盖之前的a
+      console.log(a) //2
+    }
+    fn1(1); */
+    //-------------------------------------------
+    /* function fn2() {
+      console.log(foo) //foo函数体(函数提升优先于变量,但是没赋值之前不会覆盖函数)
+      function foo() { }
+      var foo = 1
+    }
+    fn2(); */
+    //---------------------------------------------
+    /* function a(){}
+    var a
+    console.log(typeof a)//function(函数提升优先于变量,但是没赋值之前不会覆盖函数) */
+    //----------------------------------------------
+    // 测试题2: 变量预处理, in操作符***************
+    if (!(b in window)) { var b = 1; }
+    console.log(b) //undefined
+    /* if(b in winodw){ var b=1}
+    console.log(b);//1 */
+    //in 操作符,判断全局中有没有b变量
+    //无论if执不执行,只要有var,就会变量提升
+    //----------------------------------------------
+    // 测试题3: 预处理, 顺序执行
+    var c = 1
+    function c(c) {
+      console.log(c)
+      var c = 3
+    }
+    c(2) //c is not a function
+    //解析:(函数提升优先于变量,但是没赋值之前不会覆盖函数)
+    //----------------------------------------------
+    //测试题4:
+    var a = 10;
+    a.pro = 10;//包装对象只会在赋值的一瞬间出现,然后又销毁了
+    console.log(a.pro + a); //NaN//所以这里面的a.pro是undefined
+
+    var s = 'hello';
+    s.pro = 'world';
+    console.log(s.pro + s); //undefinedhello
+
+  </script>
+  ```作用域链
+  <script>
+    /* 作用域链：
+    - 函数创建的时候，会创建一个包含全局变量对象的作用域链（scope chain），作用域链是保证对 执行环境有权访问的所有变量和函数 的有序访问
+    - 函数执行的时候，会创建自身的变量对象，把当前变量对象插入到 声明函数时候生成的作用域链顶端，完成整个作用域链
+    - 作用域链的顶端一定是当前执行环境的变量对象，作用域链末端一定是全局环境的变量对象window
+    - 使用变量的时候会沿着作用域链一级一级的寻找，直到找到为止，如果找不到则报错 */
+    //---------------------------------------------
+    // 练习题1
+    var a = 1;
+    function fn() {
+      console.log(a)
+    }
+    function fn2() {
+      var a = 2
+      fn(); //1//不管fn()在哪里执行,作用域链是在其定义时决定的
+    }
+    fn2()
+    //---------------------------------------------
+    //练习题2
+    var x = 10;
+    function fn() {
+      console.log(x)
+    }
+    function show(f) {
+      var x = 20
+      f(); //10//同上
+    }
+    show(fn)
+    //--------------------------------------------
+    //练习题3
+    var fn = function () {
+      console.log(fn) //fn函数体//自己打印自己
+    }
+    fn()
+    //--------------------------------------------
+    //练习题4
+    // var fn2=2
+    var obj = {
+      fn2: function () {
+        console.log(fn2) //报错//找变量沿着作用域链找,而不是原型链,
+      }
+    }
+    obj.fn2()
+    //--------------------------------------------
+    //练习题5
+    var scope = "1"//外部
+    function fn() {
+      var scope = "2"//内部
+      function f() {
+        return scope//外面有函数作用域,沿着作用域找,找到2
+      }
+      return f()
+    }
+    console.log(fn());//2
+
+    //--------------------------------------------
+    //练习题6
+    var scope = "1"//外部
+    function fn() {
+      var scope = "2"//内部
+      function f() {
+        return scope
+      }
+      return f//无论函数在哪里调用,找变量都是沿着定义时的作用域链找的
+    }
+    console.log(fn()());//2
+  </script>
+  ```面试题(难)
+  <script>
+    var length = 2;
+    function fn() {
+      console.log(this.length);
+    }
+    var obj = {
+      length: 5,
+      method: function (fn) {
+        console.log(arguments);
+        fn();//2(这里是外面的fn)
+        // arguments[0]();//5(错了,我的)
+        arguments[0]();//4
+        //理解:这里的4是arguments的数组长度
+        //arguments[0]==>arguments.fn//写法是错误的,但是理论是调用外面函数的时候是通过数组调用的,数组里面保存的是fn的地址,所以可以通过地址访问到函数
+      }
+    };
+    obj.method(fn, 1, 2, 3);
+  </script>
+</body>
+
+</html>
