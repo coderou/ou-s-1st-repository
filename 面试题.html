@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 实参传递的是数据,是值,等同于var 形参 = 实参 -->
+  <!-- <script>
+    var obj = {}
+    function fn1(a) {
+      //a是当前函数的一个隐式变量
+      // var a=obj//a和obj指向同一个对象
+      a.n = 3
+    }
+    fn1(obj)
+    console.log(obj.n) //undefined
+    //函数调用传实参,其实就是把实参的数据复制给里面的形参,等同于var a=obj
+
+    function fn2(a) {
+      // var a=obj
+      a = { n: 4 }//a指向了新对象,和源对象没关系了
+    }
+    fn2(obj)
+    console.log(obj.n) //3 
+
+  </script> -->
+  <!-- .优先级高于= -->
+  <!-- <script>
+    var a = { n: 1 }
+    var b = a
+    a.x = a = { n: 2 }
+    //操作对象属性的优先级高于给对象本身赋值
+    //所以{n:2}先给a.x  再给a
+
+    console.log(a.n, b.n)//2          1
+    console.log(a.x, b.x)//undefined  {n:2}     
+  </script> -->
+  <!-- 对象没有作用域,函数才有 -->
+  <!-- <script>
+    var fn=function(){
+      console.log(fn)//打印变量,全局的函数体
+    }
+    fn()
+
+    var obj={
+      fn2:function (){
+        // console.log(fn2)//报错
+        //找的是变量,对象没有作用域,函数才有
+        // console.log(this.fn2)
+      }
+    }
+    obj.fn2()
+  </script> -->
+  <!-- 同名变量和函数,变量未赋值之前不会影响函数和形参 -->
+  <!-- <script>
+    var c=1
+    function c(c){
+      console.log(c)
+      var c=3
+    }
+    console.log(c)//1
+    c(2)//报错//这里的时候c已经为1了
+  </script> -->
+  <!-- if里面的var也会提升! -->
+  <!-- <script>
+    var name='world' 
+    ;(function (){
+      // var name
+      if(typeof naem==='undefined'){
+        var name ='jack'
+        console.log(name)
+      }else{
+        console.log(name)
+      }
+    })()
+    //打印jack还是world?
+    //jack
+    //if对于这里面的var毫无意义,依然会提升
+  </script> -->
+  <!-- 同步和异步的执行过程 -->
+  <!-- <script>
+    var a = 6
+    setTimeout(function () {
+      console.log(0)
+      alert(a)
+      a = 666
+    }, 0)
+    console.log(1)
+    a = 66
+    //1 0 66
+    //只要是异步,无论是否0执行,都要等主线自行完成,才会被勾出来
+  </script> -->
+  <!-- 函数自调用的this执行window -->
+  <!-- <script>
+    var name = 'A'
+    var object = {
+      name: 'B',
+      getNameFunc: function () {
+        return function () {
+          return this.name
+        }
+      }
+    }
+    console.log(object.getNameFunc()())//A
+
+    var name2 = "A"
+    var object2 = {
+      name2: "B",
+      getNameFunc: function () {
+        var that = this
+        return function () {
+          return that.name2
+        }
+      }
+    }
+    console.log(object2.getNameFunc()())//B
+  </script> -->
+  <!-- 对象属性查找 -->
+  <!-- <script>
+    function A() { }
+    A.prototype.n = 1
+    var b = new A()
+    A.prototype = {
+      n: 2,
+      m: 3
+    }
+    var c = new A()
+    console.log(b.n, b.m, c.n, c.m)//1 undefined 2 3 
+  </script> -->
+  <!-- 原型链 -->
+  <!-- <script>
+    var F = function () { }
+    Object.prototype.a = function () {
+      console.log('a()')
+    }
+    Function.prototype.b = function () {
+      console.log('b()')
+    }
+    var f = new F()
+    F.a()//a()
+    F.b()//b()
+    f.a()//a()
+    f.b()//报错
+  </script> -->
+  <!-- 综合题*** -->
+  <!-- <script>
+    function Person() {
+      getAge = function () {
+        console.log((10))
+      }
+      return this
+    }
+    Person.getAge = function () {
+      console.log(20)
+    }
+    Person.prototype.getAge = function () {
+      console.log(30)
+    }
+    var getAge = function () {
+      console.log(40)
+    }
+    function getAge() {
+      console.log(50)
+    }
+    //-------------------------------------------
+    Person.getAge()//20
+    getAge()//40
+    Person().getAge()//10
+    getAge()//10
+    new Person.getAge()//20
+    new Person().getAge()//30
+  </script> -->
+
+  <!-- ES6: -->
+  <style>
+    .out{
+      height: 100px;
+      width: 400px;
+    }
+    .in{
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+      margin: 10px;
+      box-sizing: border-box;
+    }
+  </style>
+  <div class="out">
+    <div class="in">内部标签1</div>
+    <div class="in">内部标签2</div>
+    <div class="in">内部标签3</div>
+  </div>
+  <!-- 关于异步获取节点的问题 -->
+  <script>
+    var ins=document.getElementsByClassName('in')
+    for(var i=0;i<ins.length;i++){
+      ins[i].onclick=function(){
+        this.style.background='yellow'
+        console.log(this);//this指向onlcick的调用者(当时的那个调用者)
+        // ins[i].style.background='green'
+        console.log(i)//都是3
+      }
+    }
+  </script>
+</body>
+
+</html>
