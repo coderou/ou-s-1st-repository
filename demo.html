@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1 对象的基本解构赋值(未完成) -->
+  <!-- <script>
+    // 对象的基本解构,讲究的是key的一一对应 和顺序无关
+    const obj = {
+      foo: '1',
+      hoo: '2'
+    }
+
+    const {
+      hoo: a,
+      foo: b
+    }
+    console.log(a, b)
+
+    const {
+      // foo: foo,
+      // hoo: hoo
+      foo,
+      hoo
+    } = obj
+    console.log(foo, hoo)
+
+  </script> -->
+
+  <!-- 2 模板字符串 -->
+  <!-- <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul> -->
+  <!-- <script>
+    const p = {
+      name: '老王',
+      age: 19,
+      sex: '男'
+    }
+    //传统方式:
+    const str = '我的名字是' + p.name + ',我的年龄是' + p.age + ',我的性别是' + p.sex
+
+    //单引号:
+    const str2 = '<ul>\
+    <li></li>\
+    <li></li>\
+    <li></li>\
+    </ul>'
+
+    //模板字符串:
+    const str3 = `<ul>
+    <li>1</li>\`\`\`\`\`\`
+    <li>2</li>
+    <li>3</li>
+    </ul>`
+
+    //模板字符串嵌套变量
+    const str4 = `我的名字是${p.name},我的年龄是${p.age},我的性别是${p.sex}`
+    console.log(str4)
+
+    //模板字符串中写表达式
+    const flag = true
+    const str5 = `${flag ? '打野' : '中单'}`
+    console.log(str5)
+  </script> -->
+
+  <!-- 3 字符串新增方法 -->
+  <!-- <script>
+    /*  trim():两端去空格
+      trimStart():前端去空格
+      trimEnd():末尾去空格
+     */
+    /* const str = '  你好  '//去空格基本类型值是不会修改自身的,一般是返回一个值
+    const re1 = str.trim()
+    const re2 = str.trimStart()
+    const re3 = str.trimEnd()
+    console.log(re1)
+    console.log(re2)
+    console.log(re3) */
+    //-------------------------
+    /* startsWith():判断开头有没有包含某个字符串
+      endsWith():结尾有没有包含某个字符串
+      includes():字符串中有没有包含某个字符串
+     */
+    /* const str = 'hello world'
+
+    console.log(str.startsWith('hel'))//true
+    console.log(str.endsWith('ld'))//true
+    console.log(str.endsWith('haha'))//false
+    console.log(str.includes('ld'))//true
+    console.log(str.includes('lg'))//false */
+    //----------------------
+    /*  repeat(num):重复num次生成新的字符串
+     */
+    /* const str = `老王`
+    console.log(str.repeat(10)) */
+    //-------------------------
+    /* 补充字符串:
+      padStart(num,con):将字符串用con补充至num长度,添加在开头
+      padEnd(num,con):将字符串用con补充至num长度,添加在结尾
+     */
+    /* const str = `今天天气真好`
+    console.log(str.padEnd(10,'#'))//今天天气真好####//如果本身就超过了10位,就不会再补充了
+    console.log(str.padEnd(5,'#'))//如果本身就超过了5位,就不会再补充了 */
+    //-------------------------
+
+  </script> -->
+
+</body>
+
+</html>
