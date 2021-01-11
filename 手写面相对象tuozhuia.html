@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="box1" class="box"></div>
+  <div id="box2" class="box"></div>
+  <div id="box3" class="box"></div>
+  <div id="box4" class="box"></div>
+  <div id="box5" class="box"></div>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #box1 {
+      background-color: aqua;
+    }
+
+    #box2 {
+      background-color: rgb(0, 255, 98);
+    }
+
+    #box3 {
+      background-color: rgb(153, 0, 255);
+    }
+
+    #box4 {
+      background-color: rgb(255, 196, 0);
+    }
+
+    #box5 {
+      background-color: rgb(255, 0, 85);
+    }
+  </style>
+  <script>
+    function Drag(boxName) {
+      this.box = document.getElementById(boxName)
+      var _this = this
+      this.box.onmousedown = function (e) {
+        _this.down(e)
+      }
+    }
+    Drag.prototype.down = function (e) {
+      this.eLoaction = {//鼠标距离盒子的距离
+        x: e.offsetX,
+        y: e.offsetY
+      }
+
+      var _this = this
+      document.onmousemove = function (e) {
+        _this.move(e)
+      }
+    }
+    Drag.prototype.move = function (e) {
+      var BoxLoaction = {//盒子距离视口的距离
+        x: e.clientX - this.eLoaction.x,
+        y: e.clientY - this.eLoaction.y
+      }
+      e.preventDefault()
+      e.stopPropagation()
+      // console.log(e)
+      //设置
+      this.box.style.left = BoxLoaction.x + 'px'
+      this.box.style.top = BoxLoaction.y + 'px'
+      var _this = this
+      document.onmouseup = function (e) {
+        _this.up()
+        // document.onmousemove = null;//似乎因为鼠标快速按下没有触发移动,所以绑定的事件没有删除
+        // document.onmouseup = null;//似乎因为鼠标快速按下没有触发移动,所以绑定的事件没有删除
+      }
+    }
+    Drag.prototype.up = function () {
+      document.onmousemove = null;
+      document.onmouseup = null;
+    }
+
+    new Drag('box1')
+    new Drag('box2')
+    new Drag('box3')
+    new Drag('box4')
+    new Drag('box5')
+
+  </script>
+</body>
+
+</html>
