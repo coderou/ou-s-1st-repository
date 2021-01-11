@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 实参传递的是数据,是值,等同于var 形参 = 实参 -->
+  <!-- <script>
+    var obj = {}
+    function fn1(a) {
+      //a是当前函数的一个隐式变量
+      // var a=obj//a和obj指向同一个对象
+      a.n = 3
+    }
+    fn1(obj)
+    console.log(obj.n) //undefined
+    //函数调用传实参,其实就是把实参的数据复制给里面的形参,等同于var a=obj
+
+    function fn2(a) {
+      // var a=obj
+      a = { n: 4 }//a指向了新对象,和源对象没关系了
+    }
+    fn2(obj)
+    console.log(obj.n) //3 
+
+  </script> -->
+  <!-- .优先级高于= -->
+  <!-- <script>
+    var a = { n: 1 }
+    var b = a
+    a.x = a = { n: 2 }
+    //操作对象属性的优先级高于给对象本身赋值
+    //所以{n:2}先给a.x  再给a
+
+    console.log(a.n, b.n)//2          1
+    console.log(a.x, b.x)//undefined  {n:2}     
+  </script> -->
+  <!-- 对象没有作用域,函数才有 -->
+  <!-- <script>
+    var fn=function(){
+      console.log(fn)//打印变量,全局的函数体
+    }
+    fn()
+
+    var obj={
+      fn2:function (){
+        // console.log(fn2)//报错
+        //找的是变量,对象没有作用域,函数才有
+        // console.log(this.fn2)
+      }
+    }
+    obj.fn2()
+  </script> -->
+  <!-- 同名变量和函数,变量未赋值之前不会影响函数和形参 -->
+  <!-- <script>
+    var c=1
+    function c(c){
+      console.log(c)
+      var c=3
+    }
+    console.log(c)//1
+    c(2)//报错//这里的时候c已经为1了
+  </script> -->
+  <!-- if里面的var也会提升! -->
+  <!-- <script>
+    var name='world' 
+    ;(function (){
+      // var name
+      if(typeof naem==='undefined'){
+        var name ='jack'
+        console.log(name)
+      }else{
+        console.log(name)
+      }
+    })()
+    //打印jack还是world?
+    //jack
+    //if对于这里面的var毫无意义,依然会提升
+  </script> -->
+  <!-- 同步和异步的执行过程 -->
+  <!-- <script>
+    var a = 6
+    setTimeout(function () {
+      console.log(0)
+      alert(a)
+      a = 666
+    }, 0)
+    console.log(1)
+    a = 66
+    //1 0 66
+    //只要是异步,无论是否0执行,都要等主线自行完成,才会被勾出来
+  </script> -->
+  <!-- 函数自调用的this执行window -->
+  <!-- <script>
+    var name = 'A'
+    var object = {
+      name: 'B',
+      getNameFunc: function () {
+        return function () {
+          return this.name
+        }
+      }
+    }
+    console.log(object.getNameFunc()())//A
+
+    var name2 = "A"
+    var object2 = {
+      name2: "B",
+      getNameFunc: function () {
+        var that = this
+        return function () {
+          return that.name2
+        }
+      }
+    }
+    console.log(object2.getNameFunc()())//B
+  </script> -->
+  <!-- 对象属性查找 -->
+  <!-- <script>
+    function A() { }
+    A.prototype.n = 1
+    var b = new A()
+    A.prototype = {
+      n: 2,
+      m: 3
+    }
+    var c = new A()
+    console.log(b.n, b.m, c.n, c.m)//1 undefined 2 3 
+  </script> -->
+  <!-- 原型链 -->
+  <!-- <script>
+    var F = function () { }
+    Object.prototype.a = function () {
+      console.log('a()')
+    }
+    Function.prototype.b = function () {
+      console.log('b()')
+    }
+    var f = new F()
+    F.a()//a()
+    F.b()//b()
+    f.a()//a()
+    f.b()//报错
+  </script> -->
+  <!-- 综合题*** -->
+  <!-- <script>
+    function Person() {
+      getAge = function () {
+        console.log((10))
+      }
+      return this
+    }
+    Person.getAge = function () {
+      console.log(20)
+    }
+    Person.prototype.getAge = function () {
+      console.log(30)
+    }
+    var getAge = function () {
+      console.log(40)
+    }
+    function getAge() {
+      console.log(50)
+    }
+    //-------------------------------------------
+    Person.getAge()//20
+    getAge()//40
+    Person().getAge()//10
+    getAge()//10
+    new Person.getAge()//20
+    new Person().getAge()//30
+  </script> -->
+  <!-- ES6: -->
+  <!-- <style>
+    .out{
+      height: 100px;
+      width: 400px;
+    }
+    .in{
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+      margin: 10px;
+      box-sizing: border-box;
+    }
+  </style> -->
+  <!-- <div class="out">
+    <div class="in">内部标签1</div>
+    <div class="in">内部标签2</div>
+    <div class="in">内部标签3</div>
+  </div> -->
+  <!-- 关于异步获取节点的问题 -->
+  <!-- <script>
+    var ins=document.getElementsByClassName('in')
+    for(var i=0;i<ins.length;i++){
+      ins[i].onclick=function(){
+        this.style.background='yellow'
+        console.log(this);//this指向onlcick的调用者(当时的那个调用者)
+        // ins[i].style.background='green'
+        console.log(i)//都是3
+      }
+    }
+  </script> -->
+  <!-- ['1', '2', '3'].map(parseInt)的结果是什么? -->
+  <!-- <script>
+    console.log(['1', '2', '3'].map(parseInt))//1 NaN NaN
+    //原理: 要搞清楚首先要明白map和parseInt函数的参数,结果,过程是什么
+    /* 
+      1.如果只是简单理解,结论如下:
+        - map的参数1是一个回调函数,其参数有3,参数1为当前元素,参数2为当前元素下标,参数3为调用map的数组
+        - 可以发现,当调用map的回调函数的时候就是调用了parseInt,而传递进去的参数1 2 如下:
+
+        parseInt('1', 0) //radix(基数(目标进制数))为0，且string参数不以“0x”和“0”开头时，按照10为基数处理。这个时候返回1
+        parseInt('2', 1) //基数为1（1进制）表示的数中，最大值小于2，所以无法解析，返回NaN
+        parseInt('3', 2) //基数为2（2进制）表示的数中，最大值小于3，所以无法解析，返回NaN
+
+      2.要明白原理,首先要知道map函数(mdn的array.prototype.map的解释:https://developer.mozilla.org/zh-cn/docs/web/javascript/reference/global_objects/array/map)
+        //------------------------------------------------------------------------
+        var new_array = arr.map(function callback(currentValue[, index[, array]]) {
+          // Return element for new_array 
+        }[, thisArg])
+
+        虽然看起来很长,我们解释一下,[]的意思是可选的,即,转变为:
+
+        var new_array = arr.map(function callback(currentValue, index, array) {
+          // Return element for new_array 
+        }, thisArg)
+      
+        可以清晰的看到,map函数传递了2个参数 参数1:回调函数 参数2:(执行 callback 函数时值被用作this)//一般用不到
+        其中 参数1:回调函数 有3个参数分别为:当前元素 当前元素下标 调用map方法的数组
+        //------------------------------------------------------------------------
+      3.然后是parseInt函数(https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt)
+        官方的定义是:解析一个字符串并返回指定基数的十进制整数， radix 是2-36之间的整数，表示被解析字符串的基数,说白了就是进制...
+        parseInt(string, radix)
+        参数1:被处理的值(字符串) 参数2:解析时的基数
+      4.结合2和3之后,在看1
+      5.注意,参数传递与否和接收没有必要联系,在map里面,是传递的参数的,平时我们只是map只写了当前元素,不代表没传递元素下标,所有parsrInt是接收到了下标的!!!!!
+     */
+
+    const arr = [1, 2, 3, 4]
+    // const map1 = array1.map(x => x * 2);//官网写法,首先这是箭头函数,然后参数只有一个,可省略括号,然后语句只有一个,可省略rturn和{},且返回值默认为改语句的结果
+    const res = arr.map(function (x) { return x * 2 })
+    console.log(res)
+  </script> -->
+  <!-- url操作***************** -->
+  <!-- <script>
+    //==已知一个地址"http://www.baidu.com:80?user=laoli&pass=123456"==>把查询字符串以对象的形式表现出来，得到一个对象{user:"laoli",pass:"123456}
+    var url = 'http://www.baidu.com:80?user=laoli&pass=123456'
+    var obj = {}//保存结果
+    url.split('?')[1].split('&').forEach(function (i, j) {
+      var key = i.split('=')[0]//这里i为一个字符串,user=laoli,用'='切割后,变成数组,再将数组的0号提取,就是key,每次foreach都会遍历一次
+      var value = i.split('=')[1]
+      obj[key] = value//将每次foreach遍历到的元素放进去数组
+    })
+    console.log(obj);
+  </script> -->
+  <!-- <script>
+    //==>已知一个查询字符串的对象{user:"laoli",pass:"123456}已知一个地址http://www.baidu.com:80得到一个url字符串"http://www.baidu.com:80?user=laoli&pass=123456"
+    var obj = {
+      user: "laoli",
+      pass: 123456
+    }
+    var url = 'http://www.baidu.com:80?'
+    for (var key in obj) {
+      url = url + key + '=' + obj[key] + '&'
+    }
+    var newurl = url.slice(0, -1)
+    console.log(newurl)
+  </script> -->
+  <!-- var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];
+  编写一个程序将数组扁平化去并除其中重复部分数据，最终得到一个升序且不重复的数组 -->
+  <!-- 方法1(我写的) -->
+  <!-- <script>
+    // 链接：https://juejin.cn/post/6844903885488783374
+    const arr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10]
+    let newArr = []
+    function bianp(arr) {//定义扁平数组的函数,利用递归
+      arr.forEach(i => {//遍历传入数组
+        if (checktype(i) === 'array') {//如果i是数组,再次遍历//其实可以直接用Array.isArray()
+          bianp(i)//再次bianp(i)
+        } else {//如果不是数组,放进newArr
+          newArr.push(i)
+        }
+      })
+    }
+    bianp(arr)
+    console.log(newArr)//扁平化完成
+    let newArr2 = [...new Set(newArr)]
+    console.log(newArr2)//去重完成
+    let newArr3 = newArr2.sort(function (a, b) { return a - b })
+    console.log(newArr3)//排序完成
+    function checktype(obj) {
+      return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()
+    }
+  </script> -->
+  <!-- 方法2 -->
+  <!-- <script>
+    var arr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10]
+    // 1、扁平化数组
+    var flatArr = arr.toString().split(",");
+    console.log(flatArr)//["1", "2", "2", "3", "4", "5", "5", "6", "7", "8", "9", "11", "12", "12", "13", "14", "10"]
+
+    // 2、去重(利用对象的键名不重复性)
+    var hash = {};
+    for (var i = 0, len = flatArr.length; i < len; i++) {
+      hash[flatArr[i]] = "abc"
+    }
+    console.log(hash)//{1: "abc", 2: "abc", 3: "abc", 4: "abc", 5: "abc", 6: "abc", 7: "abc", 8: "abc", 9: "abc", 10: "abc", 11: "abc", 12: "abc", 13: "abc", 14: "abc"}
+
+    flatArr = [];//清空flatArr
+    // 3、将元素字符串转化为数字、遍历hash并不能保证输出顺序,这里只是凑巧
+    for (var i in hash) {
+      flatArr.push(+i)
+    }
+    console.log(flatArr)//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+
+    // 4、排序
+    flatArr = flatArr.sort(function (a, b) {return a - b})
+    console.log(flatArr)
+  </script> -->
+  <!-- 方法3(各种骚操作) -->
+  <!-- <script>
+    var arr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10]
+    var res = Array.from(new Set(arr.flat(Infinity))).sort((a, b) => { return a - b })
+    console.log(res)
+    var res2 = arr.toString().split(",").sort((a, b) => { return a - b })
+    console.log(res2)
+    var res3 = arr.toString().split(",").sort((a, b) => { return a - b }).map(Number)
+    console.log(res3)
+  </script> -->
+  <!-- 手写new ES6方法(简洁,优雅) -->
+  <!-- <script>
+    function _new(fn, ...arg) {//骚,直接在参数传递运用...将arg都放进去数组,下面apply就不需要转换数组了
+      const obj = Object.create(fn.prototype);//骚,一句话定义了对象并且连接了对象原型链
+      const ret = fn.apply(obj, arg);//骚,额,基操
+      return ret instanceof Object ? ret : obj;//骚,如果result是Object的实例返回result,如果不是比如基本数据类型或者undefined等等则返回obj
+    }
+  </script> -->
+
+  <!-- 进制转换 -->
+  <!-- <script>
+    // 任意10进制数字,转换为n进制(n进制为2-36)
+    function divideByn(num, n) {
+      const arr = []
+      while (num > 0) {
+        let remainder = num % n
+        num = parseInt(num / n)
+        arr.unshift(remainder.toString(n))//妙啊,直接倒序插入
+      }
+      // console.log(arr)
+      return arr.join('')
+    }
+    console.log(divideByn(255, 16))//ff
+    console.log(divideByn(25555, 36))//jpv
+    // const num=15
+    // console.log(num.toString(16))
+  </script> -->
+  <!-- 不使用from转数组 -->
+  <!-- <script>
+    Array.prototype.slice.call(OBJ,0)
+  </script> -->
+  <!-- 全局变量和函数都是window的属性和方法 -->
+  <!-- <script>
+    // if('a' in window){//所有对象的属性都是字符串,window的变量本质上也是字符串
+    if (a in window) {
+      var a = 'hello js'
+    }
+    console.log(a)
+  </script> -->
+</body>
+
+</html>
