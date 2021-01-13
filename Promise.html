@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 包装对象 -->
+  <!-- <script>
+    let a=1
+    console.log(a.xxx)//undefined
+  </script> -->
+  <!-- 抛出错误 -->
+  <!-- <script>
+    function dodo(){
+      const time=Date.now()
+      if(time %2===1){
+        console.log('干活干活'+time)
+      }else{
+        throw new Error('不干了!辞职'+time)
+      }
+    }
+
+    try{dodo()}catch(err){
+      alert(err)
+    }
+  </script> -->
+  <!-- promise再次学习 -->
+  <!-- <script>
+    const promise1 = new Promise((res, rej) => {//excutor/执行器函数,同步回调函数
+      console.log('excutor()')
+      // 开始时promise的状态为pending 未确定的/初始的
+      // 启动异步任务
+      setTimeout(() => {
+        //成功了
+        res('foo')//promise对象的状态变为resolved/成功,同时指定成功的value
+      }, 1000);
+    })
+    console.log('new Promise()之后')//说明了excutor内部也是同步执行的
+    promise1.then(function (value) {//异步执行的成功的回调函数
+      console.log(value)
+      //expected output: 'foo'
+    })
+    console.log(promise1)
+  </script> -->
+  <!-- promise配合ajax -->
+  <!-- <script>
+    /* 使用promise封装异步ajax请求 */
+    function myAsyncDunction(url) {
+      return new Promise((res, rej) => {//返回一个promise,注意,excutor里面的是会执行的
+        const xhr = new XMLHttpRequest()//定义一个新的http请求
+        xhr.open('get', url)//打开url以get的方式
+        xhr.onload = () => res(JSON.parse(xhr.responseText))//当请求资源存在,调用res,res其相应体
+        xhr.onerror = () => rej(xhr.statusText)//当错误,rej其状态码,如404
+        xhr.send()//发送!
+      })
+    }
+
+    myAsyncDunction('https://api.apiopen.top/getJoke?page=1&cout=2&type=video')
+      .then(
+        value => {
+          console.log('成功了:', value)
+        },
+        reason => {
+          console.log('失败了:', reason)
+        }
+      )
+  </script> -->
+  <!-- 使用promise+xhr封装ajax请求函数 -->
+  <!-- <script>
+    function pajax(url) {
+      return new Promise((res, rej) => {
+        // 使用xhr发送异步ajax请求
+        const xhr = new XMLHttpRequest
+        xhr.open('get', url)
+        xhr.send()
+        xhr.onreadystatechange = () => {
+          // 请求未完成,直接结束
+          if (xhr.readyState !== 4) return
+          // 如果成功了,调用res(),并且指定成功value
+          // 如果成功了,调用rej(),并且指定失败reason
+          if (xhr.status >= 200 && xhr.status < 300) {
+            res(JSON.parse(xhr.response))
+          } else {
+            rej(new Error('request error status:' + xhr.status))
+          }
+        }
+
+
+      })
+    }
+
+    pajax('https://api.apiopen.top/getJoke?page=1&cout=2&type=video')
+      .then(
+        data => {
+          console.log('请求成功', data)
+        },
+        error => {
+          alert(error.message)
+        }
+      )
+
+  </script> -->
+
+  <!-- then可以整合catch的方法使用 -->
+  <!-- <script>
+    new Promise((res, rej) => {
+      setTimeout(() => {
+        // res(1)
+        rej(2)
+      }, 1000);
+    }).then((data) => {
+      console.log(data)
+    }, (err) => {
+      console.log(err)
+    })
+  </script> -->
+
+  promise.resolve等静态方法
+  <script>
+    // p1等价于p2
+    const p1 = new Promise((res, rej) => {
+      res(2)
+    })
+    const p2 = Promise.resolve(3)
+    const p3 = Promise.reject(4)
+    p1.then(value => console.log('p1 value', value))
+    p2.then(value => console.log('p2 value', value))
+    p3.catch(reason => console.log('p3 value', reason))
+
+
+    const p4 = Promise.all([p1, p2, p3])//只要有一个不成功,我就不成功
+    p4.then(
+      value => console.log('p4 all onResolved()', value),
+      reason => console.log('p4 all onRejected()', reason)
+    )
+
+  </script>
+
+
+  186
+
+
+</body>
+
+</html>
