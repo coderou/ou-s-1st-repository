@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<!-- //代码卡片:1.18(ajax查询名字是否重复) -->
+<body>
+  <h3>这是index页面</h3>
+  <input type="text" id="input">
+  <button id="btn">提交</button>
+  <span id="res"></span>
+  <script>
+    const input = document.getElementById('input')//输入框
+    const btn = document.getElementById('btn')//提交按钮
+    const res = document.getElementById('res')//结果
+
+    btn.onclick = function () {
+      const xhr = new XMLHttpRequest()//创建xhr
+      xhr.open('post', 'http://localhost:5000/checkname')
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+      xhr.send('name=' + input.value)
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {//响应完成
+          if (xhr.status === 200) {//接收数据成功
+            if (xhr.responseText === 'ok') {//判断回来的数据
+              res.innerText = '可以'
+              res.style.color = 'green'
+            } else {
+              res.innerText = '不行'
+              res.style.color = 'red'
+            }
+          }
+        }
+      }
+    }
+
+  </script>
+</body>
+
+</html>
