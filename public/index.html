@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<!-- 代码卡片1.19(jsonp配合模板字符串动态渲染li) -->
+<body>
+  <button id="btn">拿数据</button>
+  <ul></ul>
+  <script>
+    const btn = document.getElementById('btn')
+    const ul = document.querySelector('ul')
+    function addLi(data) {
+      let str = ''
+      data.forEach(i => {
+        str += `<li>
+                  <h4>${i.name}</h4>
+                  <div>${i.gender}</div>
+                  <p>${i.info}</p>
+                </li>`
+      });
+      ul.innerHTML = str
+    }
+
+    btn.onclick = function () {
+      const sc = document.createElement('script')
+      sc.src = 'http://localhost:5000/addLi?callback=addLi'
+      document.body.appendChild(sc)
+    }
+  </script>
+</body>
+
+</html>
