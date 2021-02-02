@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <button id="btn">按钮</button>
+  <button id="btn2">按钮2</button>
+  <ul id="ul"></ul>
+
+  <script>
+    function myAjax(option) {
+      if (!option || typeof option !== 'object') return
+      let { url, type = 'get', data, complete, success, error, beforeSend, dataType = 'text' } = option
+      if (!url) return
+      return new Promise((res, rej) => {
+        const xhr = new XMLHttpRequest()
+        let params = objToStr(data)
+        if (type === 'get') {
+          url += '?' + params
+          params = null
+        }
+        xhr.open(type, url)
+        type === 'post' && xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+        let flag = undefined
+        if (!beforeSend) { flag = true }
+        else {
+          let result = beforeSend()
+          if (result === undefined) { res = true }
+          else { res = result }
+        }
+        flag && xhr.send(params)
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            complete && complete()
+            if (xhr.status === 200) {
+              let value = ''
+              if (dataType === 'text') {
+                value = xhr.responseText
+              } else if (dataType === 'json') {
+                value = JSON.parse(xhr.responseText)
+              } else {
+                value = xhr.responseText
+              }
+              success && success(value)
+              res(value)
+            } else {
+              error && error()
+              rej('请求失败')
+            }
+          }
+        }
+      })
+    }
+    function objToStr(data) {
+      if (typeof data !== 'object') return ''
+      let arr = []
+      for (let key in data) {
+        arr.push(key + '=' + data[key])
+      }
+      return arr.join('&')
+    }
+    const btn = document.getElementById('btn')
+    btn.onclick = async function () {
+      const data = await myAjax({
+        url: 'http://localhost:5000/test',
+        data: { name: 'zs', age: 19 },
+        dataType: 'json',
+      })
+      console.log(data)
+    }
+  </script>
+  <script>
+    const btn2 = document.getElementById('btn2')
+    const ul = document.getElementById('ul')
+    function fn(data) {
+      console.log(data)
+      let str = ''
+      data.forEach(i => {
+        str += `<li>
+                  <h4>${i.name}</h4>
+                  <div>${i.gender}</div>
+                  <p>${i.info}</p>
+                </li>`
+      })
+      ul.innerHTML = str
+    }
+    btn2.onclick = function () {
+      const sc = document.createElement('script')
+      // sc.src = 'http://localhost:5000/demo.html?name:zs&age=14'
+      sc.src = 'http://localhost:5000/demo.html?callback=fn'
+
+      document.body.appendChild(sc)
+    }
+  </script>
+</body>
+
+</html>
