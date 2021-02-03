@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- 开启理想视口的代码 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  #box {
+    width: 3.45rem;
+    height: 1.5rem;
+    margin: 0.15rem;
+    background-color: skyblue;
+  }
+
+</style>
+
+<body>
+  <div id="box"></div>
+  <script>
+    // js中获取当前设备的像素比:
+    // 像素比 = 设备物理分辨率的水平值/设备独立像素的水平值
+    // 像素比为1:表示1个css像素,由1个物理像素渲染
+    // 像素比为2:表示1个css像素,由2个物理像素渲染
+    // 像素比为3:表示1个css像素,由3个物理像素渲染
+    console.log(window.devicePixelRatio)
+    //---------------------------
+    function adapter() {
+      // 1.计算根标签的字体大小
+      // 当前设备的独立像素*100/设计稿的宽度
+      const rootFontSize = (document.documentElement.clientWidth * 100) / 375
+      document.documentElement.style.fontSize = rootFontSize + 'px'
+      // 2.根据设计稿的px值,计算rem值,然后写rem值
+    }
+    adapter()
+    window.onresize = adapter
+
+  </script>
+  <script>
+  
+  </script>
+</body>
+
+</html>
