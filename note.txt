@@ -1,0 +1,42 @@
+1.创建react项目:
+  1.安装node.js(下一步下一步)
+  2.测试npm -v 和node -v(测试node是否安装成功)
+  3.安装cnpm或者配置仓库地址(国内网速过慢)
+    配置npm仓库地址: npm config set registry https://registry.npm.taobao.org
+    查看仓库地址: npm config get registry
+  4.安装yarn:
+    npm i yarn -g
+  5.安装react脚手架(注意:是npm!)
+    npm i create-react-app -g
+  6.创建react项目(因为安装了yarn,所以安装的时候会使用yarn安装)
+    create-react-app yourAppName 
+  7.测试react项目是否正常运行
+    yarn start / npm start
+  8.开始编程
+
+2.安装mongoose和mongodb和express
+
+3.git配置
+  1.安装git(git是国外网站,下载速度极慢,可通过电脑管家下载)
+  2.配置git
+    配置用户名
+      git config --global user.name "coderou"
+    配置邮箱(注意,github账号的邮箱如果和配置的邮箱不统一,将不会更新代码贡献!!!更新有延迟,不要着急)
+      git config --global user.email "13739477489@qq.com"
+    查看用户名和邮箱地址：
+      git config user.name
+      git config user.email
+      git config -l //查看git所有配置
+  3.SSH公钥配置
+    git bash窗口输入 ssh-keygen  一路enter即可
+    进入C:\Users\admin\.ssh
+      id_rsa 私钥
+      id_rsa.pub 公钥
+    通过记事本打开公钥,ctrl+A  ctrl+C
+  4.配置github
+    进入github  进入Settings  进入SSH and GPG keys  删除之前的SSH公钥,并将自己的公钥添加进去
+    创建一个仓库或者进入自己之前的仓库
+    通过SSH的方式clone仓库
+    
+4.
+
