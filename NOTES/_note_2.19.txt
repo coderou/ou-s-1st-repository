@@ -1,0 +1,87 @@
+>>>>>>>>>1.复习
+  1.react不用脚手架需要:
+    react.js(react核心包)  
+    react-dom.js(dom操作)  
+    babel.js(编译jsx)
+  2.react元素(虚拟dom)其实就是普通的对象
+  3.jsx本质上是一个语法糖,浏览器不认识,需要babel编译为对应的React.createElement()
+  4.不要直接在插值表达式{}中写对象,函数,布尔值(无法显示)
+  5.列表渲染:
+    1.最终要拿到一个数组
+    2.每个元素要有独一无二的key(提高性能)
+  6.行内样式:style={{color:"#fff",fontSize:18}}
+  7.类上直接定义函数 fn(){}时,this指向undefined
+    原因:底层是直接调用,而babel编译时为严格模式
+    this执行解决方案:
+      定义事件函数为回调函数 onClick={()=>{alert(1)}}
+      使用bind返回新this函数(本质也是this上加函数)
+      箭头函数写法(es7)
+  8.高阶函数:将函数作为参数,传递到另一个函数中\将一个函数作为返回值,从另一个函数返回出去
+  9.生命周期函数:
+    挂载:constructor---render---componentDidMount
+    更新:render(传入新props\setState\forceUpdate)--componentDidUpdate
+    卸载:componentWillUnmount(删除绑定事件\取消订阅)
+  10.组件通信方式(通常都是配合使用的,而不是单独用一种)
+    props(父传子)
+    context(跨级,上传下)
+    ### pubsub(第三方库,跨级跨关系)
+  11.性能优化
+    减轻state
+    shouldComponentUpdate
+      触发条件:传入新props\调用了setState
+      参数1nextProps,nextState
+    纯组件(PureComponent)
+      内层是浅层对比
+  12.高阶组件(HOC)和renderProps都是编程技巧
+    高阶组件是函数,返回一个组件
+  13.react路由:react-router-dom
+  14.纯函数:传入相同的值得到相同的结果
+  15.如果忘记了viewport,打开移动端淘宝<meta name="viewport".....>
+  16.主流适配方式是用的rem适配,其他适配有兼容问题
+
+>>>>>>>>>其他
+  面试就喜欢考不常用的
+  - 问react可能会问道你有没有了解过hook函数编程
+  - 学了后面的前面的就会忘,所以笔记很重要,笔记要清晰
+  - 前端最大的难点不是技术,而是东西太多
+  - 总结一下用过的npm包,比如create-react-app,比如pubsub,react-redux,react-router-dom,redux-thunk(actions发送异步请求)
+  - 自己下一点github的项目看
+  - 多用用右边的shift
+  - 平时没事多看看文档,不然需要找的时候你找不到
+  - 安装create-react-app要用npm
+  - windows自带的剪切板工具:win+v
+
+>>>>>>>>>笔记
+  1.Zepto,专门用于移动端点击事件
+  2.拿离开的触点的坐标用changedTouches
+  3.react<配合>ant-Design  /  vue<配合>element UI
+  4.异步任务中不可以抛出错误,抓取不到
+
+>>>>>>>>>复习
+  1.1px问题
+    问题描述
+      1px边框在高清屏上可能个看起来会有点粗,不美观,想要达到的效果是1px的边框在高清屏上看起来是比较细的效果
+    解决办法:
+      1.媒体查询(未写代码)
+        特点:好理解,实现容器,但是如果处理的边框较多,代码比较冗余
+      2.设置一个更大的布局视口,然后让整体盒子也放大,然后让边框不参与适配(未写代码)
+        特点:不好理解,一劳永逸
+  2.移动端事件
+    touchstart 手指触摸到屏墓
+    touchmove 手指在屏墓上移动
+    touchend 守住离开屏幕
+    touchcancel 出门屏幕被中断
+    事件对象的属性(这三个都是伪数组,记录了对应的触点信息)
+      touches
+        记录了屏幕上所有的触点
+      targetTouches
+        记录了元素上的所有触点
+      changedTouches
+        记录了改变的触点,一般在touchend中可以通过changedTouches拿到离开屏幕的那个触点的信息
+    每个触点对象上又记录了对应的触点的坐标 clientX
+    注意:
+      1.touch事件只在移动端生效
+      2.移动端也可以使用click,但是click的触发时机比touchstart慢约300ms(开启理想视口之后会减少到100左右)
+      3.点击穿透问题(一个touchstart事件触发了之后,过了大约300ms,同样的位置上会触发click事件)
+        解决:在touchstart中调用e.preventDefault() 这样click就不会再触发了
+      

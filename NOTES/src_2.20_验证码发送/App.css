@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #fff;
+}
+.inp_phone {
+  display: flex;
+  align-items: center;
+}
+/* .inp_code {
+  display: flex;
+  align-items: center;
+} */
+.inp_code_tip {
+  height: 30px;
+  line-height: 30px;
+  border-left: 1px solid #ddd;
+  padding-left: 10px;
+  color: #999;
+  margin-left: 10px;
+}
+/* 登录按钮 */
+.login_btn {
+  border-radius: 23px;
+}
+/* 账号密码登录\手机注册登录 */
+.login_nav {
+  display: flex;
+  justify-content: space-between;
+  color: #999;
+}
+/* 其他登录提示 */
+.login_other {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  align-items: center;
+}
+.line {
+  width: 100px;
+  border-top: 1px solid #ddd;
+}
+.text {
+  color: #999;
+}
+
+/* github登录\微信登录\qq登录 */
+.login_oauth {
+  text-align: center;
+  margin-top: 20px;
+}
+.login_oauth > i {
+  font-size: 40px;
+  border-radius: 50%;
+  padding: 10px;
+}
+.login_oauth > i:nth-child(1) {
+  background-color: rgb(95, 115, 175);
+}
+.login_oauth > i:nth-child(2) {
+  background-color: rgb(123, 112, 214);
+  margin: 0 20px;
+}
+.login_oauth > i:nth-child(3) {
+  background-color: rgb(103, 195, 149);
+}
+.login_bottom {
+  margin-top: 20px;
+  text-align: center;
+}
