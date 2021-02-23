@@ -1,0 +1,20 @@
+.am-list-body {
+  padding-right: 30px;
+}
+.countryNavBar {
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 90px;
+  right: 0;
+  z-index: 999999999999999;
+  /* background-color: pink; */
+  align-items: center;
+
+}
+.countryNavBar>a{
+  color: #666;
+  text-decoration: none;
+  margin-bottom: 8px;
+}

@@ -1,0 +1,2 @@
+(this.webpackJsonptest=this.webpackJsonptest||[]).push([[11],{314:function(t,e,n){"use strict";n.r(e);var c=n(14),r=n(15),s=n(17),a=n(16),i=n(0),u=n(6),o=function(t){Object(s.a)(n,t);var e=Object(a.a)(n);function n(){return Object(c.a)(this,n),e.apply(this,arguments)}return Object(r.a)(n,[{key:"render",value:function(){return Object(u.jsx)("div",{children:"Home\u7ec4\u4ef6"})}}]),n}(i.Component);e.default=o}}]);
+//# sourceMappingURL=11.de4ad0a9.chunk.js.map
