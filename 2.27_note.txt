@@ -1,0 +1,30 @@
+>>>>>>>>>笔记
+  1.不要直接修改props的数据,如果需要v-model双向绑定,可以使用
+    computed{
+      isDone:{
+        get(){}
+        set(){
+          props中父组件传递过来的method(期望修改的是数据)
+        }
+      }
+    }
+    来进行数据更新
+    这样能保证数据定义和数据更新都是在同一个组件,方便数据追溯,有利于程序健硕
+  2.一般我们用reduce来统计求和
+  3.数据源只有一份! 即,已完成和总数量,都保存在App,传递给Footer即可
+  4.需求:关掉后再重新打开,还是那个样子
+  5.sessionStorage关闭后没了(会话存储)
+    localStorage是(本地储存),所以是一直存在的
+  6.validator:校验,在props中是一个函数,如果返回true,通过,false,不通 主要用于对传入的数据进行校验
+  7.todoList问题:1.改变isChecked状态,无法更新,2.Item鼠标事件失效
+  8.pubsub在vue中不问,不用,不讲..了解即可
+  9.Vue实例和组件实例VueComponent是不一样的
+  10.VueComponent实例的this中有$listeners属性,包含传入的自定义事件
+  11.$on在很多框架或者技术中都是绑定事件
+  12.使用bus,哪里展示就定义在哪里
+  13.为什么发送请求要在mounted发请求?
+    1.用户体验:created此时页面还没有渲染,如果做太多事会阻塞渲染
+    2.事件需求:如果请求完成之后要操作dom,只有mounted才可以
+    3.当然也有人觉得created发请求快一点,接收到就快一点
+  14.高薪=>webpack
+  15.
