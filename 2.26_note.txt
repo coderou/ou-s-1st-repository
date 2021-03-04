@@ -1,0 +1,101 @@
+1.除了说明技术点,还有说实际应用的地方
+  原型:
+    react的extends Component
+    很少自己去定义,往往是用库的时候,可以通过继承使用库中的一些方法
+2.闭包
+  概念:通过chrome开发工具调试查看,一个closure的'对象',存在嵌套的内部函数中
+    闭包表现形式:键值对,位置:内部函数中
+  注意:引用的必须是局部变量,全局变量是不会产生闭包的
+  注意:chrome经过改版,内部函数不调用无法在scopes中看到closure了,所以内部函数也要使用才能看到
+  解决:让内部函数的'引用变量'变为null
+  闭包的应用:(不会刻意使用,而是自然而然的使用)
+    react中的高阶函数\柯里化函数
+    为什么要用高阶函数?为了复用函数
+    比如rc-form  createForm()()
+3.为什么要举例子?应用例子?因为要给面试官一种经验丰富的感觉
+4.所以要将 '知识点' 和 '开发项目中的情形' 结合在一起
+5.面试尽量多说一些,2-3个亮点
+6.开发套路:拆分组件->静态界面->动态功能
+7.eject: npm start / npm run eject 是将webpack的打包文件暴露出来,暴露出来后就无法隐藏了
+8.vue无需eject即代表不在需要自己配置webpack
+9.一些专门的团队会用babel来规范你的代码
+10.Manually select features:用手 选择 功能
+11.react<>TS
+12.PWA让网页离线也能运行,类似app,离线也能访问一些功能
+13.css Pre-processors CSS预处理器
+14.(y/N) N是大写,就是默认值
+15.node_modules->.bin 里面是一些可执行文件  在执行的时候会临时添加一些bin里面的环境变量(当在命令行输入的时候,先在自身目录下查找,没有去环境变量找)
+16.目录结构
+  public:静态资源
+    (图片,字体...)
+    (长久不会发生变化)
+    (所以要是logo等)
+    (比如Bootstrap,jQuery等)
+  src:源码
+  assets:(公共资源:多个组件共用的东西)
+  components:公共组件
+  views:普通组件
+  App.vue:根组件
+  main.js:入口(最关键的)
+17.文件 
+  .gitignore
+    .DS_Store(mac版本有)
+    react->build  vue->dist
+  package.lock.json/yarn.lock
+    缓存,包的版本
+  "private":true  指不允许发布到npm仓库中  
+  "lint":检查代码错误的指令
+  start指令在npm中不需要加run,其他都要
+  browserslist:浏览器列表,关联样式兼容性
+  not dead:死浏览器不要(欧朋)
+18.<% %> ejs语法 
+19.htmlWebpackPlugin是webpack的插件,用于处理html文件
+20.noscript 不支持js,这个标签生效
+21.main.js入口文件:
+  render:?????@@@@@
+22.UMD:通用模块名称,指的是直接<script>引入
+23.一般来说具备功能,变化的,拆
+24.通常子组件的子组件我们会定义在子组件的内部
+25.打包之后,会有一个.map文件 是源码映射文件,
+  1.记录:源代码,
+  2.记录:构建打包后输出的新代码
+  3.记录:一一对应的关系,报错能找到
+26.不管做什么功能,先做"展示"功能
+27.后台管理也是先走展示
+28.子组件接收数据(3种):
+  props:['comments'],
+  props: {
+    // 接收的props属性是comments,类型为数组
+    comments: Array,
+    deleteItem: Function,
+  },
+  props:{
+    comments:{
+      type:Array,
+      required:true,
+    }
+  }
+29.props
+  props方案:组件通信方案
+    适用于:父子组件通信
+    - 父 -> 子
+      直接传递普通数据(非函数数据)
+      子组件声明接收可以直接使用
+      注意:props通信数据是只读的,不可以直接修改(数据源在哪里,更新数据的方法就在那里)
+    - 子 -> 父
+      父组件给子组件传递函数数据
+      子组件通过调用函数,来修改父组件数据
+30.晨测:
+  谈谈:props
+  谈谈:JS事件轮询机制
+  让让:JS事件机制
+  让让:this指向
+    普通函数:
+      this在调用时确定
+      1.new调用
+        this指向实例函数
+      2.普通调用
+        this指向全局对象
+      3.通过函数上下文调用
+        this指向
+
